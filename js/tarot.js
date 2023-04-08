@@ -29,18 +29,56 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
     // Obtener el ancho del tablero
     var tableroAncho = $("#tablero").width();
 
-    for (var i = 0; i < 5; i++) {
-      // Crear un nuevo elemento div para el rectángulo
-      var rectangulo = $("<div>");
-      rectangulo.addClass("rectangulo");
-      rectangulo.css({
-        top: (contenedorCartas.height() + separacionResultados) + "px",
-        left: ((tableroAncho / 4) + (i * (140 + separacionResultados))) + "px"
-      });
-
-      // Agregar el rectángulo al contenedor
-      contenedorCartas.append(rectangulo);
-    }
+	  // Crear un nuevo elemento div para el rectángulo
+	  var rectangulo = $("<div>");
+	  rectangulo.addClass("rectangulo");
+	  rectangulo.css({
+		top: -850+(contenedorCartas.height() + separacionResultados) + "px",
+		left: ((tableroAncho / 8) + (1 * (210 + separacionResultados))) + "px"
+	  });
+	  // Agregar el rectángulo al contenedor
+	  contenedorCartas.append(rectangulo);
+	  
+	  	  // Crear un nuevo elemento div para el rectángulo
+	  var rectangulo2 = $("<div>");
+	  rectangulo2.addClass("rectangulo");
+	  rectangulo2.css({
+		top: -850+(contenedorCartas.height() + separacionResultados) + "px",
+		left: ((tableroAncho / 8) + (2 * (210 + 50 +separacionResultados))) + "px"
+	  });
+	  // Agregar el rectángulo al contenedor
+	  contenedorCartas.append(rectangulo2);
+	  
+	  	  // Crear un nuevo elemento div para el rectángulo
+	  var rectangulo3 = $("<div>");
+	  rectangulo3.addClass("rectangulo");
+	  rectangulo3.css({
+		top: -425+(contenedorCartas.height() + separacionResultados) + "px",
+		left: ((tableroAncho / 8) + (1 * (210 + separacionResultados))) + "px"
+	  });
+	  // Agregar el rectángulo al contenedor
+	  contenedorCartas.append(rectangulo3);
+	  
+	  	  // Crear un nuevo elemento div para el rectángulo
+	  var rectangulo4 = $("<div>");
+	  rectangulo4.addClass("rectangulo");
+	  rectangulo4.css({
+		top: -425+(contenedorCartas.height() + separacionResultados) + "px",
+		left: ((tableroAncho / 8) + (2 * (210 + 50 + separacionResultados))) + "px"
+	  });
+	  // Agregar el rectángulo al contenedor
+	  contenedorCartas.append(rectangulo4);
+	  
+	  	  // Crear un nuevo elemento div para el rectángulo
+	  var rectangulo5 = $("<div>");
+	  rectangulo5.addClass("rectangulo");
+	  rectangulo5.css({
+		top: 0+(contenedorCartas.height() + separacionResultados) + "px",
+		left: ((tableroAncho / 4) + (1 * (210 + 25 + separacionResultados))) + "px"
+	  });
+	  // Agregar el rectángulo al contenedor
+	  contenedorCartas.append(rectangulo5);
+    
 
     for (var i = 0; i < 10; i++) {
       // Crear un nuevo elemento div para la carta
@@ -155,8 +193,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	var cartas = $('.carta');
 
 	// Calcular la posición central del div con id "tablero"
-	var centroX = $('#tablero').width() / 2;
-	var centroY = $('#tablero').height() / -4;
+	var centroX = $('#tablero').width() / 3;
+	var centroY = $('#tablero').height() / -5;
 
 	// Calcular la posición inicial de las cartas
 	cartas.each(function() {
@@ -170,8 +208,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		// Calcular la posición final de las cartas
 		var posFinal = [];
 		cartas.each(function() {
-			var offsetX = Math.random() * 200 - 100; // Aleatorizar la posición final
-			var offsetY = Math.random() * 100 - 50; // Cambiar aquí el valor para ajustar la posición vertical
+			var offsetX = Math.random() * 600 - 300; // Aleatorizar la posición final
+			var offsetY = Math.random() * 300 - 150; // Cambiar aquí el valor para ajustar la posición vertical
 			posFinal.push({ left: centroX + offsetX, top: centroY + offsetY });
 		});
 
