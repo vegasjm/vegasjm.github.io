@@ -8,19 +8,20 @@ body {
   box-sizing: border-box;
   margin: 0 auto; /* Centrar horizontalmente el div dentro del contenedor padre */
   width: 100%; /* Ancho del div al 100% del ancho del contenedor padre */
-  max-width: 1020px; /* Ancho máximo del div en 600px o el valor que desees */
+  max-width: 1024px; /* Ancho máximo del div en 600px o el valor que desees */
   height: 100vh; /* Altura del div al 100% de la altura de la ventana del navegador */
+  min-height: 1630px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
 }
-/* Estilos específicos para dispositivos con un ancho máximo de 767px (dispositivos móviles en orientación vertical) */
+/* Estilos específicos para dispositivos con un ancho máximo de 1024px (dispositivos móviles en orientación vertical) */
 @media (max-width: 1024px) and (orientation: portrait) {
   /* Estilos específicos para dispositivos móviles */
 	#tablero {
-		height: 95vh; /* Altura del div al 100% de la altura de la ventana del navegador */
+		height: 90vh; /* Altura del div al 100% de la altura de la ventana del navegador */
 	}
 }
 #tablero {
@@ -82,8 +83,8 @@ body {
 #cartas {
     border: 6px solid #663300;
     border-radius: 10px;
-    width: 140px;
-    height: 200px;
+    width: 280px;
+    height: 400px;
     position: absolute;
     z-index: 0;
     left: -5px;
@@ -92,20 +93,20 @@ body {
 
 #contenedor-cartas {
   position: absolute;
-  bottom: 100px;
+  bottom: 300px;
   left: 0;
   width: 80px;
   height: 120px;
   margin: 0 auto;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   z-index: 4;
 }
 .carta {
   background-image: url('../images/left-mazo.jpg');
   background-size: contain;
-  width: 140px;
-  height: 200px;
+  width: 280px;
+  height: 400px;
   position: absolute;
   top: 0;
   left: 0;
@@ -137,8 +138,8 @@ body {
   }
 }
 .rectangulo {
-  width: 140px;
-  height: 200px;
+  width: 280px;
+  height: 400px;
   background-color: #ffe0bd;
   border: 2px solid #a66c2f;
   box-shadow: 5px 5px 5px #a66c2f;
@@ -176,8 +177,8 @@ body {
   top: 50%;
   left: 140px;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 160px;
+  height: 160px;
   background-image: url('../images/items/manoWizard.png');
   background-size: cover;
 }
