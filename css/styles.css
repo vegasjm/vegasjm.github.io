@@ -16,6 +16,13 @@ body {
   justify-content: flex-start;
   position: relative;
 }
+/* Estilos específicos para dispositivos con un ancho máximo de 767px (dispositivos móviles en orientación vertical) */
+@media (max-width: 767px) {
+  /* Estilos específicos para dispositivos móviles */
+	#tablero {
+		height: 80vh; /* Altura del div al 100% de la altura de la ventana del navegador */
+	}
+}
 #tablero {
   background: 
     /* Patrón de fondo barroco */
