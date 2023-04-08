@@ -156,7 +156,7 @@ body {
 }
 .wizard-container {
     position: relative;
-    width: 600px;
+    width: 85%;
     height: 300px;
     background-color: #ffe0bd;
     border: 2px solid #a66c2f;
