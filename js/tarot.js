@@ -24,7 +24,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
     var separacion = 1;
 	
    // Definir la separación horizontal entre los rectangulos de cartas
-    var separacionResultados = 20;
+    var separacionResultados = 5;
 
     // Obtener el ancho del tablero
     var tableroAncho = $("#tablero").width();
@@ -35,7 +35,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
       rectangulo.addClass("rectangulo");
       rectangulo.css({
         top: (contenedorCartas.height() + separacionResultados) + "px",
-        left: ((tableroAncho / 3) + (i * (70 + separacionResultados))) + "px"
+        left: ((tableroAncho / 4) + (i * (140 + separacionResultados))) + "px"
       });
 
       // Agregar el rectángulo al contenedor
