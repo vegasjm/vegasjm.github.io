@@ -1,10 +1,15 @@
 /* Estilos base para el tablero */
+body {
+  margin: 0;
+  padding: 0;
+}
 #tablero {
   border: 5px solid black;
   box-sizing: border-box;
-  margin: 20px;
-  width: 80vw;
-  height: 80vh;
+  margin: 0 auto; /* Centrar horizontalmente el div dentro del contenedor padre */
+  width: 100%; /* Ancho del div al 100% del ancho del contenedor padre */
+  max-width: 760px; /* Ancho máximo del div en 600px o el valor que desees */
+  height: 100vh; /* Altura del div al 100% de la altura de la ventana del navegador */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -67,38 +72,20 @@
   background-color: white;
 }
 
-/* Estilos para PC */
-@media (min-width: 768px) {
-  #tablero {
-    margin: 50px auto;
-  }
-}
-
-/* Estilos para móvil */
-@media (max-width: 767px) {
-  #tablero {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border: 10px solid black;
-    box-sizing: border-box;
-  }
-}
-
 #cartas {
-  border: 6px solid #663300;
-  border-radius: 10px;
-  width: 70px; 
-  height: 100px; 
-  position: absolute;
-  z-index: 0;
-  left: -5px;
-  top: -5px;
+    border: 6px solid #663300;
+    border-radius: 10px;
+    width: 140px;
+    height: 200px;
+    position: absolute;
+    z-index: 0;
+    left: -5px;
+    top: -5px;
 }
 
 #contenedor-cartas {
   position: absolute;
-  bottom: 0;
+  bottom: 100px;
   left: 0;
   width: 80px;
   height: 120px;
@@ -110,8 +97,8 @@
 .carta {
   background-image: url('../images/left-mazo.jpg');
   background-size: contain;
-  width: 70px;
-  height: 100px;
+  width: 140px;
+  height: 200px;
   position: absolute;
   top: 0;
   left: 0;
@@ -119,18 +106,18 @@
 }
 
 #boton-barajar {
-  position: absolute;
-  top: -60px;
-  right: -5px;
-  z-index: 2;
-  background-color: #FFDAB9;
-  padding: 10px 20px;
-  font-size: 20px;
-  transform: rotate(-10deg);
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-  border: 3px solid #a66c2f;
-  box-shadow: 3px 3px 0px #6b3f0f;
+    position: absolute;
+    top: -160px;
+    right: -125px;
+    z-index: 2;
+    background-color: #FFDAB9;
+    padding: 10px 20px;
+    font-size: 50px;
+    transform: rotate(-10deg);
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+    border: 3px solid #a66c2f;
+    box-shadow: 3px 3px 0px #6b3f0f;
 }
 #boton-barajar:hover {
   cursor: pointer;
@@ -143,8 +130,8 @@
   }
 }
 .rectangulo {
-  width: 70px;
-  height: 100px;
+  width: 140px;
+  height: 200px;
   background-color: #ffe0bd;
   border: 2px solid #a66c2f;
   box-shadow: 5px 5px 5px #a66c2f;
@@ -161,21 +148,20 @@
   z-index: -2;
 }
 .wizard-container {
-  position: relative;
-  width: 410px;
-  height: 50px;
-  background-color: #ffe0bd;
-  border: 2px solid #a66c2f;
-  box-shadow: 5px 5px 5px #a66c2f;
-  border-radius: 10px;
-  font-family: "Times New Roman", Times, serif;
-  padding: 20px;
-  text-align: center;
-  line-height: 100px;
-  bottom: 30px;
-  left: calc(33.33% + 10px);
-  font-size: 16px;
-  
+    position: relative;
+    width: 600px;
+    height: 300px;
+    background-color: #ffe0bd;
+    border: 2px solid #a66c2f;
+    box-shadow: 5px 5px 5px #a66c2f;
+    border-radius: 10px;
+    font-family: "Times New Roman", Times, serif;
+    padding: 20px;
+    text-align: center;
+    line-height: 100px;
+    bottom: -30px;
+    left: 50px;
+    font-size: 16px;
 }
 
 .wizard-hand {
