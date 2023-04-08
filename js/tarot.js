@@ -35,9 +35,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
       rectangulo.addClass("rectangulo");
       rectangulo.css({
         top: (contenedorCartas.height() + separacionResultados) + "px",
-        left: ((tableroAncho / 3) + (i * (70 + separacionResultados))) + "px",
-        width: "70px",
-        height: "100px"
+        left: ((tableroAncho / 3) + (i * (70 + separacionResultados))) + "px"
       });
 
       // Agregar el rectángulo al contenedor
