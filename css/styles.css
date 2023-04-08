@@ -8,7 +8,7 @@ body {
   box-sizing: border-box;
   margin: 0 auto; /* Centrar horizontalmente el div dentro del contenedor padre */
   width: 100%; /* Ancho del div al 100% del ancho del contenedor padre */
-  max-width: 760px; /* Ancho máximo del div en 600px o el valor que desees */
+  max-width: 1020px; /* Ancho máximo del div en 600px o el valor que desees */
   height: 100vh; /* Altura del div al 100% de la altura de la ventana del navegador */
   display: flex;
   flex-direction: column;
