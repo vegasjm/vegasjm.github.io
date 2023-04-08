@@ -20,7 +20,7 @@ body {
 @media (max-width: 1024px) and (orientation: portrait) {
   /* Estilos específicos para dispositivos móviles */
 	#tablero {
-		height: 80vh; /* Altura del div al 100% de la altura de la ventana del navegador */
+		height: 95vh; /* Altura del div al 100% de la altura de la ventana del navegador */
 	}
 }
 #tablero {
