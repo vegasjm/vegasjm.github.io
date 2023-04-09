@@ -5,14 +5,20 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
   currentCardFromDeck:0,
   maxCardsFromFeck:5,
   init: function() {
-	// Hacer que la mano del wizard parpadee en intervalos de 300ms
-    var wizardHandInterval = setInterval(function() {
-      $("#wizard-hand").fadeToggle(300);
-    }, 300);
-    this.loadCardsSpot();
+    this.loadTablero();
     this.buildButtonsBehaviour();
+	this.textos.show(this.textos.inicial);
+	this.WIZARD.init();
   },
-  loadCardsSpot: function() {
+  WIZARD:{
+	  init: function(){
+		// Hacer que la mano del wizard parpadee en intervalos de 300ms
+		var wizardHandInterval = setInterval(function() {
+		  $("#wizard-hand").fadeToggle(300);
+		}, 300);
+	  }
+  },
+  loadTablero: function() {
     // Cargar la imagen de la parte trasera de las cartas
     var cartaAtras = new Image();
     cartaAtras.src = "images/left-mazo.jpg";
@@ -97,33 +103,17 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
   },
   buildButtonsBehaviour: function() {
     $("#boton-barajar").click(function() {
-      $(this).css({
-        "background-color": "#4c2600",
-        "color": "#fff"
-      });
-      $("#audio-click")[0].play();
-      setTimeout(function() {
-        $("#boton-barajar").css("background-color", "#FFDAB9");
-        $("#boton-barajar").css("cursor", "default");
-        $("#boton-barajar").css("color", "#000");
-        $("#boton-barajar").hover(function() {
-            $("#boton-barajar").css("background-color", "#663300");
-            $("#boton-barajar").css("cursor", "pointer");
-            $("#boton-barajar").css("color", "#fff");
-          },
-          function() {
-            $("#boton-barajar").css("background-color", "#FFDAB9");
-            $("#boton-barajar").css("cursor", "default");
-            $("#boton-barajar").css("color", "#000");
-          }
-        );
-      }, 300);
+	  ORACULO_SENTIDOS.barajarButtonEffect();
     });
     $("#boton-barajar").on("click", function() {
       // función que ejecuta el efecto de barajado
       ORACULO_SENTIDOS.barajar();
     });
 	$('#contenedor-cartas').click(function() {
+	  ORACULO_SENTIDOS.moveAndDiscoverCardEffect();
+	});
+  },
+  moveAndDiscoverCardEffect: function(){
 	  if (ORACULO_SENTIDOS.barajado) {
 		if (ORACULO_SENTIDOS.currentCardFromDeck == 5) {
 		  ORACULO_SENTIDOS.currentCardFromDeck = 0;
@@ -179,7 +169,29 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		  });
 		}
 	  }
-	});
+  },
+  barajarButtonEffect: function(){
+	  $(this).css({
+		"background-color": "#4c2600",
+		"color": "#fff"
+	  });
+	  $("#audio-click")[0].play();
+	  setTimeout(function() {
+		$("#boton-barajar").css("background-color", "#FFDAB9");
+		$("#boton-barajar").css("cursor", "default");
+		$("#boton-barajar").css("color", "#000");
+		$("#boton-barajar").hover(function() {
+			$("#boton-barajar").css("background-color", "#663300");
+			$("#boton-barajar").css("cursor", "pointer");
+			$("#boton-barajar").css("color", "#fff");
+		  },
+		  function() {
+			$("#boton-barajar").css("background-color", "#FFDAB9");
+			$("#boton-barajar").css("cursor", "default");
+			$("#boton-barajar").css("color", "#000");
+		  }
+		);
+	  }, 300);
   },
   barajar: function() {
     // Obtener el botón de barajar
@@ -230,6 +242,21 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			window.clearInterval(intervalID);
 		}
 	}, 750);
+  },
+  textos:{
+	  writtingSpeed: 25,
+	  inicial: 'Para hacer tus consultas debes concentrarte en el asunto que te interesa. Seguir las instrucciones del botón y del recuadro, incluidos en el tapete. Recuerda que la primera carta es la respuesta a tu consulta y la segunda y tercera su evolución. Puedes realizar tantas consultas como desees sobre ti o las personas de tu interés.',
+	  show: function(texto){        
+		var i = 0;
+		var intervalo = setInterval(function() {
+			if (i < texto.length) {
+			  $("#wizard-textbox").append(texto.charAt(i));
+			  i++;
+			} else {
+			  clearInterval(intervalo);
+			}
+		}, ORACULO_SENTIDOS.textos.writtingSpeed);
+	  }
   }
 };
 // Inicializar el juego cuando se cargue el documento
