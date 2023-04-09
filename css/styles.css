@@ -182,4 +182,6 @@ body {
   height: 100px;
   background-image: url('../images/items/manoWizard.png');
   background-size: cover;
+  display:none;
+  z-index:50;
 }
