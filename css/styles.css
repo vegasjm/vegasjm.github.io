@@ -10,7 +10,7 @@ body {
   width: 100%; /* Ancho del div al 100% del ancho del contenedor padre */
   max-width: 1024px; /* Ancho máximo del div en 600px o el valor que desees */
   height: 100vh; /* Altura del div al 100% de la altura de la ventana del navegador */
-  min-height: 1630px;
+  min-height: 1830px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
