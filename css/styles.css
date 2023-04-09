@@ -164,21 +164,22 @@ body {
     border: 2px solid #a66c2f;
     box-shadow: 5px 5px 5px #a66c2f;
     border-radius: 10px;
-    font-family: "Times New Roman", Times, serif;
+	font-family: 'Cinzel', sans-serif;
+	font-weight: bold;
     padding: 20px;
     text-align: center;
-    line-height: 100px;
+    line-height: 40px;
     left: 50px;
-    font-size: 16px;
+    font-size: 26px;
 }
 
 .wizard-hand {
   position: absolute;
   top: 50%;
-  left: 140px;
+  left: 40px;
   transform: translateY(-50%);
-  width: 160px;
-  height: 160px;
+  width: 100px;
+  height: 100px;
   background-image: url('../images/items/manoWizard.png');
   background-size: cover;
 }
