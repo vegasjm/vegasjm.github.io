@@ -22,11 +22,14 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		var wizardHandInterval = setInterval(function() {
 		  $("#wizard-hand").fadeToggle(300);
 		}, 300);
-		ORACULO_SENTIDOS.WIZARD.moveHandToBarajarButton();
+		ORACULO_SENTIDOS.WIZARD.moveHandTo('boton-barajar');
 	  }, 
-	  moveHandToBarajarButton: function(){
+	  moveHandTo: function(id){
+		$("#wizard-hand").css("display", "block");
+		$("#wizard-hand").css("visibility", "visible");
+
 		var div1 = $("#wizard-hand");
-		var div2 = $("#boton-barajar");
+		var div2 = $("#"+id);
 		var startPos = div1.offset();
 		var endPos = div2.offset();
 
@@ -34,7 +37,9 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		var leftPos = endPos.left - startPos.left + div2.width() / 2 - div1.width() / 2 - parseInt(div2.css('left')); // Añadir posición relativa en el eje x del div2
 		var topPos = endPos.top - startPos.top + div2.height() / 2 - div1.height() / 2 - parseInt(div2.css('top')); // Añadir posición relativa en el eje y del div2
 
-		var div2Width = div2.outerWidth() + 10; // Anchura de div2 más 10px
+		if(leftPos<0) leftPos = leftPos*-1;if(topPos<0) topPos = topPos*-1;
+		
+		var div2Width = div2.outerWidth()*0.80; // Anchura de div2 más 10px
 		var div2Height = div2.outerHeight() / 2; // Mitad de la altura de div2
 		
 		// Animar el movimiento del div1 hasta la posición del div2
@@ -42,8 +47,17 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		  left: (leftPos+div2Width) + "px", // Utilizamos valores relativos
 		  top: (topPos+div2Height) + "px" // Utilizamos valores relativos
 		}, 1000); // Duración de la animación en milisegundos (en este caso, 1000 ms o 1 segundo)
+	  },
+	  hideHand: function(){
+		  $("#wizard-hand").css("display", "none");
+		  $("#wizard-hand").css("visibility", "hidden");
+	  },
+	  showHand: function(){
+		  $("#wizard-hand").css("display", "block");
+		  $("#wizard-hand").css("visibility", "visible");
 	  }
   },
+  
   loadTablero: function() {
 	// Obtener el botón de barajar
 	var botonBarajar = $('#boton-barajar');
@@ -152,6 +166,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		  ORACULO_SENTIDOS.currentCardFromDeck = 0;
 		  ORACULO_SENTIDOS.barajado = false;
 		} else {
+		  ORACULO_SENTIDOS.WIZARD.hideHand();
+		  $("#audio-arrastrar")[0].play();
 		  // Seleccionar la última carta en el contenedor de cartas
 		  const $ultimaCarta = $('.carta').last();
 
@@ -227,6 +243,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  }, 300);
   },
   barajar: function() {
+	ORACULO_SENTIDOS.WIZARD.hideHand();
+	$("#audio-barajar")[0].play();
     // Obtener el botón de barajar
 	var botonBarajar = $('#boton-barajar');
 
@@ -273,6 +291,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			}, 25);
 			ORACULO_SENTIDOS.barajado = true;
 			window.clearInterval(intervalID);
+			ORACULO_SENTIDOS.WIZARD.moveHandTo('contenedor-cartas');
 		}
 	}, 250);
   },
