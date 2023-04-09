@@ -73,7 +73,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  rectangulo.addClass("rectangulo");
 	  rectangulo.css({
 		top: -850+(contenedorCartas.height() + separacionResultados) + "px",
-		left: ((tableroAncho / 8) + (1 * (210 + separacionResultados))) + "px"
+		left: ((tableroAncho / 10) + (1 * (210 + separacionResultados))) + "px"
 	  });
 	  // Agregar el rectángulo al contenedor
 	  contenedorCartas.append(rectangulo);
@@ -83,7 +83,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  rectangulo2.addClass("rectangulo");
 	  rectangulo2.css({
 		top: -850+(contenedorCartas.height() + separacionResultados) + "px",
-		left: ((tableroAncho / 8) + (2 * (210 + 50 +separacionResultados))) + "px"
+		left: ((tableroAncho / 10) + (2 * (210 + 50 +separacionResultados))) + "px"
 	  });
 	  // Agregar el rectángulo al contenedor
 	  contenedorCartas.append(rectangulo2);
@@ -93,7 +93,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  rectangulo3.addClass("rectangulo");
 	  rectangulo3.css({
 		top: -425+(contenedorCartas.height() + separacionResultados) + "px",
-		left: ((tableroAncho / 8) + (1 * (210 + separacionResultados))) + "px"
+		left: ((tableroAncho / 10) + (1 * (210 + separacionResultados))) + "px"
 	  });
 	  // Agregar el rectángulo al contenedor
 	  contenedorCartas.append(rectangulo3);
@@ -103,7 +103,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  rectangulo4.addClass("rectangulo");
 	  rectangulo4.css({
 		top: -425+(contenedorCartas.height() + separacionResultados) + "px",
-		left: ((tableroAncho / 8) + (2 * (210 + 50 + separacionResultados))) + "px"
+		left: ((tableroAncho / 10) + (2 * (210 + 50 + separacionResultados))) + "px"
 	  });
 	  // Agregar el rectángulo al contenedor
 	  contenedorCartas.append(rectangulo4);
@@ -113,7 +113,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	  rectangulo5.addClass("rectangulo");
 	  rectangulo5.css({
 		top: 0+(contenedorCartas.height() + separacionResultados) + "px",
-		left: ((tableroAncho / 4) + (1 * (210 + 25 + separacionResultados))) + "px"
+		left: ((tableroAncho / 5) + (1 * (210 + 25 + separacionResultados))) + "px"
 	  });
 	  // Agregar el rectángulo al contenedor
 	  contenedorCartas.append(rectangulo5);
