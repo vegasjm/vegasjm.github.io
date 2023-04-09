@@ -7,18 +7,51 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
   init: function() {
     this.loadTablero();
     this.buildButtonsBehaviour();
-	this.textos.show(this.textos.inicial);
-	this.WIZARD.init();
+	this.textos.show(this.textos.inicial,this.WIZARD.init);
   },
   WIZARD:{
 	  init: function(){
+		// Obtener el botón de barajar
+		var botonBarajar = $('#boton-barajar');
+
+		// Deshabilitar el botón
+		botonBarajar.prop('disabled', false);
+		botonBarajar.on('click');
+		$("#wizard-hand").css("display", "block");
 		// Hacer que la mano del wizard parpadee en intervalos de 300ms
 		var wizardHandInterval = setInterval(function() {
 		  $("#wizard-hand").fadeToggle(300);
 		}, 300);
+		ORACULO_SENTIDOS.WIZARD.moveHandToBarajarButton();
+	  }, 
+	  moveHandToBarajarButton: function(){
+		var div1 = $("#wizard-hand");
+		var div2 = $("#boton-barajar");
+		var startPos = div1.offset();
+		var endPos = div2.offset();
+
+		// Calcular los valores relativos de movimiento
+		var leftPos = endPos.left - startPos.left + div2.width() / 2 - div1.width() / 2 - parseInt(div2.css('left')); // Añadir posición relativa en el eje x del div2
+		var topPos = endPos.top - startPos.top + div2.height() / 2 - div1.height() / 2 - parseInt(div2.css('top')); // Añadir posición relativa en el eje y del div2
+
+		var div2Width = div2.outerWidth() + 10; // Anchura de div2 más 10px
+		var div2Height = div2.outerHeight() / 2; // Mitad de la altura de div2
+		
+		// Animar el movimiento del div1 hasta la posición del div2
+		div1.animate({
+		  left: (leftPos+div2Width) + "px", // Utilizamos valores relativos
+		  top: (topPos+div2Height) + "px" // Utilizamos valores relativos
+		}, 1000); // Duración de la animación en milisegundos (en este caso, 1000 ms o 1 segundo)
 	  }
   },
   loadTablero: function() {
+	// Obtener el botón de barajar
+	var botonBarajar = $('#boton-barajar');
+
+	// Deshabilitar el botón
+	botonBarajar.prop('disabled', true);
+	botonBarajar.off('click');
+	
     // Cargar la imagen de la parte trasera de las cartas
     var cartaAtras = new Image();
     cartaAtras.src = "images/left-mazo.jpg";
@@ -241,12 +274,12 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			ORACULO_SENTIDOS.barajado = true;
 			window.clearInterval(intervalID);
 		}
-	}, 750);
+	}, 250);
   },
   textos:{
 	  writtingSpeed: 25,
 	  inicial: 'Para hacer tus consultas debes concentrarte en el asunto que te interesa. Seguir las instrucciones del botón y del recuadro, incluidos en el tapete. Recuerda que la primera carta es la respuesta a tu consulta y la segunda y tercera su evolución. Puedes realizar tantas consultas como desees sobre ti o las personas de tu interés.',
-	  show: function(texto){        
+	  show: function(texto, func){        
 		var i = 0;
 		var intervalo = setInterval(function() {
 			if (i < texto.length) {
@@ -254,6 +287,7 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			  i++;
 			} else {
 			  clearInterval(intervalo);
+			  if(func!=null) func();
 			}
 		}, ORACULO_SENTIDOS.textos.writtingSpeed);
 	  }
