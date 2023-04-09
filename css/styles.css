@@ -48,7 +48,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-left: 20px;
-  /*color: #e6d5b8; */
+   text-align: center;
   text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
   -webkit-text-stroke: 1px black;
   text-stroke: 1px black;
@@ -185,3 +185,35 @@ body {
   display:none;
   z-index:50;
 }
+#contenedor-tipos-consultas{
+    position: relative;
+    width: 25%;
+    height: 500px;
+    background-color: #ffe0bd;
+    border: 2px solid #a66c2f;
+    box-shadow: 5px 5px 5px #a66c2f;
+    border-radius: 10px;
+	font-family: 'Cinzel', sans-serif;
+	font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    line-height: 40px;
+    left: 50px;
+	top: 50px;
+}
+.tipo_consulta_button {
+  width: 100%;
+  height: 80px;
+  background-image: linear-gradient(to bottom, #00008B, #1E90FF);
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tipo_consulta_button:last-child {
+  margin-bottom: 0;
+}
+	
