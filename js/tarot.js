@@ -10,21 +10,22 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	this.textos.show(this.textos.inicial,this.WIZARD.init);
   },
   WIZARD:{
-	  init: function(){
-		// Obtener el botón de barajar
-		var botonBarajar = $('#boton-barajar');
-
-		// Deshabilitar el botón
-		botonBarajar.prop('disabled', false);
-		botonBarajar.on('click');
+	  init: function(){		
+		var botonesTipoConsulta =  $('.tipo_consulta_button');
+			botonesTipoConsulta.prop('disabled', false);
+			botonesTipoConsulta.on('click');
 		$("#wizard-hand").css("display", "block");
 		// Hacer que la mano del wizard parpadee en intervalos de 300ms
 		var wizardHandInterval = setInterval(function() {
 		  $("#wizard-hand").fadeToggle(300);
 		}, 300);
-		ORACULO_SENTIDOS.WIZARD.moveHandTo('boton-barajar');
+		ORACULO_SENTIDOS.WIZARD.moveHandTo('contenedor-tipos-consultas');
 	  }, 
-	  moveHandTo: function(id){
+	  moveHandTo: function(id, isReset){
+		if(isReset){
+			$("#wizard-hand").css("top","50%");
+			$("#wizard-hand").css("left","40px");
+		}
 		$("#wizard-hand").css("display", "block");
 		$("#wizard-hand").css("visibility", "visible");
 
@@ -65,6 +66,11 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	// Deshabilitar el botón
 	botonBarajar.prop('disabled', true);
 	botonBarajar.off('click');
+	
+	var botonsTipoConsulta =  $('.tipo_consulta_button');
+	// Deshabilitar los botones
+	botonsTipoConsulta.prop('disabled', true);
+	botonsTipoConsulta.off('click');
 	
     // Cargar la imagen de la parte trasera de las cartas
     var cartaAtras = new Image();
@@ -139,6 +145,25 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 	$('#contenedor-cartas').click(function() {
 	  ORACULO_SENTIDOS.moveAndDiscoverCardEffect();
 	});
+	$('.tipo_consulta_button').click(function(el) {
+	  ORACULO_SENTIDOS.tipoConsultaButtonEffect(el);
+	});
+	$('.tipo_consulta_button').click(function() {
+	  ORACULO_SENTIDOS.chooseConsultaType();
+	});
+  },
+  chooseConsultaType: function(){
+	  	var botonsTipoConsulta =  $('.tipo_consulta_button');
+		// Deshabilitar los botones
+		botonsTipoConsulta.prop('disabled', true);
+		botonsTipoConsulta.off('click');
+		this.textos.show(this.textos.barajar,ORACULO_SENTIDOS.WIZARD.moveHandTo('boton-barajar',true));
+		// Obtener el botón de barajar
+		var botonBarajar = $('#boton-barajar');
+
+		// habilitar el botón
+		botonBarajar.prop('disabled', false);
+		botonBarajar.on('click');
   },
   moveAndDiscoverCardEffect: function(){
 	  if (ORACULO_SENTIDOS.barajado) {
@@ -196,8 +221,53 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			  important: 'true'
 			});
 		  });
+		  if(ORACULO_SENTIDOS.currentCardFromDeck <= 2){
+			  setTimeout(function() {
+				ORACULO_SENTIDOS.WIZARD.showHand();
+			  }, 1000);
+		  }else{
+			  $('#contenedor-cartas').hover(
+			   function () {
+				  $(this).css({"cursor":"default"});
+			   }, 
+			   function () {
+				  $(this).css({"cursor":"default"});
+			   }
+			);
+			var restartGameButton = function(){
+				$("#wizard-textbox").html($("#wizard-textbox").text()+'<button id="restartgame">Consultar de nuevo</button>');
+				$("#restartgame").on("click", function() {
+					document.location.reload();
+				});
+			};
+			ORACULO_SENTIDOS.textos.show(ORACULO_SENTIDOS.textos.finalText,restartGameButton);
+		  }
 		}
 	  }
+  },
+  tipoConsultaButtonEffect: function(el){
+	  var selectedButton = $(el.target);
+	  selectedButton.css({
+		"background-color": "#4c2600",
+		"color": "#fff"
+	  });
+	  $("#audio-click")[0].play();
+	  setTimeout(function() {
+		selectedButton.css("background-image", "linear-gradient(to bottom, #00FFFF, #00BFFF)");
+		selectedButton.css("cursor", "default");
+		selectedButton.css("color", "#000");
+		selectedButton.hover(function() {
+			selectedButton.css("background-image", "linear-gradient(to bottom, #00008B, #1E90FF)");
+			selectedButton.css("cursor", "pointer");
+			selectedButton.css("color", "#fff");
+		  },
+		  function() {
+			selectedButton.css("background-image", "linear-gradient(to bottom, #00FFFF, #00BFFF)");
+			selectedButton.css("cursor", "default");
+			selectedButton.css("color", "#000");
+		  }
+		);
+	  }, 300);
   },
   barajarButtonEffect: function(){
 	  $(this).css({
@@ -271,14 +341,26 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 			}, 25);
 			ORACULO_SENTIDOS.barajado = true;
 			window.clearInterval(intervalID);
-			ORACULO_SENTIDOS.WIZARD.moveHandTo('contenedor-cartas');
+			ORACULO_SENTIDOS.textos.show(ORACULO_SENTIDOS.textos.cartas,ORACULO_SENTIDOS.WIZARD.moveHandTo('contenedor-cartas'));
+			$('#contenedor-cartas').hover(
+			   function () {
+				  $(this).css({"cursor":"pointer"});
+			   }, 
+			   function () {
+				  $(this).css({"cursor":"default"});
+			   }
+			);
 		}
 	}, 250);
   },
   textos:{
 	  writtingSpeed: 25,
-	  inicial: 'Para hacer tus consultas debes concentrarte en el asunto que te interesa. Seguir las instrucciones del botón y del recuadro, incluidos en el tapete. Recuerda que la primera carta es la respuesta a tu consulta y la segunda y tercera su evolución. Puedes realizar tantas consultas como desees sobre ti o las personas de tu interés.',
-	  show: function(texto, func){        
+	  inicial: 'Para hacer tus consultas debes concentrarte en el asunto que te interesa y seguir las instrucciones. Recuerda que la primera carta es la respuesta a tu consulta y la segunda y tercera su evolución. Puedes realizar tantas consultas como desees sobre ti o las personas de tu interés. Para empezar elige un tema de los 5 que aparecen en el recuadro.',
+	  barajar: 'Cuando te hayas concentrado lo suficiente en el tema seleccionado puedes barajar el mazo, tomate el tiempo que necesites.',
+	  cartas: 'Ahora debes de seleccionar 3 cartas de una en una, recuerda que la primera carta es la respuesta a tu consulta, la segunda su evolución a corto plazo y tercera su evolución a largo plazo. ',
+	  finalText: 'Tu consulta ha finalizado, el significado de las cartas debes de interpretarlo segun tus percepciones. Recuerda que puedes realizar tantas consultas como desees sobre ti o las personas de tu interés.',
+	  show: function(texto, func){      
+		$("#wizard-textbox").text('');	  
 		var i = 0;
 		var intervalo = setInterval(function() {
 			if (i < texto.length) {
