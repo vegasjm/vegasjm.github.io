@@ -4,6 +4,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
   barajado: false,
   currentCardFromDeck:0,
   maxCardsFromFeck:5,
+  card1:null,
+  card2:null,
   init: function() {
     this.loadTablero();
     this.buildButtonsBehaviour();
@@ -168,6 +170,8 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
   moveAndDiscoverCardEffect: function(){
 	  if (ORACULO_SENTIDOS.barajado) {
 		if (ORACULO_SENTIDOS.currentCardFromDeck == 3) {
+		  ORACULO_SENTIDOS.card1 = null;
+		  ORACULO_SENTIDOS.card2 = null;
 		  ORACULO_SENTIDOS.currentCardFromDeck = 0;
 		  ORACULO_SENTIDOS.barajado = false;
 		} else {
@@ -208,7 +212,19 @@ var ORACULO_SENTIDOS = ORACULO_SENTIDOS || {
 		  }, 'slow', function() {
 			// Eliminar la carta original del contenedor y agregar la carta clonada al rectángulo
 			$ultimaCarta.remove();
-			const randomImage = Math.floor(Math.random() * 44) + 1;
+			let randomImage = null; 
+			while(randomImage == null){
+				let tempImage = Math.floor(Math.random() * 44) + 1;
+				if(tempImage != ORACULO_SENTIDOS.card1 && tempImage != ORACULO_SENTIDOS.card2){
+					randomImage = tempImage;
+				}
+			}
+			if(ORACULO_SENTIDOS.currentCardFromDeck==1){
+				ORACULO_SENTIDOS.card1 = randomImage;
+			}
+			if(ORACULO_SENTIDOS.currentCardFromDeck==2){
+				ORACULO_SENTIDOS.card2 = randomImage;
+			}
 			$clonedCarta.appendTo($currentRectangulo).css({
 			  backgroundImage: 'url("images/carta%20(' + randomImage + ').jpg")', // Cambiar el fondo de la carta a una imagen aleatoria
 			  backgroundSize: 'contain',

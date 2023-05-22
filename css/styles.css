@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Calibri', sans-serif !important;
 }
 #tablero {
   border: 5px solid black;
@@ -25,16 +26,7 @@ body {
 	}
 }
 #tablero {
-  background: 
-    /* Patrón de fondo barroco */
-    linear-gradient(45deg, #D2691E 25%, transparent 25%) 0 0,
-    linear-gradient(-45deg, #D2691E 25%, transparent 25%) 0 0,
-    linear-gradient(45deg, transparent 75%, #D2691E 75%) 0 0,
-    linear-gradient(-45deg, transparent 75%, #D2691E 75%) 0 0,
-    /* Patrón astrológico */
-    radial-gradient(circle at 50% 50%, #4b0082, #8a2be2, #ffdab9, #a66c2f);
-  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, cover;
-  background-color: #6b3f0f;
+  background-image: url('../images/items/background.jpg');
 }
 
 #logo {
@@ -122,6 +114,7 @@ body {
     background-color: #FFDAB9;
     padding: 10px 20px;
     font-size: 50px;
+	font-family: 'Calibri', sans-serif !important;
     transform: rotate(-10deg);
     outline: none;
     transition: background-color 0.3s ease-in-out;
@@ -152,7 +145,7 @@ body {
   border: 2px solid #a66c2f;
   box-shadow: 5px 5px 5px #a66c2f;
   border-radius: 10px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Calibri', sans-serif !important;
   font-size: 16px;
   color: #6b3f0f;
   text-align: center;
@@ -171,7 +164,7 @@ body {
     border: 2px solid #a66c2f;
     box-shadow: 5px 5px 5px #a66c2f;
     border-radius: 10px;
-	font-family: 'Cinzel', sans-serif;
+	font-family: 'Calibri', sans-serif !important;
 	font-weight: bold;
     padding: 20px;
     text-align: center;
@@ -200,7 +193,7 @@ body {
     border: 2px solid #a66c2f;
     box-shadow: 5px 5px 5px #a66c2f;
     border-radius: 10px;
-	font-family: 'Cinzel', sans-serif;
+	font-family: 'Calibri', sans-serif !important;
 	font-weight: bold;
     padding: 20px;
     text-align: center;
@@ -216,6 +209,7 @@ body {
   border-radius: 5px;
   color: #FFF;
   font-size: 36px;
+  font-family: 'Calibri', sans-serif !important;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -230,6 +224,7 @@ body {
   border-radius: 5px;
   color: #black;
   font-size: 36px;
+  font-family: 'Calibri', sans-serif !important;
   text-align: center;
   margin-bottom: 10px;
   background-image: linear-gradient(to bottom, #0080FF, #00BFFF);
