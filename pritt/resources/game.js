@@ -33,11 +33,18 @@ var PRITT_GAME = PRITT_GAME || {
 					$('#game-wizard').css('transform','rotate(-28deg)');
 					if( world == 2) {
 						$('.game-character-img').css('max-width','30vh');
+						$('#game-wizard-text').html('Oh no! <br/>The rainbow on my <br/>beach is gone!');
+					}
+					if( world == 3) {
+						$('#game-wizard-text').html('I need your help to <br/>make my cave <br/>shine again!');
 					}
 				} else {
-					$('#game-wizard').css('transform','rotate(0deg)');
-					$('.game-character-img').css('float','left');
-					$('.game-character-img').css('max-width','35vh');
+					if(world == 1){
+						$('#game-wizard').css('transform','rotate(0deg)');
+						$('.game-character-img').css('float','left');
+						$('.game-character-img').css('max-width','35vh');
+						$('#game-wizard-text').html('This forest is losing <br/>its magic... <br/>Will you help me?');
+					}
 				}
 				$('.body-inner').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
 				$('#body-overlay').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
