@@ -28,6 +28,17 @@ var PRITT_GAME = PRITT_GAME || {
 				$('.menu-home').css('display','none');
 				$('#game').css('display','flex');
 				$('.game-character-img').attr("src",'./resources/img/world-'+world+'/world-'+world+'-character.png');
+				if(world == 2 || world == 3) {
+					$('.game-character-img').css('float','right');
+					$('#game-wizard').css('transform','rotate(-28deg)');
+					if( world == 2) {
+						$('.game-character-img').css('max-width','30vh');
+					}
+				} else {
+					$('#game-wizard').css('transform','rotate(0deg)');
+					$('.game-character-img').css('float','left');
+					$('.game-character-img').css('max-width','35vh');
+				}
 				$('.body-inner').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
 				$('#body-overlay').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
 			}, 500);
