@@ -1,0 +1,549 @@
+:root {
+  --bs-body-font-family: "DK Snippity Snap Regular", sans-serif;
+  --bs-primary-rgb: 164, 65, 15;
+  --bs-link-color-rgb: 164, 65, 15;
+  --bs-link-hover-color-rgb: 164, 65, 15;
+  --color1: #843107;
+  --color2: #e8bf83;
+  --bs-light-rgb: 241, 207, 174;
+  --bs-secondary: #b61f1f;
+  --bs-secondary-rgb: 182, 31, 31;
+  --plyr-color-main: #b61f1f;
+}
+:root:lang(tr) {
+  --bs-body-font-family: "Road Rage", sans-serif;
+}
+:root:lang(sk) {
+  --bs-body-font-family: "Road Rage", sans-serif;
+}
+:root:lang(cs) {
+  --bs-body-font-family: "Road Rage", sans-serif;
+}
+:root:lang(hu) {
+  --bs-body-font-family: "Road Rage", sans-serif;
+}
+:root:lang(nl-bx) .title {
+  font-size: clamp(37px, 9vw, 45px);
+  color: #f0e4d0;
+}
+@font-face {
+  font-family: futura condensed pt;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Futura Condensed PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-condensed-pt-medium-589e44ed1e3a5.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura condensed pt;
+  font-style: italic;
+  font-weight: 500;
+  src: local("Futura Condensed PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-condensed-pt-medium-oblique-589e4507d391c.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-book-589a6dec272c3.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 400;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-book-oblique-589e44623c7b4.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 300;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-light-589a6e187563a.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 300;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-light-oblique-589e448ae90e2.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-medium-589e45b956de4.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 500;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-medium-oblique-589e460871ec2.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 600;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-demibold-589e43b852117.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 600;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-demibold-oblique-589e43ec3ea82.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-bold-589e44b6aacd3.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 700;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-bold-oblique-589e453384a18.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: normal;
+  font-weight: 900;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-heavy-589a6dd12187e.woff)
+      format("woff");
+}
+@font-face {
+  font-family: futura pt;
+  font-style: italic;
+  font-weight: 900;
+  src: local("Futura PT"),
+    url(https://fonts.cdnfonts.com/s/14436/futura-pt-heavy-oblique-589a6e480ab16.woff)
+      format("woff");
+}
+@font-face {
+    font-family: 'Ruddy';
+    src: url('RuddyBold.woff2') format('woff2'),
+        url('RuddyBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-primary {
+  font-family: Futura Condensed PT, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.font-size-primary {
+  font-size: max(1.4rem, 23px);
+}
+html {
+  font-size: max(1.04166666vw, 16px);
+}
+body {
+  background: #000;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+.body-inner {
+  background-color: #228aaa;
+  background-image: url(./img/bg.png);
+  background-attachment: fixed;
+  background-size: 576px;
+  background-position: center 50px;
+  background-repeat: no-repeat;
+}
+.lang .body-inner {
+  background-image: url(/img/bg-lang.png);
+}
+.h100vh {
+  min-height: 100vh;
+  padding-bottom: 58px;
+}
+.header-shape {
+  position: absolute;
+  width: 100%;
+  max-width: 576px;
+}
+.header-shape .shape {
+  width: 0;
+  height: 0;
+  border-top: 300px solid red;
+  border-right: 370px solid transparent;
+}
+.logo-pritt,
+.logo-wild {
+  width: 290px;
+}
+.menu-footer {
+  z-index: 1;
+  width: 100%;
+  max-width: 576px;
+}
+.fullscreen-active .menu-footer {
+  display: none;
+}
+.plyr:fullscreen video {
+  z-index: 9999;
+}
+.plyr:-webkit-full-screen video {
+  z-index: 9999;
+}
+.plyr:-moz-full-screen video {
+  z-index: 9999;
+}
+.plyr:-ms-fullscreen video {
+  z-index: 9999;
+}
+.menu-footer svg {
+  fill: #fff;
+  height: 2.2rem;
+}
+.menu-footer a {
+  opacity: 0.6;
+}
+.menu-footer a.active {
+  opacity: 1;
+}
+.form-select-lg {
+  margin: auto;
+  width: 80%;
+}
+.forest-keeper-btn {
+	gap: 10rem !important;
+	position: relative;
+	min-width: 180px;
+	width: 180px;
+}
+.btn-pritt {
+  background: #bf1622;
+  background: linear-gradient(140deg, #bf1622, #e74d1a);
+  line-height: 0.75;
+  border: 4px solid #e8c894;
+  box-shadow: 4px 4px 20px #0006;
+  width: fit-content;
+  margin: auto;
+}
+.btn-make-movie {
+  background: #bf1622;
+  background: linear-gradient(140deg, #bf1622, #e74d1a);
+  line-height: 0.75;
+  border: 6px solid #e8c894;
+  box-shadow: 4px 4px 20px;
+  width: fit-content;
+  margin: auto;
+  transform: rotate(-3deg);
+}
+.btn-home {
+  background: #eb0b0b;
+  line-height: 0.75;
+  border: 4px solid #ffffff;
+  box-shadow: 4px 4px 20px;
+}
+.btn-home:hover,
+.btn-make-movie:hover {
+  color: var(--color1);
+}
+.btn-home-world .btn-home {
+  max-width: fit-content;
+  margin: auto;
+  min-width: 75%;
+}
+.btn-home .btn-home-icon {
+  background: #bf1622;
+  background: linear-gradient(45deg, #bf1622, #e74d1a);
+  aspect-ratio: 1;
+  width: 40vw;
+  min-width: 90px;
+  max-width: 10rem;
+  border: 6px solid #e5b261;
+  box-shadow: 4px 8px 14px #00000080;
+}
+.btn-home-title {
+	font-family: Ruddy;
+	font-weight: bold;
+    font-style: normal;
+	margin-left: -30px;
+	width: 180px;
+}
+.btn-home-world .btn-home .btn-home-icon svg {
+  fill: #fff;
+  max-width: 2rem;
+}
+.btn-home-world .btn-home .btn-home-icon svg {
+  fill: #fff;
+  max-width: 3rem;
+}
+.subtitle {
+  font-size: clamp(25px, 6vw, 40px);
+  color: #e8c894;
+  margin-bottom: 0.5rem;
+}
+.title {
+  font-size: clamp(25px, 6vw, 32px);
+  color: #ffffff;
+}
+.w-min-content {
+  width: min-content;
+}
+.video-grid a,
+.video-slide a {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.icon-play {
+  left: 50%;
+  margin-left: -30px;
+  top: 50%;
+  margin-top: -30px;
+  position: absolute;
+  border: 4px solid #e5b261;
+  height: 60px;
+  width: 60px;
+  padding: 14px;
+  border-radius: 50%;
+  box-shadow: 2px 4px 7px #00000080;
+}
+.icon-play svg {
+  width: 17px;
+  fill: #fff;
+}
+.video-frame {
+  border: 4px solid #e8c894;
+  border-radius: 1rem;
+  box-shadow: 2px 4px 7px #0000004d;
+}
+.video-menu svg {
+  width: 17px;
+  fill: #fff;
+}
+.btn-primary {
+  --bs-btn-bg: rgba(var(--bs-primary-rgb));
+  --bs-btn-border-color: rgba(var(--bs-primary-rgb));
+  --bs-btn-hover-bg: rgba(var(--bs-primary-rgb));
+  --bs-btn-hover-border-color: rgba(var(--bs-primary-rgb));
+  --bs-btn-active-bg: rgba(var(--bs-primary-rgb));
+  --bs-btn-active-border-color: rgba(var(--bs-primary-rgb));
+  --bs-btn-disabled-bg: rgba(var(--bs-primary-rgb));
+  --bs-btn-disabled-border-color: rgba(var(--bs-primary-rgb));
+}
+.fs-1 {
+  line-height: 1;
+}
+.fs-2,
+.fs-3,
+.fs-4 {
+  line-height: 1.1;
+}
+.fs-1 {
+  font-size: 2.6rem !important;
+}
+.fs-2 {
+  font-size: 2.2rem !important;
+}
+.fs-3 {
+  font-size: 1.65rem !important;
+}
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: url(/img/play-icon.png) no-repeat center center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.swiper-wrapper {
+  margin-top: 5px;
+}
+.swiper-slide .play-button {
+  width: 6rem;
+  height: 6rem;
+}
+.play-button.paused {
+  background: url(/img/pause-icon.png) no-repeat center center;
+}
+.play-button.hidden {
+  opacity: 0;
+}
+.menu-home span img {
+  position: relative;
+  min-width: 180px;
+  width: 180px;
+}
+.slide-item-content {
+  width: 70%;
+  max-width: 380px;
+}
+.slide-item-content img {
+  width: 72%;
+  max-width: 380px;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -84px;
+  cursor: pointer;
+  z-index: 999;
+  max-width: 100px;
+  max-height: 168px;
+}
+.arrow.right {
+  right: 0;
+}
+.arrow.swiper-button-disabled {
+  display: none;
+}
+.slide-item-text {
+  transform: rotate(4deg);
+}
+.container,
+.container-lg,
+.container-md,
+.container-sm {
+  max-width: 576px;
+}
+.grid-movies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+}
+.grid-container {
+  background: #e9cd9a;
+  padding: 40px;
+  box-shadow: inset 0 0 10px #0006;
+}
+.video-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.thumbnail {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  cursor: move;
+}
+.thumbnail img {
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.rotate-even {
+  transform: rotate(-2deg);
+}
+.rotate-odd {
+  transform: rotate(2deg);
+}
+.text-video {
+  background: #e4cc9f;
+  border-radius: 17% 20% 32% 14%;
+}
+.plyr__control--overlaid[data-plyr="play"] {
+  border: 3px solid #e8c894;
+  box-shadow: 0 0 20px #000000b3;
+}
+.plyr__control--overlaid[data-plyr="play"] svg {
+  height: 27px;
+  width: 27px;
+  fill: #f0e4d0;
+}
+.plyr__control--overlaid {
+  background: #d51919;
+  padding: calc(var(--plyr-control-spacing, 14px) * 1.5);
+  opacity: 1;
+}
+.btn-slider-own-movie {
+  max-width: 280px;
+  margin: auto;
+}
+.page-legal .body-inner {
+  background-image: none;
+}
+.gap-10 {
+	gap: 10rem !important;
+}
+
+#game {
+	display: none;
+	position: relative;
+	height: auto;
+	height: calc(100vh - 345px);
+	min-height: 450px !important;
+	background-color: transparent;
+	flex-direction: column;
+}
+#game-bottom {
+	margin-top: auto;
+	margin-bottom: 5vh;
+	z-index: 99;
+}
+.game-character-img{
+	max-width: 35vh;
+    position: absolute;
+    bottom: 5vh;
+    top: auto;
+}
+.game-wizard-img{
+    max-width: 30vh;
+    margin-left: 7rem;
+    margin-top: auto;
+    margin-bottom: -5vh;
+	position: absolute;
+}
+.btn-help {
+	padding: 2rem;
+    margin: 0rem 5rem 0rem 5rem;
+    justify-content: center;
+}
+@media (max-width: 576px) {
+  .logo-pritt {
+    width: 32vw;
+  }
+  .logo-wild {
+    width: 38vw;
+  }
+  .btn-home {
+    border: 6px solid #e8c894;
+  }
+  .menu-home span img {
+    min-width: 100px;
+    width: 110px;
+  }
+  .arrow {
+    margin-top: -59px;
+    max-width: 70px;
+    max-height: 118px;
+  }
+  .body-inner {
+    background-size: 100%;
+  }
+  .swiper-slide .play-button {
+    width: 4rem;
+    height: 4rem;
+  }
+}
