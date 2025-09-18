@@ -521,19 +521,6 @@ body {
     justify-content: center;
 }
 @media (max-width: 576px) {
-  .logo-pritt {
-    width: 32vw;
-  }
-  .logo-wild {
-    width: 38vw;
-  }
-  .btn-home {
-    border: 6px solid #e8c894;
-  }
-  .menu-home span img {
-    min-width: 100px;
-    width: 110px;
-  }
   .arrow {
     margin-top: -59px;
     max-width: 70px;
