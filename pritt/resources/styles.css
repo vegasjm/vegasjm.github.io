@@ -285,6 +285,12 @@ body {
 	margin-left: -30px;
 	width: 180px;
 }
+.btn-home-help {
+	font-family: Ruddy;
+	font-weight: bold;
+    font-style: normal;
+	width: 180px;
+}
 .btn-home-world .btn-home .btn-home-icon svg {
   fill: #fff;
   max-width: 2rem;
@@ -487,7 +493,20 @@ body {
 .gap-10 {
 	gap: 10rem !important;
 }
-
+/* Centered text */
+.centered {
+    position: absolute;
+    left: 0;
+    width: 100%;
+	max-width: 20vh;
+    margin-left: 11rem;
+    margin-top: 3.5rem;
+	font-family: Ruddy;
+	font-weight: bold;
+    font-style: normal;
+	transform: rotate(14deg);
+	color: #eb0b0b;
+}
 #game {
 	display: none;
 	position: relative;
@@ -498,13 +517,21 @@ body {
 	flex-direction: column;
 }
 #game-bottom {
-	margin-top: auto;
-	margin-bottom: 5vh;
+	bottom: 5vh;
 	z-index: 99;
+	position: absolute;
+	left: 50%;
+    transform: translate(-50%, 0%);
 }
+#game-character {
+	margin-top: 10vh;
+}
+#game-wizard {
+	position: relative;
+    width: 100%;
+}	
 .game-character-img{
 	max-width: 35vh;
-    position: absolute;
     bottom: 5vh;
     top: auto;
 }
@@ -521,6 +548,9 @@ body {
     justify-content: center;
 }
 @media (max-width: 576px) {
+  .logo-pritt {
+    width: 36vw;
+  }
   .arrow {
     margin-top: -59px;
     max-width: 70px;
