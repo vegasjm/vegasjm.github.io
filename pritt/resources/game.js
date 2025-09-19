@@ -30,7 +30,8 @@ var PRITT_GAME = PRITT_GAME || {
 				$('.game-character-img').attr("src",'./resources/img/world-'+world+'/world-'+world+'-character.png');
 				if(world == 2 || world == 3) {
 					$('.game-character-img').css('float','right');
-					$('#game-wizard').css('transform','rotate(-28deg)');
+						$('#game-wizard').css('transform','rotate(-28deg)');
+						$('#game-wizard').css('margin-left','-5rem');
 					if( world == 2) {
 						$('.game-character-img').css('max-width','30vh');
 						$('#game-wizard-text').html('Oh no! <br/>The rainbow on my <br/>beach is gone!');
@@ -41,6 +42,7 @@ var PRITT_GAME = PRITT_GAME || {
 				} else {
 					if(world == 1){
 						$('#game-wizard').css('transform','rotate(0deg)');
+						$('#game-wizard').css('margin-left','-1rem');
 						$('.game-character-img').css('float','left');
 						$('.game-character-img').css('max-width','35vh');
 						$('#game-wizard-text').html('This forest is losing <br/>its magic... <br/>Will you help me?');

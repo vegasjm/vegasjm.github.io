@@ -529,6 +529,7 @@ body {
 #game-wizard {
 	position: relative;
     width: 100%;
+	margin-left: -1rem;
 }	
 .game-character-img{
 	max-width: 35vh;
