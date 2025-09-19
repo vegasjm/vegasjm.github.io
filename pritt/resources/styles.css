@@ -518,7 +518,6 @@ body {
 }
 #game-bottom {
 	z-index: 99;
-    transform: translate(0%, -70%);
 }
 #game-character {
 	margin-top: 10vh;
@@ -564,9 +563,32 @@ body {
   #game {
 	height: calc(100vh - 220px);
   }
+  #game-bottom {
+	z-index: 99;
+  }
   .game-wizard-text {
 	margin-left: 8.5rem;
 	max-width: 25vh;
 	margin-top: 2rem;
   }
 }
+  @media (min-height: 0px) {
+	#game-bottom {
+		transform: translate(0%, -225%) !important;
+	}
+  }
+  @media (min-height: 576px) {
+	#game-bottom {
+		transform: translate(0%, -175%) !important;
+	}
+  }
+  @media (min-height: 812px) {
+	#game-bottom {
+	  transform: translate(0%, -125%) !important;
+	}
+  }
+  @media (min-height: 1024px) {
+	#game-bottom {
+	  transform: translate(0%, -75%) !important;
+	}
+  }
