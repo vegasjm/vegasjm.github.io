@@ -517,11 +517,8 @@ body {
 	flex-direction: column;
 }
 #game-bottom {
-	bottom: 5vh;
 	z-index: 99;
-	position: absolute;
-	left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(0%, -70%);
 }
 #game-character {
 	margin-top: 10vh;
