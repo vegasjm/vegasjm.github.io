@@ -34,7 +34,7 @@
 					</header> 
 					<main class="position-relative z-1">
 						<div>
-						<!-- HOME -->
+							<!-- HOME -->
 							<div class="menu-home">
 								<div class="d-flex flex-column p-5 gap-6 gap-sm-8 p-sm-8 gap-10">
 									<div class="btn-home-world" data-world="1">
@@ -71,7 +71,7 @@
 							</div>
 							
 							<!-- GAME INTRO -->
-							<div id="game">
+							<div id="game" class="fixed-main-container">
 								<div id="game-wizard">
 									<img src="./resources/img/wizard.png" alt="" class="game-wizard-img">
 									<div id="game-wizard-text" class="game-wizard-text">This forest is losing <br/>its magic... <br/>Will you help me?</div>
@@ -80,7 +80,7 @@
 									<img alt="" class="game-character-img">
 								</div>
 								<div id="game-bottom">
-									<a role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">	
+									<a id="btn-start-game-phase1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">	
 										<span class="text-white text-center d-flex flex-column">
 											<span class="title btn-home-help">Help Me!</span>
 										</span>
@@ -89,7 +89,10 @@
 							</div>
 							
 							<!-- GAME PHASE 1 -->
-							<div id="game">
+							<div id="game-phase1" class="fixed-main-container">
+								<canvas id='canvas-game-phase1' width='576' height= '640' >
+
+								</canvas>
 							</div>
 						</div>
 					</main> 

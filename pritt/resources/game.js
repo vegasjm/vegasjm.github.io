@@ -1,10 +1,11 @@
 var PRITT_GAME = PRITT_GAME || {
 	phase: 'world-selector',
 	init: function(){
-		this.loadTitleButtonBehaviours();
-		this.loadWorldSelectorsButtonBehaviours();
+		this.loadHome();
+		this.loadWorlds();
+		this.loadGamePhase1();
 	},
-	loadTitleButtonBehaviours: function(){
+	loadHome: function(){
 		$('.btn-home-world').on('touchstart mouseover', function(e){
 			if(PRITT_GAME.phase == 'world-selector'){
 				var world=$(this).attr('data-world');
@@ -19,7 +20,7 @@ var PRITT_GAME = PRITT_GAME || {
 			}
 		});
 	},
-	loadWorldSelectorsButtonBehaviours: function() {
+	loadWorlds: function() {
 		$('.btn-home-world').on('touch click', function(e){
 			PRITT_GAME.phase = 'game-1';
 			var world=$(this).attr('data-world');
@@ -54,6 +55,16 @@ var PRITT_GAME = PRITT_GAME || {
 				$('.body-inner').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
 				$('#body-overlay').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
 			}, 500);
+		});
+	},
+	loadGamePhase1: function() {
+		$('#btn-start-game-phase1').on('touch click', function(e){
+			$('#game').css('display','none');
+			$('#game-phase1').css('display','block');
+			var canvas = document.getElementById('canvas-game-phase1');
+			var contentContainerNode = document.getElementById('game-phase1');
+			canvas.height = contentContainerNode.offsetHeight;
+			canvas.width = contentContainerNode.offsetWidth;
 		});
 	}
 }

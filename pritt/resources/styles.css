@@ -509,13 +509,18 @@ body {
 	font-size: 22px;
 	text-align: center;
 }
+.fixed-main-container{
+	position: relative;
+    height: auto;
+    height: calc(100vh - 345px);
+    min-height: 450px !important;
+    background-color: transparent;
+}
+#game-phase1 {
+	display: none;
+}
 #game {
 	display: none;
-	position: relative;
-	height: auto;
-	height: calc(100vh - 345px);
-	min-height: 450px !important;
-	background-color: transparent;
 	flex-direction: column;
 }
 #game-bottom {
@@ -609,26 +614,26 @@ body {
 	font-size: 28px;
   }
 }
-  @media (min-height: 0px) {
-	#game-bottom {
-		transform: translate(0%, -225%) !important;
-	}
+@media (min-height: 0px) {
+  #game-bottom {
+	transform: translate(0%, -225%) !important;
   }
-  @media (min-height: 576px) {
-	#game-bottom {
-		transform: translate(0%, -175%) !important;
-	}
+}
+@media (min-height: 576px) {
+  #game-bottom {
+	transform: translate(0%, -175%) !important;
   }
-  @media (min-height: 812px) {
-	#game-bottom {
-	  transform: translate(0%, -125%) !important;
-	}
+}
+@media (min-height: 812px) {
+  #game-bottom {
+    transform: translate(0%, -125%) !important;
   }
-  @media (min-height: 1024px) {
-	#game-bottom {
-	  transform: translate(0%, -75%) !important;
-	}
+}
+@media (min-height: 1024px) {
+  #game-bottom {
+    transform: translate(0%, -75%) !important;
   }
+}
 @keyframes bouge {
   /*starting point and angle (same angle as choosen into .levitation)*/
   from {
