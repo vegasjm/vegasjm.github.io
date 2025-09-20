@@ -34,10 +34,12 @@ var PRITT_GAME = PRITT_GAME || {
 						$('#game-wizard').css('margin-left','-5rem');
 					if( world == 2) {
 						$('.game-character-img').css('max-width','30vh');
-						$('#game-wizard-text').html('Oh no! <br/>The rainbow on my <br/>beach is gone!');
+						$('#game-wizard-text').html('');
+						showText('#game-wizard-text','Oh no! @The rainbow on my @beach is gone!',0,75);
 					}
 					if( world == 3) {
-						$('#game-wizard-text').html('I need your help to <br/>make my cave <br/>shine again!');
+						$('#game-wizard-text').html('');
+						showText('#game-wizard-text','I need your help to @make my cave @shine again!',0,75);
 					}
 				} else {
 					if(world == 1){
@@ -45,7 +47,8 @@ var PRITT_GAME = PRITT_GAME || {
 						$('#game-wizard').css('margin-left','-1rem');
 						$('.game-character-img').css('float','left');
 						$('.game-character-img').css('max-width','35vh');
-						$('#game-wizard-text').html('This forest is losing <br/>its magic... <br/>Will you help me?');
+						$('#game-wizard-text').html('');
+						showText('#game-wizard-text','This forest is losing @its magic... @Will you help me?',0,75);
 					}
 				}
 				$('.body-inner').css('background-image','url(./resources/img/world-'+world+'/world-'+world+'-bg'+world+'.png)');
@@ -58,3 +61,11 @@ var PRITT_GAME = PRITT_GAME || {
 window.onload = function () {
     PRITT_GAME.init();
 };
+
+
+var showText = function (target, message, index, interval) {   
+  if (index < message.length) {
+    $(target).html($(target).html()+message[index++].replace('@','<br/>'));
+    setTimeout(function () { showText(target, message, index, interval); }, interval);
+  }
+}
