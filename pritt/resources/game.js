@@ -61,10 +61,13 @@ var PRITT_GAME = PRITT_GAME || {
 		$('#btn-start-game-phase1').on('touch click', function(e){
 			$('#game').css('display','none');
 			$('#game-phase1').css('display','block');
+			$('#game-phase1-stats').css('display','flex');
 			var canvas = document.getElementById('canvas-game-phase1');
 			var contentContainerNode = document.getElementById('game-phase1');
 			canvas.height = contentContainerNode.offsetHeight;
 			canvas.width = contentContainerNode.offsetWidth;
+			$('#game-phase1-stats').css('height',contentContainerNode.offsetHeight+'px');
+			$('#game-phase1-stats').css('width',contentContainerNode.offsetWidth+'px');
 		});
 	}
 }
