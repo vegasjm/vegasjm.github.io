@@ -1,7 +1,7 @@
 (() => {
       const canvas = document.getElementById('game');
       const ctx = canvas.getContext('2d');
-      let W = 576, H = 500;
+      let W = document.body.clientWidth, H = document.body.clientHeight-250;
       const scoreEl = document.getElementById('score');
       const livesEl = document.getElementById('lives');
       const bestEl = document.getElementById('best');
@@ -31,8 +31,8 @@
       const player = {
         x: 400,
         y: 480,
-        w: 60,
-        h: 60,
+        w: 80,
+        h: 140,
         sprite: null
       };
 
@@ -40,18 +40,21 @@
       const spriteImg = new Image();
       spriteImg.src = './resources/img/world-2/world-2-character.png'; // ejemplo
       spriteImg.onload = () => { player.sprite = spriteImg; };
+	  
+	  const diamondImg = new Image();
+	  diamondImg.src = './resources/img/diamond.png'; // ejemplo
 
       function resize(){
         const rect = canvas.getBoundingClientRect();
-        W = Math.max(576, rect.width);
-        H = Math.max(500, rect.height);
+        W = Math.max(document.body.clientWidth, rect.width);
+        H = Math.max(document.body.clientHeight-270, rect.height);
         const dpr = window.devicePixelRatio || 1;
         canvas.width = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
         canvas.style.width = W + 'px';
         canvas.style.height = H + 'px';
         ctx.setTransform(dpr,0,0,dpr,0,0);
-        player.y = H - 80;
+        player.y =  H - player.h;
       }
       window.addEventListener('resize', resize);
       resize();
@@ -59,26 +62,12 @@
       const rand = (a,b)=>Math.random()*(b-a)+a;
 
       function drawDiamond(x,y,size,rotation){
-        ctx.save();
-        ctx.translate(x,y);
-        ctx.rotate(rotation);
-        ctx.beginPath();
-        ctx.moveTo(0,-size);
-        ctx.lineTo(size*0.6,0);
-        ctx.lineTo(0,size);
-        ctx.lineTo(-size*0.6,0);
-        ctx.closePath();
-        const g = ctx.createLinearGradient(-size,-size,size,size);
-        g.addColorStop(0, '#ffffff');
-        g.addColorStop(0.25, '#abe9ff');
-        g.addColorStop(0.6, '#7fd3ff');
-        g.addColorStop(1,'#4ab0e6');
-        ctx.fillStyle = g;
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
-        ctx.lineWidth = Math.max(1, size*0.06);
-        ctx.stroke();
-        ctx.restore();
+		  if (!diamondImg.complete) return; // esperar a que cargue
+		  ctx.save();
+		  ctx.translate(x, y);
+		  ctx.rotate(rotation);
+		  ctx.drawImage(diamondImg, -size/2, -size/2, size, size);
+		  ctx.restore();
       }
 
       function drawPlayer(){
@@ -166,24 +155,36 @@
         if(spawnTimer >= spawnInterval){ spawnTimer = 0; spawnDiamond(); }
         if(difficultyTimer >= 6000){ difficultyTimer = 0; spawnInterval = Math.max(240, spawnInterval - 40); }
 
-        for(let i = diamonds.length-1; i>=0; i--){
-          const d = diamonds[i];
-          d.y += d.speed * (dt/1000);
-          d.rot += d.rotSpeed * dt;
-          if(d.y - d.size > H){
-            diamonds.splice(i,1);
-            lives--;
-            if(lives <= 0){ updateHUD(); gameOver(); return requestAnimationFrame(loop); }
-            updateHUD();
-          } else {
-            if(d.x > player.x && d.x < player.x + player.w && d.y + d.size > player.y && d.y - d.size < player.y + player.h){
-              diamonds.splice(i,1);
-              score += Math.round(10 + d.size/2);
-              if(soundOn) playPing();
-              updateHUD();
-            }
-          }
-        }
+		for (let i = diamonds.length - 1; i >= 0; i--) {
+		  const d = diamonds[i];
+		  d.y += d.speed * (dt / 1000);
+		  d.rot += d.rotSpeed * dt;
+
+		  // Eliminar antes de dibujar si ya ha pasado el límite inferior
+		  if (d.y > H - d.size/2) {
+			diamonds.splice(i, 1);
+			lives--;
+			updateHUD();
+			if (lives <= 0) {
+			  gameOver();
+			  return requestAnimationFrame(loop);
+			}
+			continue; // saltar el dibujo de este diamante
+		  }
+
+		  // Colisión con player
+		  if (
+			d.x > player.x &&
+			d.x < player.x + player.w &&
+			d.y + d.size > player.y &&
+			d.y - d.size < player.y + player.h
+		  ) {
+			diamonds.splice(i, 1);
+			score += 1;
+			if (soundOn) playPing();
+			updateHUD();
+			continue; // saltar el dibujo
+		}}
 
         ctx.clearRect(0,0,W,H);
         for(const d of diamonds){ drawDiamond(d.x,d.y,d.size,d.rot); }
