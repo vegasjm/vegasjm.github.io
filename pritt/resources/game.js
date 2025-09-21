@@ -35,12 +35,13 @@ var PRITT_GAME = PRITT_GAME || {
 						$('#game-wizard').css('margin-left','-5rem');
 					if( world == 2) {
 						$('.body-inner').css('background-color','#F4E0B3');
-						$('.game-character-img').css('max-width','30vh');
+						$('.game-character-img').css('max-width','26vh');
 						$('#game-wizard-text').html('');
 						showText('#game-wizard-text','Oh no! @The rainbow on my @beach is gone!',0,75);
 					}
 					if( world == 3) {
 						$('.body-inner').css('background-color','#8652A9');
+						$('.game-character-img').css('max-width','28vh');
 						$('#game-wizard-text').html('');
 						showText('#game-wizard-text','I need your help to @make my cave @shine again!',0,75);
 					}
@@ -50,7 +51,7 @@ var PRITT_GAME = PRITT_GAME || {
 						$('#game-wizard').css('transform','rotate(0deg)');
 						$('#game-wizard').css('margin-left','-1rem');
 						$('.game-character-img').css('float','left');
-						$('.game-character-img').css('max-width','35vh');
+						$('.game-character-img').css('max-width','28vh');
 						$('#game-wizard-text').html('');
 						showText('#game-wizard-text','This forest is losing @its magic... @Will you help me?',0,75);
 					}

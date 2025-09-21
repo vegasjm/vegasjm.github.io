@@ -556,7 +556,7 @@ body {
 	margin-left: -1rem;
 }	
 .game-character-img{
-	max-width: 35vh;
+	max-width: 28vh;
     bottom: 5vh;
     top: auto;
 	filter: drop-shadow(22px -15px 5px rgba(0, 0, 0, 0.5));
@@ -628,15 +628,7 @@ body {
 	margin-left: 8.5rem;
 	max-width: 26vh;
 	margin-top: 3rem;
-	font-size: 26px;
-  }
-}
-@media (min-height: 900px) and (min-width: 576px) {
-  .game-wizard-text {
-	margin-left: 8.5rem;
-	max-width: 26vh;
-	margin-top: 3rem;
-	font-size: 28px;
+	font-size: 25px;
   }
 }
 @keyframes bouge {
