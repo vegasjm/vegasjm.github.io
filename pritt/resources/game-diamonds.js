@@ -39,11 +39,17 @@
 
       // Cargar sprite del personaje
       const spriteImg = new Image();
-      spriteImg.src = './resources/img/world-2/world-2-character.png'; // ejemplo
+      spriteImg.src = './resources/img/world-2/world-2-character.png'; 
       spriteImg.onload = () => { player.sprite = spriteImg; };
 	  
-	  const diamondImg = new Image();
-	  diamondImg.src = './resources/img/diamond.png'; // ejemplo
+	  const diamond1Img = new Image();
+	  diamond1Img.src = './resources/img/diamond-1.png'; 
+	  
+	  const diamond2Img = new Image();
+	  diamond2Img.src = './resources/img/diamond-2.png'; 
+	  
+	  const diamond3Img = new Image();
+	  diamond3Img.src = './resources/img/diamond-3.png'; 
 
       function resize(){
         const rect = canvas.getBoundingClientRect();
@@ -66,11 +72,15 @@
       const rand = (a,b)=>Math.random()*(b-a)+a;
 
       function drawDiamond(x,y,size,rotation){
-		  if (!diamondImg.complete) return; // esperar a que cargue
+		  if (!diamond1Img.complete) return; 
+		  if (!diamond2Img.complete) return; 
+		  if (!diamond3Img.complete) return; 
 		  ctx.save();
 		  ctx.translate(x, y);
 		  ctx.rotate(rotation);
-		  ctx.drawImage(diamondImg, -size/2, -size/2, size, size);
+		  if( PRITT_GAME.world == 1) ctx.drawImage(diamond1Img, -size/2, -size/2, size, size);
+		  if( PRITT_GAME.world == 2) ctx.drawImage(diamond2Img, -size/2, -size/2, size, size);
+		  if( PRITT_GAME.world == 3) ctx.drawImage(diamond3Img, -size/2, -size/2, size, size);
 		  ctx.restore();
       }
 
@@ -87,7 +97,7 @@
       }
 
       function spawnDiamond(){
-        const size = Math.round(rand(16,36));
+        const size = Math.round(rand(50,50));
         const x = rand(size, W-size);
         const y = -size - rand(10,80);
         const speed = rand(60, 160);
