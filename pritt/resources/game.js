@@ -93,7 +93,7 @@ var showText = function (target, message, index, interval) {
 var updateClock = function(time) {
 	$('#pendingSeconds').html(time);
 	if(time==0){
-
+		gameOver();
 	}else{
 		time-=1;
 		setTimeout("updateClock("+time+")",1000);

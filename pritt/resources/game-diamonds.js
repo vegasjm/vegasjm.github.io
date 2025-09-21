@@ -1,7 +1,7 @@
-(() => {
+    (() => {
       const canvas = document.getElementById('game');
       const ctx = canvas.getContext('2d');
-      let W = document.body.clientWidth, H = document.body.clientHeight-250;
+      let W = document.body.clientWidth, H = document.body.clientHeight-300;
       const scoreEl = document.getElementById('score');
       const livesEl = document.getElementById('lives');
       const bestEl = document.getElementById('best');
@@ -47,14 +47,17 @@
       function resize(){
         const rect = canvas.getBoundingClientRect();
         W = Math.max(document.body.clientWidth, rect.width);
-        H = Math.max(document.body.clientHeight-270, rect.height);
+        H = Math.max(document.body.clientHeight-300, rect.height);
         const dpr = window.devicePixelRatio || 1;
         canvas.width = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
         canvas.style.width = W + 'px';
         canvas.style.height = H + 'px';
+        // usamos transform para dibujar en coordenadas CSS (0..W,0..H)
         ctx.setTransform(dpr,0,0,dpr,0,0);
-        player.y =  H - player.h;
+        // aseguramos que el jugador esté dentro del canvas
+        player.y = H - player.h; // dentro: no dibujar fuera
+        if (player.x + player.w > W) player.x = W - player.w;
       }
       window.addEventListener('resize', resize);
       resize();
@@ -71,8 +74,11 @@
       }
 
       function drawPlayer(){
+        // dibujamos el sprite ajustado dentro del canvas
         if(player.sprite){
-          ctx.drawImage(player.sprite, player.x, player.y, player.w, player.h);
+          // aseguramos que la imagen completa quede dentro de H
+          const drawY = Math.min(player.y, H - player.h);
+          ctx.drawImage(player.sprite, player.x, drawY, player.w, player.h);
         } else {
           ctx.fillStyle = '#ffdd55';
           ctx.fillRect(player.x, player.y, player.w, player.h);
@@ -96,7 +102,8 @@
         difficultyTimer = 0;
         updateHUD();
         hideMessage();
-        player.x = W/2 - player.w/2;
+        player.x = Math.max(0, Math.min(W - player.w, player.x));
+        player.y = H - player.h;
       }
 
       function gameOver(){
@@ -115,7 +122,7 @@
         bestEl.textContent = best;
       }
 
-      // Movimiento táctil/ratón
+      // Movimiento táctil/ratón: arrastra solo en X (clamp)
       function setPlayerX(clientX){
         const rect = canvas.getBoundingClientRect();
         let posX = clientX - rect.left - player.w/2;
@@ -124,15 +131,15 @@
         player.x = posX;
       }
 
-      canvas.addEventListener('mousemove', e => {
-        if(running && !paused) setPlayerX(e.clientX);
-      });
-      canvas.addEventListener('touchmove', e => {
-        if(running && !paused){
-          e.preventDefault();
-          setPlayerX(e.touches[0].clientX);
-        }
-      }, {passive:false});
+      // arrastre y mouse
+      let isPointerDown = false;
+      canvas.addEventListener('mousedown', e => { isPointerDown = true; setPlayerX(e.clientX); });
+      window.addEventListener('mouseup', () => { isPointerDown = false; });
+      canvas.addEventListener('mousemove', e => { if(running && !paused && isPointerDown) setPlayerX(e.clientX); });
+
+      canvas.addEventListener('touchstart', e => { if(e.touches && e.touches[0]){ isPointerDown = true; setPlayerX(e.touches[0].clientX); } }, {passive:false});
+      canvas.addEventListener('touchmove', e => { if(running && !paused && e.touches && e.touches[0]){ e.preventDefault(); setPlayerX(e.touches[0].clientX); } }, {passive:false});
+      window.addEventListener('touchend', () => { isPointerDown = false; });
 
       const audioCtx = (window.AudioContext||window.webkitAudioContext) ? new (window.AudioContext||window.webkitAudioContext)() : null;
       function playPing(){
@@ -145,6 +152,7 @@
         o.start(); o.stop(audioCtx.currentTime + 0.08);
       }
 
+      // Bucle principal: actualizar posiciones -> eliminar colisiones/fuera -> limpiar TODO el buffer -> dibujar.
       function loop(ts){
         if(!running || paused){ lastTime = ts; requestAnimationFrame(loop); return; }
         const dt = Math.min(40, ts - lastTime);
@@ -155,39 +163,49 @@
         if(spawnTimer >= spawnInterval){ spawnTimer = 0; spawnDiamond(); }
         if(difficultyTimer >= 6000){ difficultyTimer = 0; spawnInterval = Math.max(240, spawnInterval - 40); }
 
-		for (let i = diamonds.length - 1; i >= 0; i--) {
-		  const d = diamonds[i];
-		  d.y += d.speed * (dt / 1000);
-		  d.rot += d.rotSpeed * dt;
+        // actualizar y eliminar/colisiones ANTES de dibujar
+        for(let i = diamonds.length - 1; i >= 0; i--) {
+          const d = diamonds[i];
+          d.y += d.speed * (dt/1000);
+          d.rot += d.rotSpeed * dt;
 
-		  // Eliminar antes de dibujar si ya ha pasado el límite inferior
-		  if (d.y > H - d.size/2) {
-			diamonds.splice(i, 1);
-			lives--;
-			updateHUD();
-			if (lives <= 0) {
-			  gameOver();
-			  return requestAnimationFrame(loop);
-			}
-			continue; // saltar el dibujo de este diamante
-		  }
+          // si ha salido completamente fuera por abajo, lo eliminamos sin dibujar
+          if (d.y - d.size > H) {
+            diamonds.splice(i,1);
+            lives--;
+            if(lives <= 0){ updateHUD(); gameOver(); return; }
+            updateHUD();
+            continue;
+          }
 
-		  // Colisión con player
-		  if (
-			d.x > player.x &&
-			d.x < player.x + player.w &&
-			d.y + d.size > player.y &&
-			d.y - d.size < player.y + player.h
-		  ) {
-			diamonds.splice(i, 1);
-			score += 1;
-			if (soundOn) playPing();
-			updateHUD();
-			continue; // saltar el dibujo
-		}}
+          // colisión con player: se recoge
+          if (d.x > player.x && d.x < player.x + player.w && d.y + d.size > player.y && d.y - d.size < player.y + player.h) {
+            diamonds.splice(i,1);
+            score += Math.round(10 + d.size/2);
+            if(soundOn) playPing();
+            updateHUD();
+            continue;
+          }
+        }
 
-        ctx.clearRect(0,0,W,H);
-        for(const d of diamonds){ drawDiamond(d.x,d.y,d.size,d.rot); }
+        // limpieza fiable: borramos todo el buffer de pixels (independiente de transforms)
+        ctx.save();
+        ctx.setTransform(1,0,0,1,0,0);
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.restore();
+
+        // dibujados
+        for(const d of diamonds){
+          // evitamos dibujar nada fuera del canvas por seguridad
+          if (d.y - d.size > H || d.y + d.size < 0) continue;
+          drawDiamond(d.x,d.y,d.size,d.rot);
+        }
+
+        // aseguramos que el player esté completamente dentro
+        if (player.x < 0) player.x = 0;
+        if (player.x + player.w > W) player.x = W - player.w;
+        player.y = H - player.h; // forzar a zona visible
+
         drawPlayer();
 
         requestAnimationFrame(loop);
@@ -216,5 +234,9 @@
         soundOn = !soundOn; toggleSoundBtn.textContent = 'Sonido: ' + (soundOn ? 'ON' : 'OFF');
       });
 
+      // spawn demo
+      for(let i=0;i<4;i++) spawnDiamond();
       updateHUD();
     })();
+
+	
