@@ -27,7 +27,7 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#legal').css('display','none');
 			setTimeout(function() {
 				$('.menu-home').css('display','none');
-				$('#game').css('display','flex');
+				$('#game-intro').css('display','flex');
 				$('.game-character-img').attr("src",'./resources/img/world-'+world+'/world-'+world+'-character.png');
 				if(world == 2 || world == 3) {
 					$('.game-character-img').css('float','right');
@@ -63,15 +63,17 @@ var PRITT_GAME = PRITT_GAME || {
 	},
 	loadGamePhase1: function() {
 		$('#btn-start-game-phase1').on('touch click', function(e){
-			$('#game').css('display','none');
+			$('#game-intro').css('display','none');
 			$('#game-phase1').css('display','block');
 			$('#game-phase1-stats').css('display','flex');
-			var canvas = document.getElementById('canvas-game-phase1');
+			var canvas = document.getElementById('game');
 			var contentContainerNode = document.getElementById('game-phase1');
 			canvas.height = contentContainerNode.offsetHeight;
 			canvas.width = contentContainerNode.offsetWidth;
 			$('#game-phase1-stats').css('height',contentContainerNode.offsetHeight+'px');
 			$('#game-phase1-stats').css('width',contentContainerNode.offsetWidth+'px');
+			$('#game-phase1').css('height','auto');
+			updateClock(10);
 		});
 	}
 }
@@ -86,4 +88,14 @@ var showText = function (target, message, index, interval) {
     $(target).html($(target).html()+message[index++].replace('@','<br/>'));
     setTimeout(function () { showText(target, message, index, interval); }, interval);
   }
+}
+
+var updateClock = function(time) {
+	$('#pendingSeconds').html(time);
+	if(time==0){
+
+	}else{
+		time-=1;
+		setTimeout("updateClock("+time+")",1000);
+	}
 }
