@@ -73,7 +73,7 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#game-phase1-stats').css('height',contentContainerNode.offsetHeight+'px');
 			$('#game-phase1-stats').css('width',contentContainerNode.offsetWidth+'px');
 			$('#game-phase1').css('height','auto');
-			updateClock(10);
+			updateClock(90);
 		});
 	}
 }

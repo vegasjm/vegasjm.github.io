@@ -1,7 +1,8 @@
     (() => {
       const canvas = document.getElementById('game');
       const ctx = canvas.getContext('2d');
-      let W = document.body.clientWidth, H = document.body.clientHeight-300;
+      let W = Math.min(576, document.body.clientWidth);
+	  let H = document.body.clientHeight-$("#page-header").height()-($("#menu-footer").height()*2)-25;
       const scoreEl = document.getElementById('score');
       const livesEl = document.getElementById('lives');
       const bestEl = document.getElementById('best');
@@ -46,8 +47,8 @@
 
       function resize(){
         const rect = canvas.getBoundingClientRect();
-        W = Math.max(document.body.clientWidth, rect.width);
-        H = Math.max(document.body.clientHeight-300, rect.height);
+        W = Math.max(W, rect.width);
+        H = Math.max(H, rect.height);
         const dpr = window.devicePixelRatio || 1;
         canvas.width = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
@@ -181,7 +182,7 @@
           // colisión con player: se recoge
           if (d.x > player.x && d.x < player.x + player.w && d.y + d.size > player.y && d.y - d.size < player.y + player.h) {
             diamonds.splice(i,1);
-            score += Math.round(10 + d.size/2);
+            score += 1;
             if(soundOn) playPing();
             updateHUD();
             continue;
