@@ -34,16 +34,19 @@ var PRITT_GAME = PRITT_GAME || {
 						$('#game-wizard').css('transform','rotate(-28deg)');
 						$('#game-wizard').css('margin-left','-5rem');
 					if( world == 2) {
+						$('.body-inner').css('background-color','#F4E0B3');
 						$('.game-character-img').css('max-width','30vh');
 						$('#game-wizard-text').html('');
 						showText('#game-wizard-text','Oh no! @The rainbow on my @beach is gone!',0,75);
 					}
 					if( world == 3) {
+						$('.body-inner').css('background-color','#8652A9');
 						$('#game-wizard-text').html('');
 						showText('#game-wizard-text','I need your help to @make my cave @shine again!',0,75);
 					}
 				} else {
 					if(world == 1){
+						$('.body-inner').css('background-color','#fbeda4');
 						$('#game-wizard').css('transform','rotate(0deg)');
 						$('#game-wizard').css('margin-left','-1rem');
 						$('.game-character-img').css('float','left');

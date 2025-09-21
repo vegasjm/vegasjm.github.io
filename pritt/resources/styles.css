@@ -169,7 +169,7 @@ body {
   background-image: url(./img/bg.png);
   background-attachment: fixed;
   background-size: 576px;
-  background-position: center 50px;
+  background-position: center bottom -50px;
   background-repeat: no-repeat;
 }
 .lang .body-inner {
@@ -533,7 +533,7 @@ body {
 }
 #game-phase1-bottom {
 	margin-top: auto;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 }
 .game-phase1-bottom-stats {
     font-family: Ruddy;
@@ -574,6 +574,10 @@ body {
     margin: 0rem 5rem 0rem 5rem;
     justify-content: center;
 }
+.box-stats {
+	padding: 1.2rem;
+    justify-content: center;
+}
 @media (max-width: 576px) {
   .logo-pritt {
     width: 36vw;
@@ -590,7 +594,7 @@ body {
     width: 4rem;
     height: 4rem;
   }
-  #game {
+  .fixed-main-container {
 	height: calc(100vh - 220px);
   }
   #game-bottom {
@@ -633,26 +637,6 @@ body {
 	max-width: 26vh;
 	margin-top: 3rem;
 	font-size: 28px;
-  }
-}
-@media (min-height: 0px) {
-  #game-bottom {
-	transform: translate(0%, -225%) !important;
-  }
-}
-@media (min-height: 576px) {
-  #game-bottom {
-	transform: translate(0%, -175%) !important;
-  }
-}
-@media (min-height: 812px) {
-  #game-bottom {
-    transform: translate(0%, -125%) !important;
-  }
-}
-@media (min-height: 1024px) {
-  #game-bottom {
-    transform: translate(0%, -75%) !important;
   }
 }
 @keyframes bouge {
