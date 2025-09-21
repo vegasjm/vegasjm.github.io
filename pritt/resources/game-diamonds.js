@@ -38,10 +38,13 @@
       };
 
       // Cargar sprite del personaje
-      const spriteImg = new Image();
-      spriteImg.src = './resources/img/world-2/world-2-character.png'; 
-      spriteImg.onload = () => { player.sprite = spriteImg; };
-	  
+      const sprite1Img = new Image();
+      sprite1Img.src = './resources/img/world-1-player.png'; 
+	  const sprite2Img = new Image();
+      sprite2Img.src = './resources/img/world-2-player.png'; 
+	  const sprite3Img = new Image();
+      sprite3Img.src = './resources/img/world-3-player.png'; 
+	  	  
 	  const diamond1Img = new Image();
 	  diamond1Img.src = './resources/img/diamond-1.png'; 
 	  
@@ -85,6 +88,13 @@
       }
 
       function drawPlayer(){
+		if (!sprite1Img.complete) return; 
+		if (!sprite2Img.complete) return; 
+		if (!sprite3Img.complete) return; 
+		
+		if( PRITT_GAME.world == 1) player.sprite = sprite1Img;
+		if( PRITT_GAME.world == 2) player.sprite = sprite2Img;
+		if( PRITT_GAME.world == 3) player.sprite = sprite3Img;
         // dibujamos el sprite ajustado dentro del canvas
         if(player.sprite){
           // aseguramos que la imagen completa quede dentro de H
