@@ -2,7 +2,7 @@
       const canvas = document.getElementById('game');
       const ctx = canvas.getContext('2d');
       let W = Math.min(576, document.body.clientWidth);
-	  let H = document.body.clientHeight-$("#page-header").height()-($("#menu-footer").height()*2)-25;
+	  let H = document.body.clientHeight-$("#page-header").height()-($("#menu-footer").height()*2);
       const scoreEl = document.getElementById('score');
       const livesEl = document.getElementById('lives');
       const bestEl = document.getElementById('best');
@@ -57,7 +57,7 @@
         // usamos transform para dibujar en coordenadas CSS (0..W,0..H)
         ctx.setTransform(dpr,0,0,dpr,0,0);
         // aseguramos que el jugador esté dentro del canvas
-        player.y = H - player.h; // dentro: no dibujar fuera
+        player.y = H-140-25; // dentro: no dibujar fuera
         if (player.x + player.w > W) player.x = W - player.w;
       }
       window.addEventListener('resize', resize);
@@ -78,7 +78,7 @@
         // dibujamos el sprite ajustado dentro del canvas
         if(player.sprite){
           // aseguramos que la imagen completa quede dentro de H
-          const drawY = Math.min(player.y, H - player.h);
+          const drawY = player.y;
           ctx.drawImage(player.sprite, player.x, drawY, player.w, player.h);
         } else {
           ctx.fillStyle = '#ffdd55';
@@ -104,7 +104,7 @@
         updateHUD();
         hideMessage();
         player.x = Math.max(0, Math.min(W - player.w, player.x));
-        player.y = H - player.h;
+        player.y = player.y;
       }
 
       function gameOver(){
@@ -205,7 +205,7 @@
         // aseguramos que el player esté completamente dentro
         if (player.x < 0) player.x = 0;
         if (player.x + player.w > W) player.x = W - player.w;
-        player.y = H - player.h; // forzar a zona visible
+        player.y = player.y; // forzar a zona visible
 
         drawPlayer();
 
