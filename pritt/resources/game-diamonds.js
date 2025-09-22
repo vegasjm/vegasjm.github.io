@@ -30,11 +30,23 @@
 
     const diamonds = [];
 
-    const player = {
+    const player = PRITT_GAME.world === 1 ? {
         x: 400,
         y: 480,
-        w: 80,
-        h: 140,
+        w: 90,
+        h: 105,
+        sprite: null
+    } : PRITT_GAME.world === 2 ? {
+        x: 400,
+        y: 480,
+        w: 90,
+        h: 150,
+        sprite: null
+    } : {
+        x: 400,
+        y: 480,
+        w: 93,
+        h: 108,
         sprite: null
     };
 
