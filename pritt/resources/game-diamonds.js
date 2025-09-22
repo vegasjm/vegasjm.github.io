@@ -199,14 +199,34 @@
             continue;
           }
 
-          // colisión con player: se recoge
-          if (d.x > player.x && d.x < player.x + player.w && d.y + d.size > player.y && d.y - d.size < player.y + player.h) {
-            diamonds.splice(i,1);
-            score += 1;
-            if(soundOn) playPing();
-            updateHUD();
-            continue;
-          }
+          // --- Colisión con player: se recoge si hay al menos un 20% de solapamiento ---
+			const overlapFactor = 0.20; // 20%
+
+			// Reducir hitbox del jugador
+			const hitboxX = player.x + player.w * overlapFactor;
+			const hitboxW = player.w * (1 - 2 * overlapFactor);
+			const hitboxY = player.y + player.h * overlapFactor;
+			const hitboxH = player.h * (1 - 2 * overlapFactor);
+
+			// Reducir área efectiva del diamante
+			const diamondX1 = d.x - d.size * (1 - overlapFactor);
+			const diamondX2 = d.x + d.size * (1 - overlapFactor);
+			const diamondY1 = d.y - d.size * (1 - overlapFactor);
+			const diamondY2 = d.y + d.size * (1 - overlapFactor);
+
+			// Chequear solapamiento entre hitbox reducido del player y diamante reducido
+			if (
+			  diamondX2 > hitboxX &&
+			  diamondX1 < hitboxX + hitboxW &&
+			  diamondY2 > hitboxY &&
+			  diamondY1 < hitboxY + hitboxH
+			) {
+			  diamonds.splice(i, 1);
+			  score += 1;
+			  if (soundOn) playPing();
+			  updateHUD();
+			  continue;
+			}
         }
 
         // limpieza fiable: borramos todo el buffer de pixels (independiente de transforms)
