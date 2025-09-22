@@ -252,18 +252,56 @@
         new(window.AudioContext || window.webkitAudioContext)() :
         null;
 
-    function playPing() {
-        if (!audioCtx) return;
-        const o = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        o.type = 'sine';
-        o.frequency.value = 880 + Math.random() * 400;
-        g.gain.value = 0.08;
-        o.connect(g);
-        g.connect(audioCtx.destination);
-        o.start();
-        o.stop(audioCtx.currentTime + 0.08);
+function playPing() {
+    if (!audioCtx) return;
+    const now = audioCtx.currentTime;
+
+    // 1️⃣ Pop inicial (breve y agudo)
+    const popOsc = audioCtx.createOscillator();
+    const popGain = audioCtx.createGain();
+    popOsc.type = 'triangle';
+    popOsc.frequency.setValueAtTime(1600 + Math.random() * 200, now);
+    popGain.gain.setValueAtTime(0.3, now);
+    popGain.gain.exponentialRampToValueAtTime(0.01, now + 0.02);
+    popOsc.connect(popGain).connect(audioCtx.destination);
+    popOsc.start(now);
+    popOsc.stop(now + 0.02);
+
+    // 2️⃣ Chirrido capa 1 (ruido principal de fricción)
+    const bufferSize1 = audioCtx.sampleRate * 0.04; // 40ms
+    const buffer1 = audioCtx.createBuffer(1, bufferSize1, audioCtx.sampleRate);
+    const data1 = buffer1.getChannelData(0);
+    for (let i = 0; i < bufferSize1; i++) {
+        const t = i / bufferSize1;
+        data1[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 3) * Math.sin(t * Math.PI * 20);
     }
+    const noise1 = audioCtx.createBufferSource();
+    noise1.buffer = buffer1;
+    const gainNoise1 = audioCtx.createGain();
+    gainNoise1.gain.setValueAtTime(0.12, now);
+    gainNoise1.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+    noise1.connect(gainNoise1).connect(audioCtx.destination);
+    noise1.start(now);
+    noise1.stop(now + 0.04);
+
+    // 3️⃣ Chirrido capa 2 (ruido sutil complementario)
+    const bufferSize2 = audioCtx.sampleRate * 0.03; // 30ms
+    const buffer2 = audioCtx.createBuffer(1, bufferSize2, audioCtx.sampleRate);
+    const data2 = buffer2.getChannelData(0);
+    for (let i = 0; i < bufferSize2; i++) {
+        const t = i / bufferSize2;
+        data2[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.5) * Math.sin(t * Math.PI * 25);
+    }
+    const noise2 = audioCtx.createBufferSource();
+    noise2.buffer = buffer2;
+    const gainNoise2 = audioCtx.createGain();
+    gainNoise2.gain.setValueAtTime(0.08, now);
+    gainNoise2.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
+    noise2.connect(gainNoise2).connect(audioCtx.destination);
+    noise2.start(now);
+    noise2.stop(now + 0.03);
+}
+
 
     function loop(ts) {
         if (!running || paused) {
