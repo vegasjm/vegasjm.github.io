@@ -1,6 +1,7 @@
 var PRITT_GAME = PRITT_GAME || {
 	phase: 'world-selector',
 	world:1,
+	gameDuration:90,
 	init: function(){
 		this.loadHome();
 		this.loadWorlds();
@@ -80,7 +81,7 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#game-phase1-stats').css('height',contentContainerNode.offsetHeight+'px');
 			$('#game-phase1-stats').css('width',contentContainerNode.offsetWidth+'px');
 			$('#game-phase1').css('height','auto');
-			updateClock(90);
+			updateClock(PRITT_GAME.gameDuration);
 		});
 	}
 }
@@ -97,10 +98,10 @@ var showText = function (target, message, index, interval) {
   }
 }
 
-var updateClock = function(time) {
+window.updateClock = function(time) {
 	$('#pendingSeconds').html(time);
 	if(time==0){
-
+		gameOver();
 	}else{
 		time-=1;
 		setTimeout("updateClock("+time+")",1000);
