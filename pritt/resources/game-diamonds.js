@@ -66,7 +66,7 @@
     const diamond3Img = new Image();
     diamond3Img.src = './resources/img/diamond-3.png';
 
-    function resize() {
+    window.resize = function() {
         const rect = canvas.getBoundingClientRect();
         W = Math.min(576, document.body.clientWidth);
         H = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
