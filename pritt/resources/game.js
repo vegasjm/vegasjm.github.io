@@ -1,16 +1,35 @@
 var PRITT_GAME = PRITT_GAME || {
+	language: null,
 	phase: 'world-selector',
 	world:1,
 	gameDuration:90,
 	init: function(){
+		this.loadLanguageSelector();
 		this.loadHome();
 		this.loadWorlds();
 		this.loadGamePhase1();
 	},
+	loadLanguageSelector: function() {
+		$('#btn-languageSelector').on('touch click', function(e){
+			var language = $('#languageSelector').find(":selected").val();
+			PRITT_GAME.language = language;
+			//TODO: Load all texts function	
+			PRITT_GAME.loadHome();			
+		});
+	},
 	loadHome: function(){
-		$('#menu-home').css('background-image','url(./resources/img/bg.png)');
-		$('.body-inner').css('background-image','');
-		$('#body-overlay').css('background-image','');
+		if(PRITT_GAME.language == null){
+			$('#settings').css('display','block');
+			$('#menu-home').css('display','none');
+			$('.body-inner').css('background-image','url(./resources/img/bg-lang.png)');
+		}else{
+			$('#settings').css('display','none');
+			$('.menu-home').css('display','block');
+			$('#legal').css('display','block');
+			$('#page-menu-footer').css('display','block');
+			//TODO: $('.menu-home').css('background-image','url(./resources/img/bg.png)');
+			$('.body-inner').css('background-image','');
+		}
 	},
 	loadWorlds: function() {
 		$('.btn-home-world').on('touch click', function(e){
@@ -50,7 +69,6 @@ var PRITT_GAME = PRITT_GAME || {
 					}
 				}
 				$('.body-inner').css('background-image','url(./resources/img/world-'+PRITT_GAME.world+'/world-'+PRITT_GAME.world+'-bg1.png)');
-				$('#body-overlay').css('background-image','url(./resources/img/world-'+PRITT_GAME.world+'/world-'+PRITT_GAME.world+'-bg1.png)');
 			}, 500);
 		});
 	},
@@ -62,7 +80,6 @@ var PRITT_GAME = PRITT_GAME || {
 			if( PRITT_GAME.world == 2) $('.body-inner').css('background-color','#B3E6DA');
 			if( PRITT_GAME.world == 3) $('.body-inner').css('background-color','#57319D');
 			$('.body-inner').css('background-image','url(./resources/img/world-'+PRITT_GAME.world+'/world-'+PRITT_GAME.world+'-bg2.png)');
-			$('#body-overlay').css('background-image','url(./resources/img/world-'+PRITT_GAME.world+'/world-'+PRITT_GAME.world+'-bg2.png)');
 			$('#game-intro').css('display','none');
 			$('#game-phase1').css('display','block');
 			$('#game-phase1-stats').css('display','flex');

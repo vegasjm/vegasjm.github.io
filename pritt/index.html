@@ -19,7 +19,6 @@
 		<div>
 			<div class="container p-0">
 				<div class="shadow-lg h100vh body-inner">
-				<div id="body-overlay" class="shadow-lg body-inner">
 					<div class="header-shape">
 						<img src="./resources/header-shape.svg" class="img-fluid" alt="shape">
 					</div> 
@@ -34,8 +33,33 @@
 					</header> 
 					<main class="position-relative z-1">
 						<div>
+							<!-- SETTINGS: LANGUAGE SELECTOR-->
+							 <div id="settings" class="p-4 p-sm-8 text-center" style='display:none'>
+							  <div class="fs-2 text-uppercase my-3 text-primary">Select your region<br>and language</div>
+							  <div class="text-video text-primary p-4 font-primary font-size-primary mb-5">This website does NOT use proprietary or third-party cookies for statistics or advertising. Please select your region and language to access the site:</div>
+							  <div>
+							   <form method="post" action="https://prittwildnature.com/settings"><input type="hidden" name="_token" value="BZOYAlYXvTWi1RlH59il15rWqrZZ1wcOvu0orjd7">
+								<div><select id="languageSelector" name="lang" class="form-select form-select-lg position-relative">
+								  <option value="en">English (United Kingdom)</option>
+								  <option value="en-za">English (South Africa)</option>
+								  <option value="de">German (Germany)</option>
+								  <option value="fr-bx">French (Benelux)</option>
+								  <option value="nl-bx">Dutch (Benelux)</option>
+								  <option value="es">Spanish (Spain)</option>
+								  <option value="es-mx">Spanish (Mexico)</option>
+								  <option value="it">Italian (Italy)</option>
+								  <option value="pt-br">Portuguese (Brazil)</option>
+								  <option value="tr">Turkish (Turkey)</option>
+								  <option value="cs">Czech (Czechia)</option>
+								  <option value="sk">Slovak (Slovakia)</option>
+								  <option value="hu">Hungarian (Hungary)</option>
+								 </select></div>
+								<div class="mt-5"><button id="btn-languageSelector" type="button" class="d-flex rounded-4 p-2 px-8 text-decoration-none btn-pritt"><span class="text-white text-center text-uppercase d-flex flex-column"><span class="fs-2">Enter</span></span></button></div>
+							   </form>
+							  </div>
+							 </div>
 							<!-- HOME -->
-							<div class="menu-home">
+							<div class="menu-home" style='display:none'>
 								<div class="d-flex flex-column p-5 gap-6 gap-sm-8 p-sm-8 gap-10">
 									<div class="btn-home-world" data-world="1">
 										<a id="btn-home-world-1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
@@ -138,7 +162,7 @@
 						</div>
 					</main> 
 					
-					<footer>
+					<footer id="page-menu-footer" style='display:none'>
 						<div id="menu-footer" class="position-fixed bottom-0 w-100 menu-footer bg-secondary">
 							<div>
 								<ul class="nav justify-content-evenly">
@@ -169,7 +193,7 @@
 								</ul>
 							</div>
 						</div> 
-						<div id="legal" class="p-6 pt-10">
+						<div id="legal" class="p-6 pt-10" style="display:none">
 							<div class="d-flex flex-column gap-1 align-items-center justify-content-center text-video font-primary p-6">
 								<a href="" class="d-flex font-primary text-decoration-none">Imprint </a>
 								<a href="" class="d-flex font-primary text-decoration-none">Terms of Use </a>
@@ -178,7 +202,6 @@
 							</div>
 						</div>
 					</footer>
-				</div>
 				</div>
 			</div>
 		</div>
