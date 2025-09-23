@@ -76,9 +76,10 @@
         canvas.style.width = W + 'px';
         canvas.style.height = H + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
+		$('#game-phase1-stats').css('height',H+'px');
+		$('#game-phase1').css('height',H+'px');
         // Asegurar que el player quede dentro del canvas
-        player.y = H - player.h - 25;
+        player.y = H - player.h - 25 - 80;
         if (player.x + player.w > W) player.x = W - player.w;
     }
     window.addEventListener('resize', resize);

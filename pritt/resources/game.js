@@ -66,6 +66,7 @@ var PRITT_GAME = PRITT_GAME || {
 	},
 	loadGamePhase1: function() {
 		$('#btn-start-game-phase1').on('touch click', function(e){
+			var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2)
 			if( PRITT_GAME.world == 1) $('.body-inner').css('background-color','#E1D48D');
 			if( PRITT_GAME.world == 2) $('.body-inner').css('background-color','#B3E6DA');
 			if( PRITT_GAME.world == 3) $('.body-inner').css('background-color','#57319D');
@@ -76,11 +77,11 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#game-phase1-stats').css('display','flex');
 			var canvas = document.getElementById('game');
 			var contentContainerNode = document.getElementById('game-phase1');
-			canvas.height = contentContainerNode.offsetHeight;
+			canvas.height = heightGame;
 			canvas.width = contentContainerNode.offsetWidth;
-			$('#game-phase1-stats').css('height',contentContainerNode.offsetHeight+'px');
+			$('#game-phase1-stats').css('height',heightGame+'px');
 			$('#game-phase1-stats').css('width',contentContainerNode.offsetWidth+'px');
-			$('#game-phase1').css('height','auto');
+			$('#game-phase1').css('height',heightGame+'px');
 			updateClock(PRITT_GAME.gameDuration);
 		});
 	}
