@@ -66,7 +66,7 @@ var PRITT_GAME = PRITT_GAME || {
 	},
 	loadGamePhase1: function() {
 		$('#btn-start-game-phase1').on('touch click', function(e){
-			$(window).scrollTop();
+			setTimeout(() => { $(window).scrollTop(); }, 100);			
 			var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2)
 			if( PRITT_GAME.world == 1) $('.body-inner').css('background-color','#E1D48D');
 			if( PRITT_GAME.world == 2) $('.body-inner').css('background-color','#B3E6DA');
