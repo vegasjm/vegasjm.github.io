@@ -743,6 +743,13 @@ canvas {
     font-style: normal;
 	font-size: calc(2.3rem + .9vw);
 }
+.game-world-item {
+	height: 55px;
+    margin-top: -20px;
+}
+#message-1 {
+	line-height: 1.5;
+}
 @media (max-width: 520px) {
   canvas {
     height: 420px;

@@ -203,6 +203,7 @@
         running = false;
         msgTitle.textContent = 'You did it!';
 		$('.game-world-item').attr("src",'./resources/img/diamond-'+PRITT_GAME.world+'.png');
+		$('#game-phase1-stats').css('visibility','hidden');
         finalScore.textContent = score;
         msg.style.display = 'block';
         if (score > best) {
@@ -419,6 +420,7 @@ function playPing() {
         }
     });
     restartBtn.addEventListener('click', () => {
+		$('#game-phase1-stats').css('visibility','visible');
         updateClock(PRITT_GAME.gameDuration);
         resetGame();
         running = true;
