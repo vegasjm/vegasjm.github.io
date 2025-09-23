@@ -8,19 +8,9 @@ var PRITT_GAME = PRITT_GAME || {
 		this.loadGamePhase1();
 	},
 	loadHome: function(){
-		$('.btn-home-world').on('touchstart mouseover', function(e){
-			if(PRITT_GAME.phase == 'world-selector'){
-				var world=$(this).attr('data-world');
-				$('.body-inner').css('background-image','url(./resources/img/bg.png)');
-				$('#body-overlay').css('background-image','url(./resources/img/bg-world/bg-world-'+world+'.png)');
-			}
-		});
-		$('.btn-home-world').on('touchend mouseout', function(e){
-			if(PRITT_GAME.phase == 'world-selector'){
-				$('#body-overlay').css('background-image','url(./resources/img/bg.png)');
-				$('.body-inner').css('background-image','url(./resources/img/bg.png)');
-			}
-		});
+		$('#menu-home').css('background-image','url(./resources/img/bg.png)');
+		$('.body-inner').css('background-image','');
+		$('#body-overlay').css('background-image','');
 	},
 	loadWorlds: function() {
 		$('.btn-home-world').on('touch click', function(e){
