@@ -2,7 +2,7 @@ var PRITT_GAME = PRITT_GAME || {
     language: null,
     phase: 'world-selector',
     world: 1,
-    gameDuration: 1,
+    gameDuration: 90,
     gameRestarted: false,
     init: function() {
         this.loadLanguageSelector();
