@@ -146,7 +146,18 @@
     font-style: normal;
     font-display: swap;
 }
-
+@font-face {
+    font-family: DK Snippity Snap Regular;
+	src: url('DKSnippitySnap.woff') format("woff");
+    font-style: normal;
+    font-weight: 400;
+}
+#page-header .justify-content-center {
+	margin: auto;
+}
+.fontDkSnippity {
+	font-family: "DK Snippity Snap Regular", sans-serif;
+}
 .font-primary {
   font-family: Futura Condensed PT, sans-serif;
   font-optical-sizing: auto;
