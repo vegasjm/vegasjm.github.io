@@ -8,6 +8,7 @@ var PRITT_GAME = PRITT_GAME || {
 		this.loadHome();
 		this.loadWorlds();
 		this.loadGamePhase1();
+		this.loadFooter();
 	},
 	loadLanguageSelector: function() {
 		$('#btn-languageSelector').on('touch click', function(e){
@@ -17,10 +18,23 @@ var PRITT_GAME = PRITT_GAME || {
 			PRITT_GAME.loadHome();			
 		});
 	},
+	loadFooter: function() {
+		$('#footer-item-settings').on('touch click', function(e){
+			var canvas = document.getElementById('game');
+			$(canvas).empty();
+			$('#settings').css('display','block');
+			$('#menu-home').css('display','none');
+			$('#game-intro').css('display','none');
+			$('#game-phase1').css('display','none');
+			$('.body-inner').css('background-color','#DEBE82');
+			$('.body-inner').css('background-image','url(./resources/img/bg-lang.png)');		
+		});
+	},
 	loadHome: function(){
 		if(PRITT_GAME.language == null){
 			$('#settings').css('display','block');
 			$('#menu-home').css('display','none');
+			$('.body-inner').css('background-color','#DEBE82');
 			$('.body-inner').css('background-image','url(./resources/img/bg-lang.png)');
 		}else{
 			$('#settings').css('display','none');
@@ -28,6 +42,7 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#legal').css('display','block');
 			$('#page-menu-footer').css('display','block');
 			//TODO: $('.menu-home').css('background-image','url(./resources/img/bg.png)');
+			$('.body-inner').css('background-color','#1578A7');
 			$('.body-inner').css('background-image','');
 		}
 	},

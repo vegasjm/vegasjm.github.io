@@ -165,7 +165,6 @@ body {
   line-height: 1.25;
 }
 .body-inner {
-  background-color: #1578A7;
   background-image: url(./img/bg.png);
   background-attachment: fixed;
   background-size: 576px;
