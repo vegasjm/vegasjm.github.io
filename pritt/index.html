@@ -129,11 +129,21 @@
 								  <div class="overlay">
 									<canvas id="game" width='576' height= '640'></canvas>
 									<div id="message" class="message" style="display:none">
-									  <h2 id="msg-title">Game over</h2>
-									  <div class="small" id="msg-body">Score: <strong id="final-score">0</strong></div>
-									  <div style="margin-top:12px">
-										<button id="restart">Reiniciar</button>
-										<button id="toggle-sound" class="secondary">Sonido: ON</button>
+									  <div id="message-1" class="btn-home box-stats rounded-4 text-decoration-none gap-1">
+										  <h2 id="msg-title" style="font-size: calc(2.3rem + .9vw);">Game over</h2>
+										  <div id="msg-body">
+											<img id="game-world-item-pre" class="game-world-item" style="height: 55px;" src="./resources/img/diamond.png" alt="">
+										    &nbsp;<span id="final-score">0</span>&nbsp;
+											<img id="game-world-item-post" class="game-world-item" style="height: 55px;" src="./resources/img/diamond.png" alt="">
+										  </div>
+									  </div>
+									  <div id="message-2" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
+									     <h2 id="msg-title" ><a id="restart"role="button">Play again</a></h2>
+									  </div>
+								      <div id="message-3" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
+									     <h2 id="msg-title" ><a id="nextAdventure" role="button">Next Adventure</a></h2>
+									  </div>
+									  <button id="toggle-sound" class="secondary" style="display:none">Sonido: ON</button>
 									  </div>
 									</div>
 								  </div>

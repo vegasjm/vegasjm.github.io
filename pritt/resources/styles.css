@@ -713,18 +713,6 @@ canvas {
   margin-top: 10px;
   align-items: center;
 }
-button {
-  background: #0ea5a1;
-  border: none;
-  padding: 8px 12px;
-  color: #022;
-  cursor: pointer;
-  font-weight: 700;
-}
-button.secondary {
-  background: transparent;
-  color: #cfeff0;
-}
 .overlay {
   position: relative;
 }
@@ -733,17 +721,27 @@ button.secondary {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(1, 8, 15, 0.7);
-  padding: 18px;
   text-align: center;
   min-width: 260px;
 }
 .message h2 {
   margin: 0 0 6px 0;
 }
+#msg-title {
+	font-size: calc(2 + .9vw);
+	font-family: Ruddy;
+	font-weight: bold;
+    font-style: normal;
+}
 .small {
   font-size: 13px;
   color: #9fb6c1;
+}
+#final-score{
+	font-family: Ruddy;
+	font-weight: bold;
+    font-style: normal;
+	font-size: calc(2.3rem + .9vw);
 }
 @media (max-width: 520px) {
   canvas {

@@ -201,7 +201,8 @@
 
     window.gameOver = function() {
         running = false;
-        msgTitle.textContent = '¡Fin del juego!';
+        msgTitle.textContent = 'You did it!';
+		$('.game-world-item').attr("src",'./resources/img/diamond-'+PRITT_GAME.world+'.png');
         finalScore.textContent = score;
         msg.style.display = 'block';
         if (score > best) {
