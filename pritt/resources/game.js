@@ -9,6 +9,7 @@ var PRITT_GAME = PRITT_GAME || {
         this.loadHome();
         this.loadWorlds();
         this.loadGamePhase1();
+        this.loadGamePhase2();
         this.loadFooter();
     },
     loadLanguageSelector: function() {
@@ -111,7 +112,26 @@ var PRITT_GAME = PRITT_GAME || {
             updateClock(PRITT_GAME.gameDuration);
             resize();
         });
-    }
+    },
+	loadGamePhase2: function() {
+		    $('#btn-start-game-phase2').on('touch click', function(e) {
+            setTimeout(() => {
+                $(window).scrollTop();
+            }, 100);
+            var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height())
+            if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#E1D48D');
+            if (PRITT_GAME.world == 2) $('.body-inner').css('background-color', '#B3E6DA');
+            if (PRITT_GAME.world == 3) $('.body-inner').css('background-color', '#57319D');
+            $('.body-inner').css('background-image', 'url(./resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-bg2.png)');
+            $('#game-phase1').css('display', 'none');
+            $('#game-phase1-stats').css('display', 'none');
+			$('#game-phase2').css('display', 'block');
+			var canvas = document.getElementById('game');
+            $(canvas).empty();
+            $('#game-phase2').css('height', heightGame + 'px');
+			initPuzzle('./resources/img/world-' + PRITT_GAME.world + '-puzzle.png');
+        });
+	}
 }
 
 window.onload = function() {
