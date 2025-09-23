@@ -4,6 +4,7 @@ var PRITT_GAME = PRITT_GAME || {
     world: 1,
     gameDuration: 90,
     gameRestarted: false,
+	imgPuzzleURL: './resources/img/world-1-puzzle.png',
     init: function() {
         this.loadLanguageSelector();
         this.loadHome();
@@ -129,7 +130,8 @@ var PRITT_GAME = PRITT_GAME || {
 			var canvas = document.getElementById('game');
             $(canvas).empty();
             $('#game-phase2').css('height', heightGame + 'px');
-			initPuzzle('./resources/img/world-' + PRITT_GAME.world + '-puzzle.png');
+			PRITT_GAME.imgPuzzleURL='./resources/img/world-' + PRITT_GAME.world + '-puzzle.png';
+			initPuzzle(PRITT_GAME.imgPuzzleURL);
         });
 	}
 }
