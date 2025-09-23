@@ -76,8 +76,8 @@
         canvas.style.width = W + 'px';
         canvas.style.height = H + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-		$('#game-phase1-stats').css('height',H+'px');
-		$('#game-phase1').css('height',H+'px');
+        $('#game-phase1-stats').css('height', H + 'px');
+        $('#game-phase1').css('height', H + 'px');
         // Asegurar que el player quede dentro del canvas
         player.y = H - player.h - 25 - 80;
         if (player.x + player.w > W) player.x = W - player.w;
@@ -202,8 +202,8 @@
     window.gameOver = function() {
         running = false;
         msgTitle.textContent = 'You did it!';
-		$('.game-world-item').attr("src",'./resources/img/diamond-'+PRITT_GAME.world+'.png');
-		$('#game-phase1-stats').css('visibility','hidden');
+        $('.game-world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
+        $('#game-phase1-stats').css('visibility', 'hidden');
         finalScore.textContent = score;
         msg.style.display = 'block';
         if (score > best) {
@@ -267,55 +267,55 @@
         new(window.AudioContext || window.webkitAudioContext)() :
         null;
 
-function playPing() {
-    if (!audioCtx) return;
-    const now = audioCtx.currentTime;
+    function playPing() {
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
 
-    // 1️⃣ Pop inicial (breve y agudo)
-    const popOsc = audioCtx.createOscillator();
-    const popGain = audioCtx.createGain();
-    popOsc.type = 'triangle';
-    popOsc.frequency.setValueAtTime(1600 + Math.random() * 200, now);
-    popGain.gain.setValueAtTime(0.3, now);
-    popGain.gain.exponentialRampToValueAtTime(0.01, now + 0.02);
-    popOsc.connect(popGain).connect(audioCtx.destination);
-    popOsc.start(now);
-    popOsc.stop(now + 0.02);
+        // 1️⃣ Pop inicial (breve y agudo)
+        const popOsc = audioCtx.createOscillator();
+        const popGain = audioCtx.createGain();
+        popOsc.type = 'triangle';
+        popOsc.frequency.setValueAtTime(1600 + Math.random() * 200, now);
+        popGain.gain.setValueAtTime(0.3, now);
+        popGain.gain.exponentialRampToValueAtTime(0.01, now + 0.02);
+        popOsc.connect(popGain).connect(audioCtx.destination);
+        popOsc.start(now);
+        popOsc.stop(now + 0.02);
 
-    // 2️⃣ Chirrido capa 1 (ruido principal de fricción)
-    const bufferSize1 = audioCtx.sampleRate * 0.04; // 40ms
-    const buffer1 = audioCtx.createBuffer(1, bufferSize1, audioCtx.sampleRate);
-    const data1 = buffer1.getChannelData(0);
-    for (let i = 0; i < bufferSize1; i++) {
-        const t = i / bufferSize1;
-        data1[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 3) * Math.sin(t * Math.PI * 20);
+        // 2️⃣ Chirrido capa 1 (ruido principal de fricción)
+        const bufferSize1 = audioCtx.sampleRate * 0.04; // 40ms
+        const buffer1 = audioCtx.createBuffer(1, bufferSize1, audioCtx.sampleRate);
+        const data1 = buffer1.getChannelData(0);
+        for (let i = 0; i < bufferSize1; i++) {
+            const t = i / bufferSize1;
+            data1[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 3) * Math.sin(t * Math.PI * 20);
+        }
+        const noise1 = audioCtx.createBufferSource();
+        noise1.buffer = buffer1;
+        const gainNoise1 = audioCtx.createGain();
+        gainNoise1.gain.setValueAtTime(0.12, now);
+        gainNoise1.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+        noise1.connect(gainNoise1).connect(audioCtx.destination);
+        noise1.start(now);
+        noise1.stop(now + 0.04);
+
+        // 3️⃣ Chirrido capa 2 (ruido sutil complementario)
+        const bufferSize2 = audioCtx.sampleRate * 0.03; // 30ms
+        const buffer2 = audioCtx.createBuffer(1, bufferSize2, audioCtx.sampleRate);
+        const data2 = buffer2.getChannelData(0);
+        for (let i = 0; i < bufferSize2; i++) {
+            const t = i / bufferSize2;
+            data2[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.5) * Math.sin(t * Math.PI * 25);
+        }
+        const noise2 = audioCtx.createBufferSource();
+        noise2.buffer = buffer2;
+        const gainNoise2 = audioCtx.createGain();
+        gainNoise2.gain.setValueAtTime(0.08, now);
+        gainNoise2.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
+        noise2.connect(gainNoise2).connect(audioCtx.destination);
+        noise2.start(now);
+        noise2.stop(now + 0.03);
     }
-    const noise1 = audioCtx.createBufferSource();
-    noise1.buffer = buffer1;
-    const gainNoise1 = audioCtx.createGain();
-    gainNoise1.gain.setValueAtTime(0.12, now);
-    gainNoise1.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
-    noise1.connect(gainNoise1).connect(audioCtx.destination);
-    noise1.start(now);
-    noise1.stop(now + 0.04);
-
-    // 3️⃣ Chirrido capa 2 (ruido sutil complementario)
-    const bufferSize2 = audioCtx.sampleRate * 0.03; // 30ms
-    const buffer2 = audioCtx.createBuffer(1, bufferSize2, audioCtx.sampleRate);
-    const data2 = buffer2.getChannelData(0);
-    for (let i = 0; i < bufferSize2; i++) {
-        const t = i / bufferSize2;
-        data2[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.5) * Math.sin(t * Math.PI * 25);
-    }
-    const noise2 = audioCtx.createBufferSource();
-    noise2.buffer = buffer2;
-    const gainNoise2 = audioCtx.createGain();
-    gainNoise2.gain.setValueAtTime(0.08, now);
-    gainNoise2.gain.exponentialRampToValueAtTime(0.01, now + 0.03);
-    noise2.connect(gainNoise2).connect(audioCtx.destination);
-    noise2.start(now);
-    noise2.stop(now + 0.03);
-}
 
 
     function loop(ts) {
@@ -420,8 +420,9 @@ function playPing() {
         }
     });
     restartBtn.addEventListener('click', () => {
-		$('#game-phase1-stats').css('visibility','visible');
+        $('#game-phase1-stats').css('visibility', 'visible');
         updateClock(PRITT_GAME.gameDuration);
+        PRITT_GAME.gameRestarted = true;
         resetGame();
         running = true;
         paused = false;
