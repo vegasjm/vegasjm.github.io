@@ -1,50 +1,40 @@
-
-    const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
-    const grid = document.getElementById('puzzle-grid');
-    const pieceBar = document.getElementById('piece-bar');
-
+const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
+    const grid = document.getElementById("puzzle-grid");
+    const pieceBar = document.getElementById("piece-bar");
     let pieces = [];
     let dragged = null;
     let slotSize = 0;
+    let currentImageUrl = "https://picsum.photos/600/1000";
 
-    /* Calcula la mida de cada slot restant l'altura de page-header i menu-footer */
+    /* 🔹 Calcula slotSize restant header, footer, piece-bar i marginBottom */
     function calculateSlotSize() {
-      const header = document.getElementById('page-header');
-      const footer = document.getElementById('menu-footer');
+      const headerH = document.getElementById("page-header")?.offsetHeight || 0;
+      const footerH = document.getElementById("menu-footer")?.offsetHeight || 0;
+      const pieceBarH = pieceBar?.offsetHeight || 0;
+      const marginBottom = 25;
 
-      const headerH = header ? header.offsetHeight : 0;
-      const footerH = footer ? footer.offsetHeight : 0;
-
-      // restem també l'alçada de la barra de peces per evitar solapament
-      const pieceBarH = pieceBar ? pieceBar.offsetHeight : 0;
-
-      // petit marge per seguretat
-      const verticalMargin = 12;
-
-      const availableHeight = window.innerHeight - headerH - footerH - pieceBarH - verticalMargin;
-      const maxWidth = window.innerWidth - 2 * 10; // tenir en compte padding lateral del body (10px)
+      const availableHeight = window.innerHeight - headerH - footerH - pieceBarH - marginBottom;
+      const maxWidth = window.innerWidth - 20;
 
       const sizeByWidth = Math.floor(maxWidth / COLS);
       const sizeByHeight = Math.floor(availableHeight / ROWS);
 
-      // escollim la mida que s'adapti millor, amb un mínim raonable
-      const computed = Math.min(sizeByWidth, sizeByHeight);
-      slotSize = Math.max(36, computed); // evitar que sigui massa petit
+      slotSize = Math.max(36, Math.min(sizeByWidth, sizeByHeight));
     }
 
     function createSlots() {
-      grid.innerHTML = '';
+      grid.innerHTML = "";
       grid.style.gridTemplateColumns = `repeat(${COLS}, ${slotSize}px)`;
       grid.style.gridTemplateRows = `repeat(${ROWS}, ${slotSize}px)`;
 
       for (let r = 0; r < ROWS; r++) {
         for (let c = 0; c < COLS; c++) {
-          const slot = document.createElement('div');
-          slot.className = 'slot';
+          const slot = document.createElement("div");
+          slot.className = "slot";
           slot.dataset.row = r;
           slot.dataset.col = c;
-          slot.style.width = slotSize + 'px';
-          slot.style.height = slotSize + 'px';
+          slot.style.width = slotSize + "px";
+          slot.style.height = slotSize + "px";
           grid.appendChild(slot);
         }
       }
@@ -54,17 +44,15 @@
       const arr = [];
       for (let r = 0; r < ROWS; r++) {
         for (let c = 0; c < COLS; c++) {
-          const piece = document.createElement('div');
-          piece.className = 'piece';
-          piece.style.width = slotSize + 'px';
-          piece.style.height = slotSize + 'px';
+          const piece = document.createElement("div");
+          piece.className = "piece";
+          piece.style.width = slotSize + "px";
+          piece.style.height = slotSize + "px";
           piece.style.backgroundImage = `url(${imageUrl})`;
-          // posició i mida exacta per que l'arxiu s'ajusti perfectament
           piece.style.backgroundSize = `${COLS * slotSize}px ${ROWS * slotSize}px`;
           piece.style.backgroundPosition = `-${c * slotSize}px -${r * slotSize}px`;
           piece.dataset.row = r;
           piece.dataset.col = c;
-          piece.draggable = true;
           arr.push(piece);
         }
       }
@@ -78,10 +66,10 @@
     }
 
     function showDoneMessage() {
-      pieceBar.innerHTML = '';
-      const box = document.createElement('div');
-      box.className = 'done-box';
-      box.textContent = 'DONE!';
+      pieceBar.innerHTML = "";
+      const box = document.createElement("div");
+      box.className = "done-box";
+      box.textContent = "DONE!";
       pieceBar.appendChild(box);
     }
 
@@ -90,64 +78,116 @@
       if (slot.dataset.row === piece.dataset.row &&
           slot.dataset.col === piece.dataset.col &&
           slot.children.length === 0) {
-        // ajustem la peça perquè ocupi el slot (posició absoluta ja definida)
         slot.appendChild(piece);
-        piece.style.position = 'absolute';
-        piece.style.left = '0';
-        piece.style.top = '0';
+        piece.style.left = "0";
+        piece.style.top = "0";
+        piece.style.cursor = "default";
         piece.draggable = false;
-        piece.style.cursor = 'default';
 
         refillBar();
 
-        if (grid.querySelectorAll('.piece').length === TOTAL) {
+        if (grid.querySelectorAll(".piece").length === TOTAL) {
           showDoneMessage();
         }
       }
     }
 
-    /* Drag & drop natiu */
-    document.addEventListener('dragstart', e => {
-      if (e.target.classList.contains('piece')) {
-        dragged = e.target;
-        setTimeout(() => dragged.classList.add('hidden'), 0);
-      }
+    /* 🔹 Drag & Drop universal (mouse + touch) */
+    function enableDrag(piece) {
+      let offsetX, offsetY;
+
+      // desktop
+      piece.draggable = true;
+      piece.addEventListener("dragstart", e => {
+        dragged = piece;
+        piece.classList.add("dragging");
+      });
+      piece.addEventListener("dragend", e => {
+        piece.classList.remove("dragging");
+        dragged = null;
+        document.querySelectorAll(".slot").forEach(s => s.classList.remove("highlight"));
+      });
+
+      // touch
+      piece.addEventListener("touchstart", e => {
+        dragged = piece;
+        piece.classList.add("dragging");
+        const touch = e.touches[0];
+        offsetX = touch.clientX - piece.getBoundingClientRect().left;
+        offsetY = touch.clientY - piece.getBoundingClientRect().top;
+      }, { passive: true });
+
+      piece.addEventListener("touchmove", e => {
+        if (!dragged) return;
+        const touch = e.touches[0];
+        piece.style.position = "fixed";
+        piece.style.zIndex = 1000;
+        piece.style.left = (touch.clientX - offsetX) + "px";
+        piece.style.top = (touch.clientY - offsetY) + "px";
+
+        document.querySelectorAll(".slot").forEach(s => {
+          const rect = s.getBoundingClientRect();
+          if (touch.clientX > rect.left && touch.clientX < rect.right &&
+              touch.clientY > rect.top && touch.clientY < rect.bottom) {
+            s.classList.add("highlight");
+          } else {
+            s.classList.remove("highlight");
+          }
+        });
+      }, { passive: true });
+
+      piece.addEventListener("touchend", e => {
+        if (!dragged) return;
+        piece.classList.remove("dragging");
+        piece.style.position = "";
+        piece.style.left = "";
+        piece.style.top = "";
+        piece.style.zIndex = "";
+
+        const touch = e.changedTouches[0];
+        let droppedSlot = null;
+        document.querySelectorAll(".slot").forEach(s => {
+          const rect = s.getBoundingClientRect();
+          s.classList.remove("highlight");
+          if (touch.clientX > rect.left && touch.clientX < rect.right &&
+              touch.clientY > rect.top && touch.clientY < rect.bottom) {
+            droppedSlot = s;
+          }
+        });
+
+        tryDrop(piece, droppedSlot);
+        dragged = null;
+      });
+    }
+
+    /* Eventos de grid per a desktop drop */
+    document.addEventListener("dragover", e => {
+      e.preventDefault();
+      const slot = e.target.closest(".slot");
+      document.querySelectorAll(".slot").forEach(s => s.classList.remove("highlight"));
+      if (slot) slot.classList.add("highlight");
     });
 
-    document.addEventListener('dragend', () => {
-      if (dragged) dragged.classList.remove('hidden');
-      dragged = null;
-    });
-
-    document.addEventListener('dragover', e => e.preventDefault());
-
-    document.addEventListener('drop', e => {
-      const slot = e.target.closest('.slot');
+    document.addEventListener("drop", e => {
+      e.preventDefault();
+      const slot = e.target.closest(".slot");
       if (dragged && slot) tryDrop(dragged, slot);
+      document.querySelectorAll(".slot").forEach(s => s.classList.remove("highlight"));
     });
 
-    /* Inicialitza (o torna a inicialitzar) el puzzle amb una URL */
+    /* Inicialitzar puzzle */
     function initPuzzle(imageUrl) {
-      PRITT_GAME.imgPuzzleURL = imageUrl || PRITT_GAME.imgPuzzleURL;
+      currentImageUrl = imageUrl || currentImageUrl;
       calculateSlotSize();
       createSlots();
-      pieceBar.innerHTML = '';
-      pieces = createPieces(PRITT_GAME.imgPuzzleURL);
+      pieceBar.innerHTML = "";
+      pieces = createPieces(currentImageUrl);
+      pieces.forEach(enableDrag);
       refillBar();
     }
 
-    // crida inicial amb la imatge per defecte
-    initPuzzle(PRITT_GAME.imgPuzzleURL);
+    initPuzzle(currentImageUrl);
 
-    // al redimensionar re-inicialitzem amb la mateixa imatge
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-      // debounce suau per evitar re-inicialitzacions massives
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => initPuzzle(PRITT_GAME.imgPuzzleURL), 120);
+    window.addEventListener("resize", () => {
+      initPuzzle(currentImageUrl);
     });
-
-    /* ---- Ús: per regenerar amb nova imatge crida:
-         initPuzzle('https://example.com/la-teva-imatge-3x5.jpg')
-       Això recalcula mida i regenera el puzzle sense recarregar la pàgina.
-    */
