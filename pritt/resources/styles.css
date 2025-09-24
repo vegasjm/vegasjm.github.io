@@ -762,19 +762,24 @@ canvas {
 
 /*GAME PHASE 2 STYLES */
     #game-phase2 {
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden; /* evitem scroll */
-      padding: 10px;
-      box-sizing: border-box;
+		align-items: center;
+		overflow: hidden;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		font-family: sans-serif;
     }
-
+	#puzzle-container {
+		background: rgba(0, 0, 0, 0.5);
+		padding: 10px;
+		display: inline-block;
+		text-align: left;
+	}
     #puzzle-grid {
       display: grid;
       gap: 4px;
-	  justify-content: center;
+	  touch-action: none;
     }
 	
     .slot {
