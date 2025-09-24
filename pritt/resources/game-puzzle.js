@@ -1,4 +1,6 @@
-const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
+	// Crear context d'àudio (compatibilitat)
+	const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+	const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
     const grid = document.getElementById("puzzle-grid");
     const pieceBar = document.getElementById("piece-bar");
 	const marginBottom = 25; // espai extra sota la graella
@@ -6,6 +8,88 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
     let dragged = null;
     let slotSize = 0;
     let currentImageUrl = "https://picsum.photos/600/1000";
+
+
+	function playSound(frequency, duration, type="sine") {
+	  const osc = audioCtx.createOscillator();
+	  const gainNode = audioCtx.createGain();
+
+	  osc.type = type;
+	  osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+
+	  // volum inicial i fade out
+	  gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+	  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+	  osc.connect(gainNode);
+	  gainNode.connect(audioCtx.destination);
+
+	  osc.start();
+	  osc.stop(audioCtx.currentTime + duration);
+	}
+
+	/* 🔹 So de grava quan agafes una peça */
+	function playDragSound() {
+	  const bufferSize = audioCtx.sampleRate * 0.2; // 0.2s
+	  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+	  const data = buffer.getChannelData(0);
+
+	  // soroll blanc
+	  for (let i = 0; i < bufferSize; i++) {
+		data[i] = Math.random() * 2 - 1;
+	  }
+
+	  const noise = audioCtx.createBufferSource();
+	  noise.buffer = buffer;
+
+	  // filtre per fer-ho més "gravat"
+	  const filter = audioCtx.createBiquadFilter();
+	  filter.type = "bandpass";
+	  filter.frequency.value = 800;   // centre
+	  filter.Q.value = 1.5;           // amplada
+
+	  const gain = audioCtx.createGain();
+	  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+	  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+
+	  noise.connect(filter).connect(gain).connect(audioCtx.destination);
+	  noise.start();
+	  noise.stop(audioCtx.currentTime + 0.2);
+	}
+
+	/* 🔹 So “pop” quan deixes correctament */
+	function playDropSound() {
+	  const osc = audioCtx.createOscillator();
+	  const gain = audioCtx.createGain();
+
+	  osc.type = "sine";
+	  osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+	  osc.frequency.exponentialRampToValueAtTime(60, audioCtx.currentTime + 0.25);
+
+	  gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+	  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+
+	  osc.connect(gain).connect(audioCtx.destination);
+	  osc.start();
+	  osc.stop(audioCtx.currentTime + 0.25);
+
+	  // afegim un toc de soroll curt per fer-lo més "natural"
+	  const bufferSize = audioCtx.sampleRate * 0.1;
+	  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+	  const data = buffer.getChannelData(0);
+	  for (let i = 0; i < bufferSize; i++) {
+		data[i] = Math.random() * 2 - 1;
+	  }
+	  const noise = audioCtx.createBufferSource();
+	  noise.buffer = buffer;
+	  const noiseGain = audioCtx.createGain();
+	  noiseGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+	  noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+
+	  noise.connect(noiseGain).connect(audioCtx.destination);
+	  noise.start();
+	  noise.stop(audioCtx.currentTime + 0.1);
+	}
 
     /* 🔹 Calcula slotSize restant header, footer, piece-bar i marginBottom */
 	function calculateSlotSize() {
@@ -79,24 +163,29 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
       pieceBar.appendChild(box);
     }
 
-    function tryDrop(piece, slot) {
-      if (!piece || !slot) return;
-      if (slot.dataset.row === piece.dataset.row &&
-          slot.dataset.col === piece.dataset.col &&
-          slot.children.length === 0) {
-        slot.appendChild(piece);
-        piece.style.left = "0";
-        piece.style.top = "0";
-        piece.style.cursor = "default";
-        piece.draggable = false;
+	function tryDrop(piece, slot) {
+	  if (slot.dataset.row === piece.dataset.row &&
+		  slot.dataset.col === piece.dataset.col &&
+		  slot.children.length === 0) {
+		slot.appendChild(piece);
+		piece.style.position = "absolute";
+		piece.style.left = "0";
+		piece.style.top = "0";
+		piece.draggable = false;
+		piece.style.cursor = "default";
 
-        refillBar();
+		playDropSound(); // 🔊 so correcte
 
-        if (grid.querySelectorAll(".piece").length === TOTAL) {
-          showDoneMessage();
-        }
-      }
-    }
+		// animacions visuals
+		piece.classList.add("correct");
+		setTimeout(() => piece.classList.remove("correct"), 300);
+		slot.classList.add("correct-slot");
+		setTimeout(() => slot.classList.remove("correct-slot"), 400);
+
+		refillBar();
+		if (grid.querySelectorAll(".piece").length === TOTAL) showDoneMessage();
+	  }
+	}
 
     /* 🔹 Drag & Drop universal (mouse + touch) */
     function enableDrag(piece) {
@@ -105,6 +194,8 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
       // desktop
       piece.draggable = true;
       piece.addEventListener("dragstart", e => {
+		e.dataTransfer.setData("text/plain", piece.id);
+		playDragSound(); // 🔊 so generat
         dragged = piece;
         piece.classList.add("dragging");
       });

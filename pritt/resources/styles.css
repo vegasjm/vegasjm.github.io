@@ -831,3 +831,21 @@ canvas {
       from { transform: scale(0.8); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+	@keyframes pop-correct {
+	  0% { transform: scale(0.5); opacity: 0; }
+	  50% { transform: scale(1.2); opacity: 1; }
+	  100% { transform: scale(1); }
+	}
+
+	.correct {
+	  animation: pop-correct 0.3s ease;
+	}
+	@keyframes flash-slot {
+	  0% { background-color: rgba(76,175,80,0.0); }
+	  50% { background-color: rgba(76,175,80,0.5); }
+	  100% { background-color: rgba(76,175,80,0.0); }
+	}
+
+	.slot.correct-slot {
+	  animation: flash-slot 0.4s ease;
+	}

@@ -191,7 +191,7 @@
     function resetGame() {
         diamonds.length = 0;
         score = 0;
-        lives = 5;
+        lives = 50;
         spawnInterval = 800;
         difficultyTimer = 0;
         updateHUD();
