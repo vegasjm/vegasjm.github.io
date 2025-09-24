@@ -51,6 +51,12 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadWorlds: function() {
         $('.btn-home-world').on('touch click', function(e) {
+			setTimeout(() => {
+                $(window).scrollTop();
+				document.documentElement.scrollTop;
+				window.scrollTo(0,0);
+				window.scrollY;
+            }, 100);
             PRITT_GAME.phase = 'game-1';
             PRITT_GAME.world = $(this).attr('data-world');
             $('#legal').css('display', 'none');
@@ -94,6 +100,9 @@ var PRITT_GAME = PRITT_GAME || {
         $('#btn-start-game-phase1').on('touch click', function(e) {
             setTimeout(() => {
                 $(window).scrollTop();
+				document.documentElement.scrollTop;
+				window.scrollTo(0,0);
+				window.scrollY;
             }, 100);
             var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
             if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#E1D48D');
@@ -118,6 +127,9 @@ var PRITT_GAME = PRITT_GAME || {
 		    $('#btn-start-game-phase2').on('touch click', function(e) {
             setTimeout(() => {
                 $(window).scrollTop();
+				document.documentElement.scrollTop;
+				window.scrollTo(0,0);
+				window.scrollY;
             }, 100);
             var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
             if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#E1D48D');
