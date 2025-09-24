@@ -176,18 +176,69 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
     });
 
     /* Inicialitzar puzzle */
-    function initPuzzle(imageUrl) {
-      currentImageUrl = imageUrl || currentImageUrl;
-      calculateSlotSize();
-      createSlots();
-      pieceBar.innerHTML = "";
-      pieces = createPieces(currentImageUrl);
-      pieces.forEach(enableDrag);
-      refillBar();
+    function initPuzzle(imageUrl) {	  
+	  currentImageUrl = imageUrl || currentImageUrl;
+
+	  calculateSlotSize();
+	  createSlots();
+	  pieceBar.innerHTML = "";
+	  pieces = createPieces(imageUrl);
+	  pieces.forEach(enableDrag);
+	  // 🔹 Col·locar 3 peces automàticament
+	  placeRandomPieces(3);
+
+	  // 🔹 Omplir la barra amb les primeres peces
+	  refillBar();
     }
 
+	/* Ajusta les mides sense reiniciar el joc */
+	function resizeLayout() {
+	  calculateSlotSize();
+
+	  // Update grid
+	  grid.style.gridTemplateColumns = `repeat(${COLS}, ${slotSize}px)`;
+	  grid.style.gridTemplateRows = `repeat(${ROWS}, ${slotSize}px)`;
+
+	  grid.querySelectorAll(".slot").forEach(slot => {
+		slot.style.width = slotSize + "px";
+		slot.style.height = slotSize + "px";
+	  });
+
+	  document.querySelectorAll(".piece").forEach(piece => {
+		piece.style.width = slotSize + "px";
+		piece.style.height = slotSize + "px";
+		piece.style.backgroundSize = `${COLS * slotSize}px ${ROWS * slotSize}px`;
+		piece.style.backgroundPosition = `-${piece.dataset.col * slotSize}px -${piece.dataset.row * slotSize}px`;
+	  });
+
+	  // 🔹 Fix: barra amb alçada suficient + espai extra
+	  pieceBar.style.minHeight = (slotSize + 20) + "px"; 
+	  pieceBar.style.marginBottom = "10px"; // separació addicional del footer
+	}
+	
+	function placeRandomPieces(count = 3) {
+	  for (let i = 0; i < count; i++) {
+		if (pieces.length === 0) return;
+
+		// Escollir una peça aleatòria de la pila (les que encara no estan al tauler)
+		const index = Math.floor(Math.random() * pieces.length);
+		const piece = pieces.splice(index, 1)[0];
+
+		const row = piece.dataset.row;
+		const col = piece.dataset.col;
+
+		// Buscar el slot correcte i col·locar la peça
+		const slot = grid.querySelector(`.slot[data-row="${row}"][data-col="${col}"]`);
+		if (slot && slot.children.length === 0) {
+		  slot.appendChild(piece);
+		  piece.style.cursor = "default";
+		  piece.draggable = false;
+		}
+	  }
+	}
+	
     initPuzzle(currentImageUrl);
 
-    window.addEventListener("resize", () => {
-      initPuzzle(currentImageUrl);
-    });
+	window.addEventListener("resize", () => {
+	  resizeLayout();
+	});
