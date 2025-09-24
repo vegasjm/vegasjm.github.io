@@ -1,26 +1,32 @@
 const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
     const grid = document.getElementById("puzzle-grid");
     const pieceBar = document.getElementById("piece-bar");
+	const marginBottom = 25; // espai extra sota la graella
     let pieces = [];
     let dragged = null;
     let slotSize = 0;
     let currentImageUrl = "https://picsum.photos/600/1000";
 
     /* 🔹 Calcula slotSize restant header, footer, piece-bar i marginBottom */
-    function calculateSlotSize() {
-      const headerH = document.getElementById("page-header")?.offsetHeight || 0;
-      const footerH = document.getElementById("menu-footer")?.offsetHeight || 0;
-      const pieceBarH = pieceBar?.offsetHeight || 0;
-      const marginBottom = 25;
+	function calculateSlotSize() {
+	  const headerEl = document.getElementById("page-header");
+	  const footerEl = document.getElementById("menu-footer");
 
-      const availableHeight = window.innerHeight - headerH - footerH - pieceBarH - marginBottom;
-      const maxWidth = window.innerWidth - 20;
+	  const headerH = headerEl ? headerEl.offsetHeight : 0;
+	  const footerH = footerEl ? footerEl.offsetHeight : 0;
 
-      const sizeByWidth = Math.floor(maxWidth / COLS);
-      const sizeByHeight = Math.floor(availableHeight / ROWS);
+	  // 🔹 Espai reservat per la barra inferior (3 peces + marge extra)
+	  const reservedBarHeight = 3 * 36 + 40; // 3 peces + 40px d'espai extra
+	  const marginBottom = 25;
 
-      slotSize = Math.max(36, Math.min(sizeByWidth, sizeByHeight));
-    }
+	  const availableHeight = window.innerHeight - headerH - footerH - reservedBarHeight - marginBottom;
+	  const maxWidth = window.innerWidth - 20;
+
+	  const sizeByWidth = Math.floor(maxWidth / COLS);
+	  const sizeByHeight = Math.floor(availableHeight / ROWS);
+
+	  slotSize = Math.max(36, Math.min(sizeByWidth, sizeByHeight));
+	}
 
     function createSlots() {
       grid.innerHTML = "";
@@ -198,7 +204,6 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
 	function resizeLayout() {
 	  calculateSlotSize();
 
-	  // Update grid
 	  grid.style.gridTemplateColumns = `repeat(${COLS}, ${slotSize}px)`;
 	  grid.style.gridTemplateRows = `repeat(${ROWS}, ${slotSize}px)`;
 
@@ -214,9 +219,9 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
 		piece.style.backgroundPosition = `-${piece.dataset.col * slotSize}px -${piece.dataset.row * slotSize}px`;
 	  });
 
-	  // 🔹 Fix: barra amb alçada suficient + espai extra
-	  pieceBar.style.minHeight = (slotSize + 20) + "px"; 
-	  pieceBar.style.marginBottom = "10px"; // separació addicional del footer
+	  // 🔹 Barra amb espai extra
+		pieceBar.style.minHeight = (slotSize + 40) + "px"; // una mica més gran que slotSize per donar espai
+		pieceBar.style.marginBottom = "10px";
 	}
 	
 	// Col·loca aleatòriament 'count' peces ja completes al iniciar
