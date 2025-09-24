@@ -23,7 +23,7 @@
     let spawnInterval = 800;
     let difficultyTimer = 0;
     let score = 0;
-    let lives = 50;
+    let lives = 500;
     let best = parseInt(localStorage.getItem('diamantes_best') || '0', 10);
     bestEl.textContent = best;
     let soundOn = true;
@@ -191,7 +191,7 @@
     function resetGame() {
         diamonds.length = 0;
         score = 0;
-        lives = 50;
+        lives = 500;
         spawnInterval = 800;
         difficultyTimer = 0;
         updateHUD();
