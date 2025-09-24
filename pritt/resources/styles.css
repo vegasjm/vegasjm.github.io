@@ -771,7 +771,7 @@ canvas {
 		font-family: sans-serif;
     }
 	#puzzle-container {
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.3);
 		padding: 10px;
 		display: inline-block;
 		text-align: left;
@@ -783,7 +783,6 @@ canvas {
     }
 	
     .slot {
-      background: #fff;
       border: 1px dashed #ccc;
       position: relative;
       overflow: hidden;
@@ -795,11 +794,10 @@ canvas {
     }
 
     .piece {
-      background-repeat: no-repeat;
-      background-size: cover;
-      cursor: grab;
-      transition: opacity 0.2s, transform 0.2s;
-      touch-action: none; /* necessari per a mobile drag */
+	  background-size: cover;
+	  cursor: grab;
+	  transition: transform 0.2s ease;
+	  touch-action: none;
     }
 
     .piece.dragging {
