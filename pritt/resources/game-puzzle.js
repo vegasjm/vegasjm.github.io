@@ -175,21 +175,24 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
       document.querySelectorAll(".slot").forEach(s => s.classList.remove("highlight"));
     });
 
-    /* Inicialitzar puzzle */
-    function initPuzzle(imageUrl) {	  
+	/* Inicialitzar puzzle (versió corregida) */
+	function initPuzzle(imageUrl) {
 	  currentImageUrl = imageUrl || currentImageUrl;
 
 	  calculateSlotSize();
 	  createSlots();
 	  pieceBar.innerHTML = "";
-	  pieces = createPieces(imageUrl);
+
+	  // IMPORTANT: usar currentImageUrl per evitar passar undefined
+	  pieces = createPieces(currentImageUrl);
 	  pieces.forEach(enableDrag);
-	  // 🔹 Col·locar 3 peces automàticament
+
+	  // Col·locar 3 peces automàticament
 	  placeRandomPieces(3);
 
-	  // 🔹 Omplir la barra amb les primeres peces
+	  // Omplir la barra amb les primeres peces
 	  refillBar();
-    }
+	}
 
 	/* Ajusta les mides sense reiniciar el joc */
 	function resizeLayout() {
@@ -216,23 +219,29 @@ const COLS = 3, ROWS = 5, TOTAL = COLS * ROWS;
 	  pieceBar.style.marginBottom = "10px"; // separació addicional del footer
 	}
 	
+	// Col·loca aleatòriament 'count' peces ja completes al iniciar
 	function placeRandomPieces(count = 3) {
 	  for (let i = 0; i < count; i++) {
 		if (pieces.length === 0) return;
 
-		// Escollir una peça aleatòria de la pila (les que encara no estan al tauler)
 		const index = Math.floor(Math.random() * pieces.length);
 		const piece = pieces.splice(index, 1)[0];
 
 		const row = piece.dataset.row;
 		const col = piece.dataset.col;
-
-		// Buscar el slot correcte i col·locar la peça
 		const slot = grid.querySelector(`.slot[data-row="${row}"][data-col="${col}"]`);
+
 		if (slot && slot.children.length === 0) {
 		  slot.appendChild(piece);
-		  piece.style.cursor = "default";
+		  // assegurem que encaixi visualment al slot
+		  piece.style.position = 'absolute';
+		  piece.style.left = '0';
+		  piece.style.top = '0';
 		  piece.draggable = false;
+		  piece.style.cursor = 'default';
+		} else {
+		  // si el slot està ocupat (cas rar), tornem a posar la peça a la pila
+		  pieces.push(piece);
 		}
 	  }
 	}
