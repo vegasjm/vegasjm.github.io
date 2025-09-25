@@ -11,8 +11,23 @@ var PRITT_GAME = PRITT_GAME || {
         this.loadWorlds();
         this.loadGamePhase1();
         this.loadGamePhase2();
-        this.loadFooter();
+        this.loadLegal();
+		this.loadFooter();
     },
+	loadLegal: function(){
+		$('#btn-imprimt').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#DEBE82', 'none');
+        });
+		$('#btn-termsOfUse').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#DEBE82', 'none');
+        });
+		$('#btn-dataPrivacyStatement').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#DEBE82', 'none');
+        });
+		$('#btn-usResidents').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#DEBE82', 'none');
+        });
+	},
     loadLanguageSelector: function() {
         $('#btn-languageSelector').on('touch click', function(e) {
             var language = $('#languageSelector').find(":selected").val();
@@ -23,30 +38,18 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
-            var canvas = document.getElementById('game');
-            $(canvas).empty();
-            $('#settings').css('display', 'block');
-            $('#menu-home').css('display', 'none');
-            $('#game-intro').css('display', 'none');
-            $('#game-phase1').css('display', 'none');
-            $('.body-inner').css('background-color', '#DEBE82');
-            $('.body-inner').css('background-image', 'url(./resources/img/bg-lang.png)');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#DEBE82', './resources/img/bg-lang.png');
+        });
+		$('#footer-item-home').on('touch click', function(e) {
+			PRITT_GAME.loadHome();
         });
     },
     loadHome: function() {
         if (PRITT_GAME.language == null) {
-            $('#settings').css('display', 'block');
-            $('#menu-home').css('display', 'none');
-            $('.body-inner').css('background-color', '#DEBE82');
-            $('.body-inner').css('background-image', 'url(./resources/img/bg-lang.png)');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#DEBE82', './resources/img/bg-lang.png');
         } else {
-            $('#settings').css('display', 'none');
-            $('.menu-home').css('display', 'block');
-            $('#legal').css('display', 'block');
-            $('#page-menu-footer').css('display', 'block');
-            //TODO: $('.menu-home').css('background-image','url(./resources/img/bg.png)');
-            $('.body-inner').css('background-color', '#1578A7');
-            $('.body-inner').css('background-image', '');
+			PRITT_GAME.clearScreenAndShow(['.menu-home','#legal'], '#1578A7', null);
+			$('#page-menu-footer').css('display', 'block');
         }
     },
     loadWorlds: function() {
@@ -145,6 +148,34 @@ var PRITT_GAME = PRITT_GAME || {
 			PRITT_GAME.imgPuzzleURL='./resources/img/world-' + PRITT_GAME.world + '-puzzle.png';
 			initPuzzle(PRITT_GAME.imgPuzzleURL);
         });
+	},
+	clearScreenAndShow: function(pageIds, bgColor, bgUrl){
+		var canvas = document.getElementById('game');
+        $(canvas).empty();
+		$('#imprimt').css('display', 'none');
+		$('#termsOfUse').css('display', 'none');
+		$('#dataPrivacyStatement').css('display', 'none');
+		$('#usResidents').css('display', 'none');
+		$('#settings').css('display', 'none');
+		$('#legal').css('display', 'none');
+		$('.menu-home').css('display', 'none');
+		$('#game-intro').css('display', 'none');
+        $('#game-phase1').css('display', 'none');
+		$('#game-phase1-stats').css('display', 'none');
+		$('#game-phase2').css('display', 'none');
+		$('.body-inner').css('background-color', bgColor);
+		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
+		
+		pageIds.forEach(function (pageId, index) {
+		  $(pageId).css('display', 'block');
+		});
+		
+		setTimeout(() => {
+			$(window).scrollTop();
+			document.documentElement.scrollTop;
+			window.scrollTo(0,0);
+			window.scrollY;
+		}, 100);
 	}
 }
 
