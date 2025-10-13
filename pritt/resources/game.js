@@ -48,7 +48,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#settings'], '#DEBE82', './resources/img/bg-lang.png');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
 			$('#page-menu-footer').css('display', 'none');
         });
 		$('#footer-item-home').on('touch click', function(e) {
@@ -57,7 +57,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadHome: function() {
         if (PRITT_GAME.language == null) {
-			PRITT_GAME.clearScreenAndShow(['#settings'], '#DEBE82', './resources/img/bg-lang.png');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
 			$('#page-menu-footer').css('display', 'none');
         } else {
 			PRITT_GAME.clearScreenAndShow(['.menu-home','#legal'], '#1578A7', null);
@@ -136,7 +136,9 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
+			gameOver();
 			PRITT_GAME.gameRestarted = false;
+			gameOver();
 			$('.logo-pritt').css('width', '100px');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
