@@ -16,11 +16,12 @@
     const restartBtn = document.getElementById('restart');
     const toggleSoundBtn = document.getElementById('toggle-sound');
 
+	let difficultyLevel = 0; // 0 = fácil, irá aumentando poco a poco
     let running = false;
     let paused = false;
     let lastTime = 0;
     let spawnTimer = 0;
-    let spawnInterval = 800;
+    let spawnInterval = 1200;
     let difficultyTimer = 0;
     let score = 0;
     let lives = 500;
@@ -117,7 +118,8 @@
         const size = Math.round(rand(50, 50));
         const x = rand(size, W - size);
         const y = -size - rand(10, 80);
-        const speed = rand(60, 160);
+        const baseSpeed = 100 + difficultyLevel * 10;
+		const speed = rand(baseSpeed, baseSpeed + 120);
         const rot = rand(0, Math.PI * 2);
         diamonds.push({
             x,
@@ -189,10 +191,11 @@
     }
 
     function resetGame() {
+		difficultyLevel = 0;
         diamonds.length = 0;
         score = 0;
         lives = 500;
-        spawnInterval = 800;
+        spawnInterval = 1200;
         difficultyTimer = 0;
         updateHUD();
         hideMessage();
@@ -333,10 +336,15 @@
             spawnTimer = 0;
             spawnDiamond();
         }
-        if (difficultyTimer >= 6000) {
-            difficultyTimer = 0;
-            spawnInterval = Math.max(240, spawnInterval - 40);
-        }
+		
+		if (difficultyTimer >= 5000) { // cada 5 segundos aumenta un poco
+			difficultyTimer = 0;
+			// Incrementa el nivel de dificultad
+			difficultyLevel++;
+			// Los diamantes aparecen más seguido
+			spawnInterval = Math.max(300, spawnInterval - 50);
+			// También aumentan ligeramente la velocidad base (ya lo usamos arriba)
+		}
 
         for (let i = diamonds.length - 1; i >= 0; i--) {
             const d = diamonds[i];

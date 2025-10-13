@@ -612,12 +612,13 @@ body {
 	position: relative;
     width: 100%;
 	margin-left: -1rem;
+	animation: bouge 3s infinite alternate-reverse;
 }	
 .game-character-img{
 	max-width: 28vh;
     bottom: 5vh;
     top: auto;
-	filter: drop-shadow(22px -15px 5px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(5px -5px 5px rgba(0, 0, 0, 0.5));
 	animation: bouge 3s infinite alternate-reverse;
 }
 .game-wizard-img{
