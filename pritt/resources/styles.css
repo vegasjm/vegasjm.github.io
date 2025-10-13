@@ -194,7 +194,6 @@ body {
 }
 .h100vh {
   min-height: 100vh;
-  padding-bottom: 58px;
 }
 .header-shape {
   position: absolute;

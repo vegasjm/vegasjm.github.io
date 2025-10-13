@@ -99,8 +99,10 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.world = $(this).attr('data-world');
             $('#legal').css('display', 'none');
             setTimeout(function() {
+				var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
                 $('.menu-home').css('display', 'none');
                 $('#game-intro').css('display', 'flex');
+				$('#game-intro').css('height', heightGame + 'px');
                 $('.game-character-img').attr("src", './resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-character.png');
                 $('#world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
                 if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
