@@ -190,7 +190,7 @@
         }
     }
 
-    function resetGame() {
+    window.resetGame= function() {
 		difficultyLevel = 0;
         diamonds.length = 0;
         score = 0;
@@ -205,6 +205,7 @@
     window.gameOver = function() {
         running = false;
         msgTitle.textContent = 'You did it!';
+        $('.game-world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
         $('.game-world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
         $('#game-phase1-stats').css('visibility', 'hidden');
         finalScore.textContent = score;
@@ -337,7 +338,7 @@
             spawnDiamond();
         }
 		
-		if (difficultyTimer >= 5000) { // cada 5 segundos aumenta un poco
+		if (difficultyTimer >= 3000) { // cada 5 segundos aumenta un poco
 			difficultyTimer = 0;
 			// Incrementa el nivel de dificultad
 			difficultyLevel++;

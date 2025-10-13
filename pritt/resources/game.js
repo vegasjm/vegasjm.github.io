@@ -42,6 +42,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
 	loadHeader: function() {
 		$('#btn-logo-pritt').on('touch click', function(e) {
+			PRITT_GAME.gameRestarted = true;
 			PRITT_GAME.loadHome();
         });
     },
@@ -135,6 +136,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
+			PRITT_GAME.gameRestarted = false;
 			$('.logo-pritt').css('width', '100px');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
@@ -212,6 +214,7 @@ var PRITT_GAME = PRITT_GAME || {
 		  $(pageId).css('display', 'block');
 		});
 		$('#page-menu-footer').css('display', 'block');
+		gameOver();
 		setTimeout(() => {
 			$(window).scrollTop();
 			document.documentElement.scrollTop;
