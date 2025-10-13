@@ -162,11 +162,6 @@
 	  btn.textContent = "DONE!";
 	  btn.id = "done-button";
 	  btn.style.fontSize = "2em";
-	  btn.style.fontWeight = "bold";
-	  btn.style.color = "green";
-	  btn.style.cursor = "pointer";
-	  btn.style.background = "transparent";
-	  btn.style.border = "none";
 	  pieceBar.appendChild(btn);
 
 	  // afegim listener després de crear el botó
@@ -284,20 +279,22 @@
 
 	/* Inicialitzar puzzle (versió corregida) */
 	function initPuzzle(imageUrl) {
-	  currentImageUrl = imageUrl || currentImageUrl;
+	  const puzzleContainer = document.getElementById("puzzle-container");
+	  if (puzzleContainer) {
+		// 🔧 Reset complet d'estil per evitar que col·lapsi
+		puzzleContainer.style.opacity = "1";
+		puzzleContainer.style.display = "inline-block";
+		puzzleContainer.style.transition = "";
+		puzzleContainer.classList.remove("completed");
+	  }
 
+	  currentImageUrl = imageUrl || currentImageUrl;
 	  calculateSlotSize();
 	  createSlots();
 	  pieceBar.innerHTML = "";
-
-	  // IMPORTANT: usar currentImageUrl per evitar passar undefined
 	  pieces = createPieces(currentImageUrl);
 	  pieces.forEach(enableDrag);
-
-	  // Col·locar 3 peces automàticament
 	  placeRandomPieces(3);
-
-	  // Omplir la barra amb les primeres peces
 	  refillBar();
 	}
 
@@ -417,11 +414,30 @@
 
 	  placeNext();
 
-	  // eliminar slots passats uns ms després de l'última peça (perquè no solapin)
-	  const cleanupDelay = piecesList.length * 180 + 500;
-	  setTimeout(() => {
-		Array.from(puzzleContainer.querySelectorAll(".slot")).forEach(s => s.remove());
-	  }, cleanupDelay);
+		// eliminar slots passats uns ms després de l'última peça (perquè no solapin)
+		const cleanupDelay = piecesList.length * 180 + 500;
+		setTimeout(() => {
+		  // 🔹 Fade-out de totes les peces sense esborrar la graella
+		  const pieces = puzzleContainer.querySelectorAll(".piece");
+		  pieces.forEach(piece => {
+			piece.style.transition = "opacity 0.8s ease";
+			piece.style.opacity = "0";
+		  });
+
+		  // 🔹 Després del fade, eliminar només les peces, no els slots
+		  setTimeout(() => {
+			pieces.forEach(piece => piece.remove());
+			puzzleContainer.style.opacity = "1"; // restaurem per al proper joc
+
+			// Tornar al menú, sense tocar l'estructura
+			if (PRITT_GAME.world == 1) PRITT_GAME.world_1 = true;
+			if (PRITT_GAME.world == 2) PRITT_GAME.world_2 = true;
+			if (PRITT_GAME.world == 3) PRITT_GAME.world_3 = true;
+			PRITT_GAME.loadHome();
+		  }, 800); // coincideix amb la durada del fade
+
+		}, cleanupDelay);
+
 	}
 	
 	function playMagneticClack() {

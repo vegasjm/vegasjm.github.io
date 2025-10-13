@@ -277,6 +277,18 @@ body {
   box-shadow: 4px 4px 20px;
   margin: auto;
 }
+#done-button{
+    font-size: 2em;
+    background: #eb0b0b;
+    border: 4px solid #ffffff;
+    color: white;
+    box-shadow: 4px 8px 14px #00000080;
+    font-family: Ruddy;
+    font-weight: bold;
+    font-style: normal;
+    padding: 20px;
+    min-width: 40%;
+}
 .btn-home {
   background: #eb0b0b;
   line-height: 0.75;
@@ -284,8 +296,17 @@ body {
   box-shadow: 4px 4px 20px;
 }
 .btn-home:hover,
-.btn-make-movie:hover {
+.btn-make-movie:hover,
+#done-button:hover {
   color: var(--color1);
+}
+.btn-home-world {
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#btn-home-world-1,#btn-home-world-2,#btn-home-world-3 {
+	margin-top: 2rem;
 }
 .btn-home-world .btn-home {
   max-width: fit-content;
