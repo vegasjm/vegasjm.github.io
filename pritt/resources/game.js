@@ -5,11 +5,12 @@ var PRITT_GAME = PRITT_GAME || {
 	world_1:false,
 	world_2:false,
 	world_3:false,
-    gameDuration: 90,
+    gameDuration: 15,
     gameRestarted: false,
 	imgPuzzleURL: './resources/img/world-1-puzzle.png',
     init: function() {
         this.loadLanguageSelector();
+        this.loadHeader();
         this.loadHome();
         this.loadWorlds();
         this.loadGamePhase1();
@@ -37,6 +38,11 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.language = language;
             //TODO: Load all texts function	
             PRITT_GAME.loadHome();
+        });
+    },
+	loadHeader: function() {
+		$('#btn-logo-pritt').on('touch click', function(e) {
+			PRITT_GAME.loadHome();
         });
     },
     loadFooter: function() {
@@ -146,6 +152,7 @@ var PRITT_GAME = PRITT_GAME || {
             $('#game-intro').css('display', 'none');
             $('#game-phase1').css('display', 'block');
             $('#game-phase1-stats').css('display', 'flex');
+            $('#game-phase1-stats').css('visibility', 'visible');
             var canvas = document.getElementById('game');
             var contentContainerNode = document.getElementById('game-phase1');
             canvas.height = heightGame;

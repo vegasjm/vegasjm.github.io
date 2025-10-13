@@ -294,7 +294,7 @@
 	  pieceBar.innerHTML = "";
 	  pieces = createPieces(currentImageUrl);
 	  pieces.forEach(enableDrag);
-	  placeRandomPieces(3);
+	  placeRandomPieces(14);
 	  refillBar();
 	}
 
