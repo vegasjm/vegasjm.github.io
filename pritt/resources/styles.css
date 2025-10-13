@@ -163,6 +163,7 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  color:white;
 }
 .font-size-primary {
   font-size: max(1.4rem, 23px);
@@ -525,8 +526,7 @@ body {
   transform: rotate(2deg);
 }
 .text-video {
-  background: #e4cc9f;
-  border-radius: 17% 20% 32% 14%;
+  background: #572364;
 }
 .plyr__control--overlaid[data-plyr="play"] {
   border: 3px solid #e8c894;
