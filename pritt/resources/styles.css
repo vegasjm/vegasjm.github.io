@@ -343,6 +343,9 @@ body {
   user-select: none;
   box-sizing: border-box;
 }
+.sqrBall a{
+	color: white;
+}
 .w-min-content {
   width: min-content;
 }
