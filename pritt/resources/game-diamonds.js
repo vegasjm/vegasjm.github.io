@@ -30,6 +30,7 @@
     let soundOn = true;
 
     const diamonds = [];
+	const badObjects = [];
 
     const player = PRITT_GAME.world === 1 ? {
         x: 400,
@@ -66,6 +67,10 @@
     diamond2Img.src = './resources/img/diamond-2.png';
     const diamond3Img = new Image();
     diamond3Img.src = './resources/img/diamond-3.png';
+	
+	// Sprite de objeto malo
+	const badItemImg = new Image();
+	badItemImg.src = './resources/img/bad-item.png'; // ⚠️ cambia la ruta según tu imagen real
 
     window.resize = function() {
         const rect = canvas.getBoundingClientRect();
@@ -88,16 +93,21 @@
 
     const rand = (a, b) => Math.random() * (b - a) + a;
 
-    function drawDiamond(x, y, size, rotation) {
-        if (!diamond1Img.complete || !diamond2Img.complete || !diamond3Img.complete) return;
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(rotation);
-        if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Img, -size / 2, -size / 2, size, size);
-        if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Img, -size / 2, -size / 2, size, size);
-        if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Img, -size / 2, -size / 2, size, size);
-        ctx.restore();
-    }
+	function drawDiamond(x, y, size, rotation, isBad = false) {
+		ctx.save();
+		ctx.translate(x, y);
+		ctx.rotate(rotation);
+
+		if (isBad) {
+			ctx.drawImage(badItemImg, -size / 2, -size / 2, size, size);
+		} else {
+			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Img, -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Img, -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Img, -size / 2, -size / 2, size, size);
+		}
+
+		ctx.restore();
+	}
 
     function drawPlayer() {
         if (!sprite1Img.complete || !sprite2Img.complete || !sprite3Img.complete) return;
@@ -114,81 +124,147 @@
         }
     }
 
-    function spawnDiamond() {
-        const size = Math.round(rand(50, 50));
-        const x = rand(size, W - size);
-        const y = -size - rand(10, 80);
-        const baseSpeed = 100 + difficultyLevel * 10;
+	function spawnDiamond() {
+		const size = Math.round(rand(50, 50));
+		const x = rand(size, W - size);
+		const y = -size - rand(10, 80);
+		const baseSpeed = 100 + difficultyLevel * 10;
 		const speed = rand(baseSpeed, baseSpeed + 120);
-        const rot = rand(0, Math.PI * 2);
-        diamonds.push({
-            x,
-            y,
-            size,
-            speed,
-            rot,
-            rotSpeed: rand(-1, 1) * 0.004
-        });
-    }
+		const rot = rand(0, Math.PI * 2);
 
-    const sparkles = [];
+		const isBad = Math.random() < 0.2; // 20% de probabilidad
 
-    function createSparkle(x, y, color) {
-        // Crea partículas grandes (núcleo) y pequeñas (chispas)
-        for (let i = 0; i < 12; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 4 + 2;
-            const size = Math.random() * 6 + 4;
-            sparkles.push({
-                x,
-                y,
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                size,
-                alpha: 1,
-                color,
-                decay: Math.random() * 0.04 + 0.03, // velocidad de desvanecimiento
-                glow: Math.random() > 0.5 // mitad con glow extra
-            });
-        }
-    }
+		diamonds.push({
+			x,
+			y,
+			size,
+			speed,
+			rot,
+			rotSpeed: rand(-1, 1) * 0.004,
+			isBad
+		});
+	}
 
-    function drawSparkles() {
-        for (let i = sparkles.length - 1; i >= 0; i--) {
-            const s = sparkles[i];
+	
+	function spawnBadObject() {
+		const size = Math.round(rand(40, 60));
+		const x = rand(size, W - size);
+		const y = -size - rand(10, 80);
+		const baseSpeed = 120 + difficultyLevel * 15;
+		const speed = rand(baseSpeed, baseSpeed + 140);
+		const rot = rand(0, Math.PI * 2);
 
-            ctx.save();
+		badObjects.push({
+			x,
+			y,
+			size,
+			speed,
+			rot,
+			rotSpeed: rand(-1, 1) * 0.006
+		});
+	}
+	
+	function drawBadObject(x, y, size, rotation) {
+		ctx.save();
+		ctx.translate(x, y);
+		ctx.rotate(rotation);
+		ctx.fillStyle = 'rgba(80, 0, 0, 0.9)';
+		ctx.strokeStyle = 'rgba(255, 60, 60, 0.8)';
+		ctx.lineWidth = 2;
+		ctx.beginPath();
+		ctx.moveTo(0, -size / 2);
+		for (let i = 1; i < 6; i++) {
+			const angle = (i * Math.PI * 2) / 5;
+			const radius = size * (i % 2 === 0 ? 0.5 : 1);
+			ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+		}
+		ctx.closePath();
+		ctx.fill();
+		ctx.stroke();
+		ctx.restore();
+	}
 
-            // Gradiente radial con glow
-            const gradient = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.size);
-            gradient.addColorStop(0, `rgba(${s.color}, ${s.alpha})`);
-            gradient.addColorStop(0.5, `rgba(${s.color}, ${s.alpha * 0.6})`);
-            gradient.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.fillStyle = gradient;
+	const sparkles = [];
+	const flashes = [];
 
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-            ctx.fill();
+	function createSparkle(x, y) {
+		const colors = [
+			'255,255,230', // blanco cálido
+			'200,220,255', // azul hielo
+			'255,245,180'  // amarillo luz suave
+		];
 
-            // Extra glow
-            if (s.glow) {
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size * 1.5, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(${s.color}, ${s.alpha * 0.2})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            }
+		// Chispas
+		for (let i = 0; i < 26; i++) {
+			const angle = Math.random() * Math.PI * 2;
+			const speed = Math.random() * 2.5 + 0.5; // más lento
+			const length = Math.random() * 25 + 10;
+			sparkles.push({
+				x, y,
+				vx: Math.cos(angle) * speed,
+				vy: Math.sin(angle) * speed,
+				length,
+				life: 1,
+				decay: 0.015 + Math.random() * 0.015, // dura más
+				color: colors[Math.floor(Math.random() * colors.length)],
+				width: Math.random() * 2 + 0.6
+			});
+		}
 
-            ctx.restore();
+		// Flash central
+		flashes.push({
+			x, y,
+			radius: 0,
+			maxRadius: 40 + Math.random() * 20,
+			alpha: 0.6,
+			decay: 0.02
+		});
+	}
 
-            // Actualizar posición y alpha
-            s.x += s.vx;
-            s.y += s.vy;
-            s.alpha -= s.decay;
+	function drawSparkles() {
+		ctx.save();
+		ctx.globalCompositeOperation = 'lighter';
 
-            if (s.alpha <= 0) sparkles.splice(i, 1);
-        }
-    }
+		// Flash radial
+		for (let i = flashes.length - 1; i >= 0; i--) {
+			const f = flashes[i];
+			const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius);
+			gradient.addColorStop(0, `rgba(255,255,230,${f.alpha})`);
+			gradient.addColorStop(0.4, `rgba(255,245,180,${f.alpha * 0.6})`);
+			gradient.addColorStop(1, `rgba(200,220,255,0)`);
+
+			ctx.fillStyle = gradient;
+			ctx.beginPath();
+			ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+			ctx.fill();
+
+			f.radius += 3;
+			f.alpha -= f.decay;
+			if (f.alpha <= 0) flashes.splice(i, 1);
+		}
+
+		// Rayos de chispa
+		for (let i = sparkles.length - 1; i >= 0; i--) {
+			const s = sparkles[i];
+			ctx.beginPath();
+			ctx.strokeStyle = `rgba(${s.color},${s.life})`;
+			ctx.lineWidth = s.width;
+			ctx.moveTo(s.x, s.y);
+			ctx.lineTo(
+				s.x - s.vx * s.length * 0.3,
+				s.y - s.vy * s.length * 0.3
+			);
+			ctx.stroke();
+
+			s.x += s.vx;
+			s.y += s.vy;
+			s.life -= s.decay;
+
+			if (s.life <= 0) sparkles.splice(i, 1);
+		}
+
+		ctx.restore();
+	}
 
     window.resetGame= function() {
 		difficultyLevel = 0;
@@ -375,21 +451,81 @@
             const diamondY1 = d.y - d.size * (1 - overlapFactor);
             const diamondY2 = d.y + d.size * (1 - overlapFactor);
 
-            if (
-                diamondX2 > hitboxX &&
-                diamondX1 < hitboxX + hitboxW &&
-                diamondY2 > hitboxY &&
-                diamondY1 < hitboxY + hitboxH
-            ) {
-                const color = PRITT_GAME.world === 1 ? '255,255,255' : PRITT_GAME.world === 2 ? '0,255,255' : '255,0,255';
-                createSparkle(d.x, d.y, color);
-                diamonds.splice(i, 1);
-                score += 1;
-                if (soundOn) playPing();
-                updateHUD();
-                continue;
-            }
+			if (
+				diamondX2 > hitboxX &&
+				diamondX1 < hitboxX + hitboxW &&
+				diamondY2 > hitboxY &&
+				diamondY1 < hitboxY + hitboxH
+			) {
+				if (d.isBad) {
+					score -= 5; // castigo por coger un objeto malo
+					if (lives <= 0) {
+						updateHUD();
+						gameOver();
+						return;
+					}
+					// Efecto de “maldición” visual rápido
+					flashes.push({
+						x: d.x,
+						y: d.y,
+						radius: 0,
+						maxRadius: 50,
+						alpha: 0.6,
+						decay: 0.03
+					});
+				} else {
+					createSparkle(d.x, d.y);
+					score += 1;
+					if (soundOn) playPing();
+				}
+
+				diamonds.splice(i, 1);
+				updateHUD();
+				continue;
+			}
+
         }
+		
+		for (let i = badObjects.length - 1; i >= 0; i--) {
+			const b = badObjects[i];
+			b.y += b.speed * (dt / 1000);
+			b.rot += b.rotSpeed * dt;
+
+			if (b.y - b.size > H) {
+				badObjects.splice(i, 1);
+				continue;
+			}
+
+			const overlapFactor = 0.20;
+			const hitboxX = player.x + player.w * overlapFactor;
+			const hitboxW = player.w * (1 - 2 * overlapFactor);
+			const hitboxY = player.y + player.h * overlapFactor;
+			const hitboxH = player.h * (1 - 2 * overlapFactor);
+
+			const bx1 = b.x - b.size * (1 - overlapFactor);
+			const bx2 = b.x + b.size * (1 - overlapFactor);
+			const by1 = b.y - b.size * (1 - overlapFactor);
+			const by2 = b.y + b.size * (1 - overlapFactor);
+
+			if (
+				bx2 > hitboxX &&
+				bx1 < hitboxX + hitboxW &&
+				by2 > hitboxY &&
+				by1 < hitboxY + hitboxH
+			) {
+				// 💥 impacto con objeto malo
+				createSparkle(b.x, b.y);
+				badObjects.splice(i, 1);
+                score += -5;
+				if (lives <= 0) {
+					updateHUD();
+					gameOver();
+					return;
+				}
+				updateHUD();
+				continue;
+			}
+		}
 
         ctx.save();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -398,7 +534,7 @@
 
         for (const d of diamonds) {
             if (d.y - d.size > H || d.y + d.size < 0) continue;
-            drawDiamond(d.x, d.y, d.size, d.rot);
+				drawDiamond(d.x, d.y, d.size, d.rot, d.isBad);
         }
 
         if (player.x < 0) player.x = 0;
