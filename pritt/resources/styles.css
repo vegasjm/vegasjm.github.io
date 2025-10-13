@@ -167,6 +167,9 @@
 .font-size-primary {
   font-size: max(1.4rem, 23px);
 }
+.text-primary {
+    color: white !important;
+}
 html {
   font-size: max(1.04166666vw, 16px);
 }
@@ -240,6 +243,7 @@ body {
 .form-select-lg {
   margin: auto;
   width: 80%;
+  margin-top: 3rem;
 }
 .forest-keeper-btn {
 	gap: 10rem !important;
@@ -265,6 +269,13 @@ body {
   width: fit-content;
   margin: auto;
   transform: rotate(-3deg);
+}
+#btn-languageSelector{
+  background: #eb0b0b;
+  line-height: 0.75;
+  border: 0px;
+  box-shadow: 4px 4px 20px;
+  margin: auto;
 }
 .btn-home {
   background: #eb0b0b;
@@ -320,6 +331,17 @@ body {
 .title {
   font-size: clamp(25px, 6vw, 32px);
   color: #ffffff;
+}
+.sqrBall{
+  position: fixed;
+  bottom: 10px;
+  right: 20px; /* separat una mica del marge dret */
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  z-index: 9999;
+  user-select: none;
+  box-sizing: border-box;
 }
 .w-min-content {
   width: min-content;
@@ -779,6 +801,14 @@ canvas {
 		display: inline-block;
 		text-align: left;
 	}
+	#puzzle-container.completed {
+	  position: relative;
+	}
+
+	#puzzle-container.completed .piece {
+	  border: none; /* treure límits si hi havia */
+	}
+
     #puzzle-grid {
       display: grid;
       gap: 4px;

@@ -155,13 +155,23 @@
       }
     }
 
-    function showDoneMessage() {
-      pieceBar.innerHTML = "";
-      const box = document.createElement("div");
-      box.className = "done-box";
-      box.textContent = "DONE!";
-      pieceBar.appendChild(box);
-    }
+	/* 🔹 Missatge final amb botó DONE */
+	function showDoneMessage() {
+	  pieceBar.innerHTML = "";
+	  const btn = document.createElement("button");
+	  btn.textContent = "DONE!";
+	  btn.id = "done-button";
+	  btn.style.fontSize = "2em";
+	  btn.style.fontWeight = "bold";
+	  btn.style.color = "green";
+	  btn.style.cursor = "pointer";
+	  btn.style.background = "transparent";
+	  btn.style.border = "none";
+	  pieceBar.appendChild(btn);
+
+	  // afegim listener després de crear el botó
+	  btn.addEventListener("click", assembleImage);
+	}
 
 	function tryDrop(piece, slot) {
 	  if (slot.dataset.row === piece.dataset.row &&
@@ -341,6 +351,121 @@
 		}
 	  }
 	}
+	
+	/* 🔹 Animació de muntatge final */
+	function assembleImage() {
+	  const puzzleContainer = document.getElementById("puzzle-container");
+	  if (!puzzleContainer) return;
+
+	  // recollim totes les peces que estiguin dins del container (les del puzzle, no les de la barra)
+	  const piecesList = Array.from(puzzleContainer.querySelectorAll(".piece"));
+	  if (!piecesList.length) return;
+
+	  // determinem files i columnes a partir dels slots (si existeixen) o a partir de les dades de les peces
+	  const slotEls = Array.from(puzzleContainer.querySelectorAll(".slot"));
+	  let colsCount, rowsCount;
+	  if (slotEls.length > 0) {
+		colsCount = Math.max(...slotEls.map(s => parseInt(s.dataset.col || "0", 10))) + 1;
+		rowsCount = Math.max(...slotEls.map(s => parseInt(s.dataset.row || "0", 10))) + 1;
+	  } else {
+		colsCount = Math.max(...piecesList.map(p => parseInt(p.dataset.col || "0", 10))) + 1;
+		rowsCount = Math.max(...piecesList.map(p => parseInt(p.dataset.row || "0", 10))) + 1;
+	  }
+
+	  // mida final i offsets per centrar dins del container
+	  const finalWidth = colsCount * slotSize;
+	  const finalHeight = rowsCount * slotSize;
+	  const containerWidth = puzzleContainer.clientWidth;
+	  const containerHeight = puzzleContainer.clientHeight;
+	  const offsetX = Math.max(0, (containerWidth - finalWidth) / 2);
+	  const offsetY = Math.max(0, (containerHeight - finalHeight) / 2);
+
+	  // Marquem el contenidor com a 'completed' (per CSS addicional)
+	  puzzleContainer.classList.add("completed");
+	  puzzleContainer.style.position = puzzleContainer.style.position || "relative";
+
+	  // Animació: mou una peça cada X ms
+	  let index = 0;
+	  function placeNext() {
+		if (index >= piecesList.length) return;
+
+		const piece = piecesList[index];
+
+		// Mou la peça fora del slot (append al container)
+		puzzleContainer.appendChild(piece);
+
+		// Posició absoluta centrada calculada amb offset
+		const col = parseInt(piece.dataset.col || "0", 10);
+		const row = parseInt(piece.dataset.row || "0", 10);
+		piece.style.position = "absolute";
+		piece.style.left = (offsetX + col * slotSize) + "px";
+		piece.style.top = (offsetY + row * slotSize) + "px";
+		piece.style.width = slotSize + "px";
+		piece.style.height = slotSize + "px";
+		piece.style.transition = "all 0.38s ease";
+		piece.style.transform = "scale(1.08)";
+
+		// petita anim i so quan s'assenta
+		setTimeout(() => {
+		  piece.style.transform = "scale(1)";
+		  if (typeof playMagneticClack === "function") playMagneticClack();
+		}, 280);
+
+		index++;
+		setTimeout(placeNext, 180); // temps entre peces (ajusta si vols més ràpid/lent)
+	  }
+
+	  placeNext();
+
+	  // eliminar slots passats uns ms després de l'última peça (perquè no solapin)
+	  const cleanupDelay = piecesList.length * 180 + 500;
+	  setTimeout(() => {
+		Array.from(puzzleContainer.querySelectorAll(".slot")).forEach(s => s.remove());
+	  }, cleanupDelay);
+	}
+	
+	function playMagneticClack() {
+	  const now = audioCtx.currentTime;
+
+	  // Soroll blanc curt
+	  const bufferSize = audioCtx.sampleRate * 0.1;
+	  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+	  const data = buffer.getChannelData(0);
+	  for (let i = 0; i < bufferSize; i++) {
+		data[i] = Math.random() * 2 - 1;
+	  }
+	  const noise = audioCtx.createBufferSource();
+	  noise.buffer = buffer;
+
+	  const noiseFilter = audioCtx.createBiquadFilter();
+	  noiseFilter.type = "highpass";
+	  noiseFilter.frequency.value = 2000; // agut metàl·lic
+
+	  const noiseGain = audioCtx.createGain();
+	  noiseGain.gain.setValueAtTime(0.3, now);
+	  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+
+	  noise.connect(noiseFilter).connect(noiseGain).connect(audioCtx.destination);
+
+	  // Oscil·lador greu (ressonància metàl·lica curta)
+	  const osc = audioCtx.createOscillator();
+	  osc.type = "square";
+	  osc.frequency.setValueAtTime(120, now);
+	  osc.frequency.exponentialRampToValueAtTime(60, now + 0.15);
+
+	  const oscGain = audioCtx.createGain();
+	  oscGain.gain.setValueAtTime(0.4, now);
+	  oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+	  osc.connect(oscGain).connect(audioCtx.destination);
+
+	  // iniciar i parar
+	  noise.start(now);
+	  noise.stop(now + 0.1);
+	  osc.start(now);
+	  osc.stop(now + 0.15);
+	}
+
 	
     initPuzzle(currentImageUrl);
 
