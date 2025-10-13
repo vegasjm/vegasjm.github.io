@@ -5,7 +5,7 @@ var PRITT_GAME = PRITT_GAME || {
 	world_1:false,
 	world_2:false,
 	world_3:false,
-    gameDuration: 90,
+    gameDuration: 60,
     gameRestarted: false,
 	imgPuzzleURL: './resources/img/world-1-puzzle.png',
     init: function() {
@@ -145,7 +145,7 @@ var PRITT_GAME = PRITT_GAME || {
 				window.scrollTo(0,0);
 				window.scrollY;
             }, 100);
-            var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
+            var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
             if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#E1D48D');
             if (PRITT_GAME.world == 2) $('.body-inner').css('background-color', '#B3E6DA');
             if (PRITT_GAME.world == 3) $('.body-inner').css('background-color', '#57319D');
