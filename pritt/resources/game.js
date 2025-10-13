@@ -50,6 +50,17 @@ var PRITT_GAME = PRITT_GAME || {
         $('#footer-item-settings').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
 			$('#page-menu-footer').css('display', 'none');
+			
+			  if(document.querySelector("body").requestFullscreen) {
+				document.querySelector("body").requestFullscreen();
+			  } else if(document.querySelector("body").mozRequestFullScreen) {
+				document.querySelector("body").mozRequestFullScreen();
+			  } else if(document.querySelector("body").webkitRequestFullscreen) {
+				document.querySelector("body").webkitRequestFullscreen();
+			  } else if(document.querySelector("body").msRequestFullscreen) {
+				document.querySelector("body").msRequestFullscreen();
+			  }
+			  
         });
 		$('#footer-item-home').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
