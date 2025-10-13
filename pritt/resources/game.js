@@ -136,9 +136,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
-			gameOver();
 			PRITT_GAME.gameRestarted = false;
-			gameOver();
 			$('.logo-pritt').css('width', '100px');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {

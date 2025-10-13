@@ -338,7 +338,7 @@
             spawnDiamond();
         }
 		
-		if (difficultyTimer >= 3000) { // cada 5 segundos aumenta un poco
+		if (difficultyTimer >= 2000) { // cada 5 segundos aumenta un poco
 			difficultyTimer = 0;
 			// Incrementa el nivel de dificultad
 			difficultyLevel++;
