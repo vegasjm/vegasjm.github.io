@@ -208,7 +208,7 @@ body {
 }
 .logo-pritt,
 .logo-wild {
-  width: 290px;
+  width: 175px;
 }
 .menu-footer {
   z-index: 1;
@@ -649,7 +649,7 @@ body {
 }
 @media (max-width: 576px) {
   .logo-pritt {
-    width: 36vw;
+    width: 24vw;
   }
   .arrow {
     margin-top: -59px;

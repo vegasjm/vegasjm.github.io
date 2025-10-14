@@ -104,6 +104,7 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.phase = 'game-1';
             PRITT_GAME.world = $(this).attr('data-world');
             $('#legal').css('display', 'none');
+			$('#page-menu-footer').css('display', 'none');
             setTimeout(function() {
 				var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
                 $('.menu-home').css('display', 'none');
@@ -172,6 +173,7 @@ var PRITT_GAME = PRITT_GAME || {
             $('#game-phase1').css('height', heightGame + 'px');
             updateClock(PRITT_GAME.gameDuration);
             resize();
+			$('#page-menu-footer').css('display', 'none');
         });
     },
 	loadGamePhase2: function() {
@@ -198,9 +200,11 @@ var PRITT_GAME = PRITT_GAME || {
             $('#game-phase2').css('height', heightGame + 'px');
 			PRITT_GAME.imgPuzzleURL='./resources/img/world-' + PRITT_GAME.world + '-puzzle.png';
 			initPuzzle(PRITT_GAME.imgPuzzleURL);
+			$('#page-menu-footer').css('display', 'none');
         });
 	},
 	clearScreenAndShow: function(pageIds, bgColor, bgUrl){
+		exitFullScreen();
 		var canvas = document.getElementById('game');
         $(canvas).empty();
 		$('#imprimt').css('display', 'none');
@@ -218,7 +222,7 @@ var PRITT_GAME = PRITT_GAME || {
 		$('.body-inner').css('background-color', bgColor);
 		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
 		
-		$('.logo-pritt').css('width', '290px');
+		$('.logo-pritt').css('width', '175px');
 		$('#page-header .justify-content-center').css('margin', 'auto');
 			
 		pageIds.forEach(function (pageId, index) {
@@ -226,7 +230,6 @@ var PRITT_GAME = PRITT_GAME || {
 		});
 		$('#page-menu-footer').css('display', 'block');
 		gameOver();
-		exitFullScreen();
 		setTimeout(() => {
 			$(window).scrollTop();
 			document.documentElement.scrollTop;
