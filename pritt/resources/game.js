@@ -49,21 +49,16 @@ var PRITT_GAME = PRITT_GAME || {
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
-			$('#page-menu-footer').css('display', 'none');
-			
-			  if(document.querySelector("body").requestFullscreen) {
-				document.querySelector("body").requestFullscreen();
-			  } else if(document.querySelector("body").mozRequestFullScreen) {
-				document.querySelector("body").mozRequestFullScreen();
-			  } else if(document.querySelector("body").webkitRequestFullscreen) {
-				document.querySelector("body").webkitRequestFullscreen();
-			  } else if(document.querySelector("body").msRequestFullscreen) {
-				document.querySelector("body").msRequestFullscreen();
-			  }
-			  
+			$('#page-menu-footer').css('display', 'none');		  
         });
 		$('#footer-item-home').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+        });
+		$('#footer-item-info').on('touch click', function(e) {
+			PRITT_GAME.loadHome();
+        });
+		$('#footer-item-multimedia').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null);
         });
     },
     loadHome: function() {
@@ -149,6 +144,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
+			openFullScreen();
 			PRITT_GAME.gameRestarted = false;
 			$('.logo-pritt').css('width', '100px');
 			$('#page-header .justify-content-center').css('margin', 'initial');
@@ -179,7 +175,8 @@ var PRITT_GAME = PRITT_GAME || {
         });
     },
 	loadGamePhase2: function() {
-		    $('#btn-start-game-phase2').on('touch click', function(e) {
+		$('#btn-start-game-phase2').on('touch click', function(e) {
+			openFullScreen();
 			$('.logo-pritt').css('width', '100px');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
@@ -217,6 +214,7 @@ var PRITT_GAME = PRITT_GAME || {
         $('#game-phase1').css('display', 'none');
 		$('#game-phase1-stats').css('display', 'none');
 		$('#game-phase2').css('display', 'none');
+		$('#multimedia').css('display', 'none');
 		$('.body-inner').css('background-color', bgColor);
 		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
 		
@@ -228,6 +226,7 @@ var PRITT_GAME = PRITT_GAME || {
 		});
 		$('#page-menu-footer').css('display', 'block');
 		gameOver();
+		exitFullScreen();
 		setTimeout(() => {
 			$(window).scrollTop();
 			document.documentElement.scrollTop;
@@ -263,4 +262,28 @@ window.updateClock = function(time) {
             setTimeout("updateClock(" + time + ")", 1000);
         }
     }
+}
+
+window.openFullScreen =  function(){
+	if(document.querySelector("body").requestFullscreen) {
+		document.querySelector("body").requestFullscreen();
+	  } else if(document.querySelector("body").mozRequestFullScreen) {
+		document.querySelector("body").mozRequestFullScreen();
+	  } else if(document.querySelector("body").webkitRequestFullscreen) {
+		document.querySelector("body").webkitRequestFullscreen();
+	  } else if(document.querySelector("body").msRequestFullscreen) {
+		document.querySelector("body").msRequestFullscreen();
+	  }
+}
+
+window.exitFullScreen =  function(){
+	if(document.querySelector("body").exitFullscreen) {
+		document.querySelector("body").exitFullscreen();
+	  } else if(document.querySelector("body").mozCancelFullScreen) {
+		document.querySelector("body").mozCancelFullScreen();
+	  } else if(document.querySelector("body").webkitExitFullscreen) {
+		document.querySelector("body").webkitExitFullscreen();
+	  } else if(document.querySelector("body").msExitFullscreen) {
+		document.querySelector("body").msExitFullscreen();
+	  }
 }

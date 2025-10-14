@@ -28,6 +28,7 @@
     let best = parseInt(localStorage.getItem('diamantes_best') || '0', 10);
     bestEl.textContent = best;
     let soundOn = true;
+	let damageFlash = 0;
 
     const diamonds = [];
 	const badObjects = [];
@@ -220,6 +221,36 @@
 			decay: 0.02
 		});
 	}
+	
+	function createEvilEffect(x, y) {
+		// Flash oscuro principal
+		flashes.push({
+			x, y,
+			radius: 0,
+			maxRadius: 60 + Math.random() * 20,
+			alpha: 0.5,
+			decay: 0.03,
+			type: 'evil'
+		});
+
+		// Chispas rojas oscuras que se expanden poco
+		for (let i = 0; i < 18; i++) {
+			const angle = Math.random() * Math.PI * 2;
+			const speed = Math.random() * 2 + 0.5;
+			const length = Math.random() * 20 + 8;
+			sparkles.push({
+				x, y,
+				vx: Math.cos(angle) * speed,
+				vy: Math.sin(angle) * speed,
+				length,
+				life: 1,
+				decay: 0.02 + Math.random() * 0.01,
+				color: Math.random() < 0.5 ? '180,0,200' : '255,30,30',
+				width: Math.random() * 2 + 0.8
+			});
+		}
+	}
+
 
 	function drawSparkles() {
 		ctx.save();
@@ -229,9 +260,15 @@
 		for (let i = flashes.length - 1; i >= 0; i--) {
 			const f = flashes[i];
 			const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius);
-			gradient.addColorStop(0, `rgba(255,255,230,${f.alpha})`);
-			gradient.addColorStop(0.4, `rgba(255,245,180,${f.alpha * 0.6})`);
-			gradient.addColorStop(1, `rgba(200,220,255,0)`);
+			if (f.type === 'evil') {
+				gradient.addColorStop(0, `rgba(120,0,200,${f.alpha})`);
+				gradient.addColorStop(0.5, `rgba(255,30,30,${f.alpha * 0.5})`);
+				gradient.addColorStop(1, `rgba(0,0,0,0)`);
+			} else {
+				gradient.addColorStop(0, `rgba(255,255,230,${f.alpha})`);
+				gradient.addColorStop(0.4, `rgba(255,245,180,${f.alpha * 0.6})`);
+				gradient.addColorStop(1, `rgba(200,220,255,0)`);
+			}
 
 			ctx.fillStyle = gradient;
 			ctx.beginPath();
@@ -396,7 +433,23 @@
         noise2.start(now);
         noise2.stop(now + 0.03);
     }
+	
+	function playThud() {
+		if (!audioCtx) return;
+		const now = audioCtx.currentTime;
 
+		// Baix curt i apagat
+		const osc = audioCtx.createOscillator();
+		const gain = audioCtx.createGain();
+		osc.type = 'sine';
+		osc.frequency.setValueAtTime(150, now);
+		osc.frequency.exponentialRampToValueAtTime(80, now + 0.15);
+		gain.gain.setValueAtTime(0.25, now);
+		gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+		osc.connect(gain).connect(audioCtx.destination);
+		osc.start(now);
+		osc.stop(now + 0.15);
+	}
 
     function loop(ts) {
         if (!running || paused) {
@@ -458,21 +511,14 @@
 				diamondY1 < hitboxY + hitboxH
 			) {
 				if (d.isBad) {
-					score -= 5; // castigo por coger un objeto malo
+					score -= 5;
 					if (lives <= 0) {
 						updateHUD();
 						gameOver();
 						return;
 					}
-					// Efecto de “maldición” visual rápido
-					flashes.push({
-						x: d.x,
-						y: d.y,
-						radius: 0,
-						maxRadius: 50,
-						alpha: 0.6,
-						decay: 0.03
-					});
+					createEvilEffect(d.x, d.y);
+					if (soundOn) playThud();
 				} else {
 					createSparkle(d.x, d.y);
 					score += 1;
@@ -540,7 +586,15 @@
         if (player.x < 0) player.x = 0;
         if (player.x + player.w > W) player.x = W - player.w;
         drawPlayer();
-
+		
+		if (damageFlash > 0) {
+			ctx.save();
+			ctx.globalAlpha = damageFlash;
+			ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+			ctx.fillRect(0, 0, W, H);
+			ctx.restore();
+			damageFlash -= 0.05;
+		}
 
         drawSparkles();
 

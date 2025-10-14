@@ -31,153 +31,146 @@
                         </div>
                     </header>
                     <main class="position-relative z-1">
-                        <div>
-                            <!-- SETTINGS: LANGUAGE SELECTOR-->
-                            <div id="settings" class="p-4 p-sm-8 text-center" style='display:none'>
-                                <div class="fs-2 text-uppercase my-3 text-primary fontDkSnippity">Select your region
-                                    <br>and language</div>
-                                <div>
-                                    <form method="post" action="https://prittwildnature.com/settings">
-                                        <input type="hidden" name="_token" value="BZOYAlYXvTWi1RlH59il15rWqrZZ1wcOvu0orjd7">
-                                        <div>
-                                            <select id="languageSelector" name="lang" class="form-select form-select-lg position-relative fontDkSnippity">
-                                                <option value="en">English (United Kingdom)</option>
-                                                <option value="en-za">English (South Africa)</option>
-                                                <option value="de">German (Germany)</option>
-                                                <option value="fr-bx">French (Benelux)</option>
-                                                <option value="nl-bx">Dutch (Benelux)</option>
-                                                <option value="es">Spanish (Spain)</option>
-                                                <option value="es-mx">Spanish (Mexico)</option>
-                                                <option value="it">Italian (Italy)</option>
-                                                <option value="pt-br">Portuguese (Brazil)</option>
-                                                <option value="tr">Turkish (Turkey)</option>
-                                                <option value="cs">Czech (Czechia)</option>
-                                                <option value="sk">Slovak (Slovakia)</option>
-                                                <option value="hu">Hungarian (Hungary)</option>
-                                            </select>
-                                        </div>
-                                        <div class="mt-5">
-                                            <button id="btn-languageSelector" type="button" class="d-flex rounded-4 p-2 px-8 text-decoration-none btn-home fontDkSnippity"><span class="text-white text-center text-uppercase d-flex flex-column"><span class="fs-2">Enter</span></span>
-                                            </button>
-                                        </div>
-										<div class="sqrBall fs-2 text-uppercase my-3 text-primary fontDkSnippity">
-											<a class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none"
-											href="https://www.prittworld.com/">PRITTWORLD.COM</a>
+						<!-- SETTINGS: LANGUAGE SELECTOR-->
+						<div id="settings" class="p-4 p-sm-8 text-center" style='display:none'>
+							<div class="fs-2 text-uppercase my-3 text-primary fontDkSnippity">Select your region
+								<br>and language</div>
+							<div>
+								<form method="post" action="https://prittwildnature.com/settings">
+									<input type="hidden" name="_token" value="BZOYAlYXvTWi1RlH59il15rWqrZZ1wcOvu0orjd7">
+									<div>
+										<select id="languageSelector" name="lang" class="form-select form-select-lg position-relative fontDkSnippity">
+											<option value="en">English (United Kingdom)</option>
+											<option value="en-za">English (South Africa)</option>
+											<option value="de">German (Germany)</option>
+											<option value="fr-bx">French (Benelux)</option>
+											<option value="nl-bx">Dutch (Benelux)</option>
+											<option value="es">Spanish (Spain)</option>
+											<option value="es-mx">Spanish (Mexico)</option>
+											<option value="it">Italian (Italy)</option>
+											<option value="pt-br">Portuguese (Brazil)</option>
+											<option value="tr">Turkish (Turkey)</option>
+											<option value="cs">Czech (Czechia)</option>
+											<option value="sk">Slovak (Slovakia)</option>
+											<option value="hu">Hungarian (Hungary)</option>
+										</select>
+									</div>
+									<div class="mt-5">
+										<button id="btn-languageSelector" type="button" class="d-flex rounded-4 p-2 px-8 text-decoration-none btn-home fontDkSnippity"><span class="text-white text-center text-uppercase d-flex flex-column"><span class="fs-2">Enter</span></span>
+										</button>
+									</div>
+									<div class="sqrBall text-uppercase my-3 text-primary fontDkSnippity">
+										<a class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none"
+										href="https://www.prittworld.com/">PRITTWORLD.COM</a>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- HOME -->
+						<div class="menu-home" style='display:none'>
+							<div class="d-flex flex-column p-5 p-sm-8">
+								<div class="btn-home-world" data-world="1">
+									<a id="btn-home-world-1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
+										<span>
+											<img src="./resources/img/forest-keeper-btn.png" alt="" class="forest-keeper-btn">
+										</span>
+										<span class="text-white text-center d-flex flex-column">
+											<span class="title btn-home-title">Forest<br>&nbsp;&nbsp;&nbsp;Keeper</span>
+										</span>
+									</a>
+								</div>
+								<div class="btn-home-world" data-world="2">
+									<a id="btn-home-world-2" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
+										<span>
+											<img src="./resources/img/unicorn-btn.png" alt="" class="forest-keeper-btn">
+										</span>
+										<span class="text-white text-center d-flex flex-column">
+											<span class="title btn-home-title">&nbsp;Unicorn</span>
+										</span>
+									</a>
+								</div>
+								<div class="btn-home-world" data-world="3">
+									<a id="btn-home-world-3" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
+										<span>
+											<img src="./resources/img/ogre-btn.png" alt="" class="forest-keeper-btn">
+										</span>
+										<span class="text-white text-center d-flex flex-column">
+											<span class="title btn-home-title">&nbsp;Ogre</span>
+										</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- GAME INTRO -->
+						<div id="game-intro" class="fixed-main-container">
+							<div id="game-wizard">
+								<img src="./resources/img/wizard.png" alt="" class="game-wizard-img">
+								<div id="game-wizard-text" class="game-wizard-text">This forest is losing
+									<br/>its magic...
+									<br/>Will you help me?</div>
+							</div>
+							<div id="game-character">
+								<img alt="" class="game-character-img">
+							</div>
+							<div id="game-bottom">
+								<a id="btn-start-game-phase1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
+									<span class="text-white text-center d-flex flex-column">
+										<span class="title btn-home-help">Help Me!</span>
+									</span>
+								</a>
+							</div>
+						</div>
+						<!-- GAME PHASE 1 -->
+						<div id="game-phase1" class="fixed-main-container">
+							<!-- GAME DIAMONDS -->
+							<div class="wrap">
+								<div class="card">
+									<header style="display:none">
+										<h1>Diamantes que caen</h1>
+										<div class="hud">
+											<div class="badge">Vidas: <span id="lives">5</span></div>
+											<div class="badge">Mejor: <span id="best">0</span></div>
 										</div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- HOME -->
-                            <div class="menu-home" style='display:none'>
-                                <div class="d-flex flex-column p-5 p-sm-8">
-                                    <div class="btn-home-world" data-world="1">
-                                        <a id="btn-home-world-1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
-                                            <span>
-												<img src="./resources/img/forest-keeper-btn.png" alt="" class="forest-keeper-btn">
-											</span>
-                                            <span class="text-white text-center d-flex flex-column">
-												<span class="title btn-home-title">Forest<br>&nbsp;&nbsp;&nbsp;Keeper</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="btn-home-world" data-world="2">
-                                        <a id="btn-home-world-2" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
-                                            <span>
-												<img src="./resources/img/unicorn-btn.png" alt="" class="forest-keeper-btn">
-											</span>
-                                            <span class="text-white text-center d-flex flex-column">
-												<span class="title btn-home-title">&nbsp;Unicorn</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="btn-home-world" data-world="3">
-                                        <a id="btn-home-world-3" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home">
-                                            <span>
-												<img src="./resources/img/ogre-btn.png" alt="" class="forest-keeper-btn">
-											</span>
-                                            <span class="text-white text-center d-flex flex-column">
- 												<span class="title btn-home-title">&nbsp;Ogre</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+									</header>
 
-                            <!-- GAME INTRO -->
-                            <div id="game-intro" class="fixed-main-container">
-                                <div id="game-wizard">
-                                    <img src="./resources/img/wizard.png" alt="" class="game-wizard-img">
-                                    <div id="game-wizard-text" class="game-wizard-text">This forest is losing
-                                        <br/>its magic...
-                                        <br/>Will you help me?</div>
-                                </div>
-                                <div id="game-character">
-                                    <img alt="" class="game-character-img">
-                                </div>
-                                <div id="game-bottom">
-                                    <a id="btn-start-game-phase1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
-                                        <span class="text-white text-center d-flex flex-column">
-											<span class="title btn-home-help">Help Me!</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
+									<div class="overlay">
+										<canvas id="game" width='576' height='640'></canvas>
+										<div id="message" class="message" style="display:none">
+											<div id="message-1" class="btn-home box-stats rounded-4 text-decoration-none gap-1">
+												<h2 id="msg-title" style="font-size: calc(2.3rem + .9vw);">Game over</h2>
+												<div id="msg-body">
+													<img id="game-world-item-pre" class="game-world-item" style="height: 55px;" src="" alt=""> &nbsp;
+													<span id="final-score">0</span>&nbsp;
+													<img id="game-world-item-post" class="game-world-item" style="height: 55px;" src="" alt="">
+												</div>
+											</div>
+											<div id="message-2" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
+												<h2 id="msg-title"><a id="restart"role="button">Play again</a></h2>
+											</div>
+											<div id="message-3" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
+												<h2 id="msg-title"><a id="btn-start-game-phase2" role="button">Next Adventure</a></h2>
+											</div>
+											<button id="toggle-sound" class="secondary" style="display:none">Sonido: ON</button>
+										</div>
+									</div>
+								</div>
 
-                            <!-- GAME PHASE 1 -->
-                            <div id="game-phase1" class="fixed-main-container">
-
-                                <!-- GAME DIAMONDS -->
-                                <div class="wrap">
-                                    <div class="card">
-                                        <header style="display:none">
-                                            <h1>Diamantes que caen</h1>
-                                            <div class="hud">
-                                                <div class="badge">Vidas: <span id="lives">5</span></div>
-                                                <div class="badge">Mejor: <span id="best">0</span></div>
-                                            </div>
-                                        </header>
-
-                                        <div class="overlay">
-                                            <canvas id="game" width='576' height='640'></canvas>
-                                            <div id="message" class="message" style="display:none">
-                                                <div id="message-1" class="btn-home box-stats rounded-4 text-decoration-none gap-1">
-                                                    <h2 id="msg-title" style="font-size: calc(2.3rem + .9vw);">Game over</h2>
-                                                    <div id="msg-body">
-                                                        <img id="game-world-item-pre" class="game-world-item" style="height: 55px;" src="" alt=""> &nbsp;
-                                                        <span id="final-score">0</span>&nbsp;
-                                                        <img id="game-world-item-post" class="game-world-item" style="height: 55px;" src="" alt="">
-                                                    </div>
-                                                </div>
-                                                <div id="message-2" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
-                                                    <h2 id="msg-title"><a id="restart"role="button">Play again</a></h2>
-                                                </div>
-                                                <div id="message-3" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
-                                                    <h2 id="msg-title"><a id="btn-start-game-phase2" role="button">Next Adventure</a></h2>
-                                                </div>
-                                                <button id="toggle-sound" class="secondary" style="display:none">Sonido: ON</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="controls" style="display:none">
-                                        <button id="pause" class="secondary">Pausar</button>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div id="game-phase1-stats">
-                                <div id="game-phase1-bottom">
-                                    <span id="game-phase1-box-stats" class="text-white d-flex flex-column gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home box-stats">
-											<span class="title game-phase1-bottom-stats">
-											<img id="world-item" style="height: 35px;" src="" alt=""> <span id="score">4</span> &nbsp;&nbsp;
-                                    <img style="height: 35px;" src="./resources/img/clock.png" alt=""> <span id="pendingSeconds">90</span>
-                                    <span style="font-size:20px">sec</span>
-                                    </span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+								<div class="controls" style="display:none">
+									<button id="pause" class="secondary">Pausar</button>
+								</div>
+							</div>
+						</div>
+						<div id="game-phase1-stats">
+						<div id="game-phase1-bottom">
+							<span id="game-phase1-box-stats" class="text-white d-flex flex-column gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home box-stats">
+									<span class="title game-phase1-bottom-stats">
+									<img id="world-item" style="height: 35px;" src="" alt=""> <span id="score">4</span> &nbsp;&nbsp;
+							<img style="height: 35px;" src="./resources/img/clock.png" alt=""> <span id="pendingSeconds">90</span>
+							<span style="font-size:20px">sec</span>
+							</span>
+							</span>
+						</div>
+					</div>
                         <!-- GAME PHASE 2 -->
                         <div id="game-phase2" class="fixed-main-container" style="display:none">
 							<div id="puzzle-container">
@@ -185,7 +178,6 @@
 							</div>
 							<div id="piece-bar"></div>
                         </div>
-						
 						<!-- IMPRIMT -->
 						<div id="imprimt" class="m-4 m-sm-6" style="display:none">
 						 <div class="p-4 p-sm-6 text-primary font-primary">
@@ -204,7 +196,6 @@
 							<h3>E-mail:</h3>
 							<p><a href="mailto:ukandireland.comms@henkel.com">ukandireland.comms@henkel.com</a></p>
 						</div></div></div>
-						
 						<!-- TERMS OF USE -->
 						<div id="termsOfUse" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Terms of Use</h1> <div class="my-5"><p>Due to ongoing technical innovations and changes in the law the following Terms of Use may need to be changed and/or amended by Henkel Limited (“Henkel UK”, “we” or “us”) from time to time. We therefore ask the user to review these terms of use before each visit to this website and to take into account any changes and/or amendments. Any changes will take effect upon posting to this Website.</p>
 						<h2>Introduction</h2>
@@ -251,7 +242,6 @@
 						<p>A person who is not a party to these General Terms may not enforce any of them under the Contracts&nbsp;(Rights of Third Parties) Act 1999.</p>
 						<h2>Contact Us</h2>
 						<p>For general enquiries relating to this Website, please contact us using the&nbsp;Contact Form&nbsp;on this Website.</p></div></div></div>
-						
 						<!-- DATA PRIVACY -->
 						<div id="dataPrivacyStatement" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Data Privacy Statement</h1> <div class="my-5"><h2>General</h2>
 						<p>Henkel Limited, hereinafter referred to as Henkel, respects the privacy of each person who visits our website. Now we would like to inform you of the type of data collected by Henkel and how they are used. You will also learn how you can exercise your data subjects’ rights.</p>
@@ -301,13 +291,545 @@
 						<h2>Right to object</h2>
 						<p>In case of processing activities involving your personal data that are carried out on basis of a legitimate interest of Henkel, you have the right to object against such processing of your personal data at any time for reasons resulting from your specific situation. Henkel will stop that processing unless Henkel can prove important reasons for the processing which deserve protection which outweigh your interests, rights and freedoms or if the processing serves to assert, exercise or defend against legal claims.</p>
 						<p>In these cases, or if you have any other questions or wishes in connection with regard to your personal data, please send an e-mail or a letter to our data protection officer, Eamon O’Gorman, Wood Lane End, Hemel Hempstead, Herts HP2 4RQ UK (e-mail:&nbsp;<a href="mailto:eamon.ogorman@henkel.com">eamon.ogorman@henkel.com</a>).</p></div></div></div>
-						
 						<!-- US RESIDENTS -->
 						<div id="usResidents" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Note for US residents</h1> <div class="my-5"><p>This website is not intended for residents of the United States.</p>
 						<p>For U.S.Residents, please visit&nbsp;<a href="https://henkel.us/">https://henkel.us</a>.</p></div></div></div>
-                
-                </main>
-                <footer id="page-menu-footer" style='display:none'>
+						<!-- MULTIMEDIA -->
+						<div id="multimedia" class="px-4 px-sm-8" style="display:none">
+						  <div class="ruddy fs-1 text-uppercase mb-5 mt-3 text-center text-primary">DOWNLOAD WILD TEMPLATES</div>
+						  <div class="row row-cols-1 text-center g-5 g-sm-6 video-grid mb-5">
+						    <div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/resources/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/resources/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.506667" aria-valuenow="0" id="plyr-seek-1293" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.187867513528207" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/resources/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/resources/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-1293" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/resources/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/resources/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/forest-keeper.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1018658013/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=47ea6a04d9359786c412087b64352591223274646fbf5b391e81bfb0fbf9c69c" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/forest-keeper.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">FOREST KEEPER</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-ForestKeeper.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+						    <div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-1333" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="3.8219553273530464" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-1333" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/unicorn.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022457810/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=3c58a9f4852495adccfdf21fb1cbe37a273734d2958d3eb40b877c44e2d3fc11" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/unicorn.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">UNICORN</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-Unicorn.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+						    <div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.08" aria-valuenow="0" id="plyr-seek-1662" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.220907914201184" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-1662" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/ogre.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495523/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=7f83298606f0434cac95ac97a73560a1ca2740aa2ea6c37de44b7c7e64d60720" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/ogre.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">OGRE</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-Ogre.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+						    <div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-2179" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.215970597894296" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-2179" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/dragon.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495802/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=14fc025063234c639cc56b19fa26e88d28f1854eb78bb35fb3af71b106719a86" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/dragon.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">DRAGON</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-Dragon.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+							<div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-2179" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.215970597894296" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-2179" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/fairy.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495802/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=14fc025063234c639cc56b19fa26e88d28f1854eb78bb35fb3af71b106719a86" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/fairy.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">FAIRY</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-Fairy.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+							<div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-2179" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.215970597894296" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-2179" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/house.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495802/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=14fc025063234c639cc56b19fa26e88d28f1854eb78bb35fb3af71b106719a86" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/house.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">HOUSE</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-House.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+							<div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-2179" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.215970597894296" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-2179" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/rainbow.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495802/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=14fc025063234c639cc56b19fa26e88d28f1854eb78bb35fb3af71b106719a86" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/rainbow.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">RAINBOW</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-Rainbow.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+							<div class="mb-5">
+						      <div class="video-frame overflow-hidden">
+						        <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported plyr__poster-enabled">
+						          <div class="plyr__controls">
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-pressed="false" aria-label="Play">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-pause"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Pause</span>
+						              <span class="label--not-pressed plyr__sr-only">Play</span>
+						            </button>
+						            <div class="plyr__controls__item plyr__progress__container">
+						              <div class="plyr__progress">
+						                <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="54.143333" aria-valuenow="0" id="plyr-seek-2179" aria-valuetext="00:00 of 00:00" style="--value: 0%;">
+						                <progress class="plyr__progress__buffer" min="0" max="100" value="4.215970597894296" role="progressbar" aria-hidden="true">% buffered</progress>
+						                <span class="plyr__tooltip">00:00</span>
+						              </div>
+						            </div>
+						            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time" role="timer">00:54</div>
+						            <div class="plyr__controls__item plyr__volume">
+						              <button type="button" class="plyr__control" data-plyr="mute" aria-pressed="false">
+						                <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-muted"></use>
+						                </svg>
+						                <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                  <use xlink:href="/img/video-player/icons.svg#plyr-volume"></use>
+						                </svg>
+						                <span class="label--pressed plyr__sr-only">Unmute</span>
+						                <span class="label--not-pressed plyr__sr-only">Mute</span>
+						              </button>
+						              <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="plyr-volume-2179" aria-valuetext="100.0%" style="--value: 100%;">
+						            </div>
+						            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-pressed="false">
+						              <svg class="icon--pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-exit-fullscreen"></use>
+						              </svg>
+						              <svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+						                <use xlink:href="/img/video-player/icons.svg#plyr-enter-fullscreen"></use>
+						              </svg>
+						              <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
+						              <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
+						            </button>
+						          </div>
+						          <div class="plyr__video-wrapper plyr__video-wrapper--fixed-ratio" style="aspect-ratio: 16 / 9;">
+						            <video playsinline="" data-poster="./resources/img/video-img/river.png" style="width: 100%;">
+						              <source src="https://player.vimeo.com/progressive_redirect/playback/1022495802/rendition/720p/file.mp4?loc=external&amp;log_user=0&amp;signature=14fc025063234c639cc56b19fa26e88d28f1854eb78bb35fb3af71b106719a86" type="video/mp4">
+						            </video>
+						            <div class="plyr__poster" style="background-image: url('./resources/img/video-img/river.png');"></div>
+						          </div>
+						          <div class="plyr__captions" dir="auto"></div>
+						          <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+						            <svg aria-hidden="true" focusable="false">
+						              <use xlink:href="/img/video-player/icons.svg#plyr-play"></use>
+						            </svg>
+						            <span class="plyr__sr-only">Play</span>
+						          </button>
+						        </div>
+						      </div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">RIVER</div>
+						      <div class="mt-3">
+						        <a href="./resources/pdf/Templates-River.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</main>
+					<footer id="page-menu-footer" style='display:none'>
                     <div id="menu-footer" class="position-fixed bottom-0 w-100 menu-footer bg-secondary">
                         <div>
                             <ul class="nav justify-content-evenly">
@@ -320,7 +842,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="p-3 nav-link" href="">
+                                    <a id="footer-item-multimedia" role="button" class="p-3 nav-link">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 439.18 432.49">
                                             <path d="M174.33,308.62A26.66,26.66,0,1,0,206.54,289,26.68,26.68,0,0,0,174.33,308.62Z" transform="translate(-0.13 0.22)"></path>
                                             <path d="M214.33,207.75a9.09,9.09,0,0,0,.8.73,11.76,11.76,0,0,0,15,0c.27-.23.55-.47.8-.73A11.48,11.48,0,0,0,233,205a11.74,11.74,0,0,0-17.65-14.71,10.54,10.54,0,0,0-1,.89,11.78,11.78,0,0,0-2.11,13.78A11.44,11.44,0,0,0,214.33,207.75ZM217.19,194a7.74,7.74,0,0,1,13,7.43,7.52,7.52,0,0,1-2,3.55,7.75,7.75,0,0,1-11,0,7.74,7.74,0,0,1,0-11Z"
@@ -332,7 +854,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="p-3 nav-link" href="">
+                                    <a id="footer-item-info" role="button" class="p-3 nav-link">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#000000">
                                             <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"
                                             />

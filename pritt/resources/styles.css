@@ -355,11 +355,10 @@ body {
 }
 .sqrBall{
   position: fixed;
-  bottom: 10px;
-  right: 20px; /* separat una mica del marge dret */
+  bottom: 0px;
+  right: 0px; /* separat una mica del marge dret */
   color: white;
   padding: 8px 12px;
-  font-size: 14px;
   z-index: 9999;
   user-select: none;
   box-sizing: border-box;
@@ -370,10 +369,18 @@ body {
 .w-min-content {
   width: min-content;
 }
+.ruddy{
+  font-family: Ruddy;
+  font-weight: bold;
+  font-style: normal;
+}
 .video-grid a,
 .video-slide a {
   text-transform: uppercase;
   text-decoration: none;
+  font-family: Ruddy;
+  font-weight: bold;
+  font-style: normal;
 }
 .icon-play {
   left: 50%;
