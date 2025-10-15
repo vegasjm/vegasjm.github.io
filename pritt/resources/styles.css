@@ -221,9 +221,11 @@ body {
 }
 .plyr__poster {
   background-size: cover;
+  aspect-ratio: 1 / 0.5625; 
 }
 video {
   object-fit: cover;
+  aspect-ratio: 1 / 0.5625; 
 }
 .plyr:fullscreen video {
   z-index: 9999;
