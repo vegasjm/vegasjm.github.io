@@ -5,7 +5,7 @@ var PRITT_GAME = PRITT_GAME || {
 	world_1:false,
 	world_2:false,
 	world_3:false,
-    gameDuration: 1,
+    gameDuration: 60,
 	gameDurationInterval:null,
 	imgPuzzleURL: './resources/img/world-1-puzzle.png',
     init: function() {
