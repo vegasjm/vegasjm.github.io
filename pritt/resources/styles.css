@@ -762,6 +762,12 @@ body {
   margin: 0;
   font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
+#message-0 img{
+	object-position: 0px 7rem;
+	width: 80%;
+	height: auto;
+	margin-top: -7rem;
+}
 .wrap {
   display: flex;
   align-items: center;

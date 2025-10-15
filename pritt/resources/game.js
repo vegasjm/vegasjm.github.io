@@ -5,7 +5,7 @@ var PRITT_GAME = PRITT_GAME || {
 	world_1:false,
 	world_2:false,
 	world_3:false,
-    gameDuration: 60,
+    gameDuration: 1,
 	gameDurationInterval:null,
 	imgPuzzleURL: './resources/img/world-1-puzzle.png',
     init: function() {
@@ -118,6 +118,7 @@ var PRITT_GAME = PRITT_GAME || {
                 $('#game-intro').css('display', 'flex');
 				$('#game-intro').css('height', heightGame + 'px');
                 $('.game-character-img').attr("src", './resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-character.png');
+				$("#game-world-player-congrats").attr("src", './resources/img/world-' + PRITT_GAME.world + '-player.png');
                 $('#world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
                 if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
                     $('.game-character-img').css('float', 'right');

@@ -60,7 +60,7 @@
     sprite2Img.src = './resources/img/world-2-player.png';
     const sprite3Img = new Image();
     sprite3Img.src = './resources/img/world-3-player.png';
-
+	
     // Cargar sprites de diamantes
     const diamond1Img = new Image();
     diamond1Img.src = './resources/img/diamond-1.png';
