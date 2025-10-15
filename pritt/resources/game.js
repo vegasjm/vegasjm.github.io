@@ -59,6 +59,14 @@ var PRITT_GAME = PRITT_GAME || {
         });
 		$('#footer-item-multimedia').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null);
+			  $('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
+			  $('#unicorn-video').height($('#unicorn-video').width()*(9/16));
+			  $('#ogre-video').height($('#ogre-video').width()*(9/16));
+			  $('#dragon-video').height($('#dragon-video').width()*(9/16));
+			  $('#fairy-video').height($('#fairy-video').width()*(9/16));
+			  $('#house-video').height($('#house-video').width()*(9/16));
+			  $('#rainbow-video').height($('#rainbow-video').width()*(9/16));
+			  $('#river-video').height($('#river-video').width()*(9/16));
         });
     },
     loadHome: function() {
