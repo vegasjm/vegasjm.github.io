@@ -238,6 +238,7 @@ var PRITT_GAME = PRITT_GAME || {
 		});
 		$('#page-menu-footer').css('display', 'block');
 		gameOver();
+		onPlay(-1);
 		setTimeout(() => {
 			$(window).scrollTop();
 			document.documentElement.scrollTop;
@@ -299,14 +300,38 @@ window.exitFullScreen =  function(){
 	  }
 }
 
+
+var player1,player2,player3,player4,player5,player6,player7,player8;
+  
+window.onPlay = function(currentPlayer){
+	  if(currentPlayer!=1) player1.pause();
+	  if(currentPlayer!=2) player2.pause();
+	  if(currentPlayer!=3) player3.pause();
+	  if(currentPlayer!=4) player4.pause();
+	  if(currentPlayer!=5) player5.pause();
+	  if(currentPlayer!=6) player6.pause();
+	  if(currentPlayer!=7) player7.pause();
+	  if(currentPlayer!=8) player8.pause();
+  }
+
 document.addEventListener('DOMContentLoaded', () => { 
   // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
-  const player1 = new Plyr('#forest-keeper-video');
-  const player2 = new Plyr('#unicorn-video');
-  const player3 = new Plyr('#ogre-video');
-  const player4 = new Plyr('#dragon-video');
-  const player5 = new Plyr('#fairy-video');
-  const player6 = new Plyr('#house-video');
-  const player7 = new Plyr('#rainbow-video');
-  const player8 = new Plyr('#river-video');
+  player1 = new Plyr('#forest-keeper-video');
+  player2 = new Plyr('#unicorn-video');
+  player3 = new Plyr('#ogre-video');
+  player4 = new Plyr('#dragon-video');
+  player5 = new Plyr('#fairy-video');
+  player6 = new Plyr('#house-video');
+  player7 = new Plyr('#rainbow-video');
+  player8 = new Plyr('#river-video');
+  
+  player1.on('play', (data) => onPlay(1));
+  player2.on('play', (data) => onPlay(2));
+  player3.on('play', (data) => onPlay(3));
+  player4.on('play', (data) => onPlay(4));
+  player5.on('play', (data) => onPlay(5));
+  player6.on('play', (data) => onPlay(6));
+  player7.on('play', (data) => onPlay(7));
+  player8.on('play', (data) => onPlay(8));
+
 });
