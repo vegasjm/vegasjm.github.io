@@ -221,11 +221,37 @@ body {
 }
 .plyr__poster {
   background-size: cover;
-  aspect-ratio: 1 / 0.5625; 
+  aspect-ratio: 16/9; 
+    @supports not (aspect-ratio: 16 / 9) {
+    &::before {
+      float: left;
+      padding-top: 56.25%;
+      content: "";
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
 }
 video {
   object-fit: cover;
-  aspect-ratio: 1 / 0.5625; 
+  aspect-ratio: 16/9; 
+    @supports not (aspect-ratio: 16 / 9) {
+    &::before {
+      float: left;
+      padding-top: 56.25%;
+      content: "";
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
 }
 .plyr:fullscreen video {
   z-index: 9999;
