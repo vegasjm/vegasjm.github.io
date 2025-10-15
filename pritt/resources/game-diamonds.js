@@ -620,8 +620,8 @@
     });
     restartBtn.addEventListener('click', () => {
         $('#game-phase1-stats').css('visibility', 'visible');
-        updateClock(PRITT_GAME.gameDuration);
-        PRITT_GAME.gameRestarted = true;
+		clearInterval(PRITT_GAME.gameDurationInterval);
+		updateClock(PRITT_GAME.gameDuration);
         resetGame();
         running = true;
         paused = false;
