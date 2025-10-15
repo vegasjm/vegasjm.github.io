@@ -221,8 +221,8 @@ body {
 }
 .plyr__poster {
   background-size: cover;
-  aspect-ratio: 16/9; 
-    @supports not (aspect-ratio: 16 / 9) {
+  aspect-ratio: 9/16; 
+    @supports not (aspect-ratio: 9 / 16) {
     &::before {
       float: left;
       padding-top: 56.25%;
@@ -238,8 +238,8 @@ body {
 }
 video {
   object-fit: cover;
-  aspect-ratio: 16/9; 
-    @supports not (aspect-ratio: 16 / 9) {
+  aspect-ratio: 9/16; 
+    @supports not (aspect-ratio: 9 / 16) {
     &::before {
       float: left;
       padding-top: 56.25%;
