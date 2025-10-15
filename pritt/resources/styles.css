@@ -567,7 +567,11 @@ video {
   transform: rotate(2deg);
 }
 .text-video {
-  background: #572364;
+  background: #7d33a9;
+  padding: 1rem !important;
+  padding-left: 6rem !important;
+  padding-right: 6rem !important;
+  border-radius: 25px;
 }
 .plyr__control--overlaid[data-plyr="play"] {
   border: 3px solid #e8c894;

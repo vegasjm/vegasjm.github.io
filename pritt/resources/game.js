@@ -20,16 +20,16 @@ var PRITT_GAME = PRITT_GAME || {
     },
 	loadLegal: function(){
 		$('#btn-imprimt').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#DEBE82', 'none');
+			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#1578a7', './resources/img/bg.png');
         });
 		$('#btn-termsOfUse').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#DEBE82', 'none');
+			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#1578a7', './resources/img/bg.png');
         });
 		$('#btn-dataPrivacyStatement').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#DEBE82', 'none');
+			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#1578a7', './resources/img/bg.png');
         });
 		$('#btn-usResidents').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#DEBE82', 'none');
+			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#1578a7', './resources/img/bg.png');
         });
 	},
     loadLanguageSelector: function() {
