@@ -290,3 +290,15 @@ window.exitFullScreen =  function(){
 		document.querySelector("body").msExitFullscreen();
 	  }
 }
+
+document.addEventListener('DOMContentLoaded', () => { 
+  // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
+  const player1 = new Plyr('#forest-keeper-video');
+  const player2 = new Plyr('#unicorn-video');
+  const player3 = new Plyr('#ogre-video');
+  const player4 = new Plyr('#dragon-video');
+  const player5 = new Plyr('#fairy-video');
+  const player6 = new Plyr('#house-video');
+  const player7 = new Plyr('#rainbow-video');
+  const player8 = new Plyr('#river-video');
+});
