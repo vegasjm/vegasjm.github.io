@@ -219,6 +219,12 @@ body {
 .fullscreen-active .menu-footer {
   display: none;
 }
+.plyr__poster {
+  background-size: cover;
+}
+video {
+  object-fit: cover;
+}
 .plyr:fullscreen video {
   z-index: 9999;
 }
