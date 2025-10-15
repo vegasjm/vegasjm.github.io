@@ -199,6 +199,7 @@ body {
   position: absolute;
   width: 100%;
   max-width: 576px;
+  filter: invert(12%) sepia(83%) saturate(4895%) hue-rotate(356deg) brightness(93%) contrast(81%);
 }
 .header-shape .shape {
   width: 0;
