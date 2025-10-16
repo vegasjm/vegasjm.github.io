@@ -281,6 +281,8 @@ var PRITT_GAME = PRITT_GAME || {
 		$('#game-phase1-stats').css('display', 'none');
 		$('#game-phase2').css('display', 'none');
 		$('#multimedia').css('display', 'none');
+		$('#game-completed').css('display', 'none');
+		
 		$('.body-inner').css('background-color', bgColor);
 		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
 		
