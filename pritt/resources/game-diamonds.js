@@ -1,6 +1,8 @@
 (() => {
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
+	const ANIMATION_FRAME_INTERVAL = 10; // canvia aquest valor per fer-ho més ràpid o lent
+
     let W = Math.min(576, document.body.clientWidth);
     let H = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
 
@@ -29,6 +31,7 @@
     bestEl.textContent = best;
     let soundOn = true;
 	let damageFlash = 0;
+	let frameCounter = 0; // per comptar frames globals
 
     const diamonds = [];
 	const badObjects = [];
@@ -144,19 +147,19 @@
 
     const rand = (a, b) => Math.random() * (b - a) + a;
 
-	function drawDiamond(x, y, size, rotation, isBad = false) {
+	function drawDiamond(x, y, size, rotation, isBad = false, frame) {
 		ctx.save();
 		ctx.translate(x, y);
 		ctx.rotate(rotation);
 
 		if (isBad) {
-			if (PRITT_GAME.world == 1) ctx.drawImage(badItem1Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 2) ctx.drawImage(badItem2Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 3) ctx.drawImage(badItem3Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 1) ctx.drawImage(badItem1Imgs[frame], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 2) ctx.drawImage(badItem2Imgs[frame], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 3) ctx.drawImage(badItem3Imgs[frame], -size / 2, -size / 2, size, size);
 		} else {
-			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Imgs[frame], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Imgs[frame], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Imgs[frame], -size / 2, -size / 2, size, size);
 		}
 
 		ctx.restore();
@@ -194,7 +197,10 @@
 			speed,
 			rot,
 			rotSpeed: rand(-1, 1) * 0.004,
-			isBad
+			isBad,
+		    imgIndex: 0,
+		    frame: 0,
+		    dir: 1
 		});
 	}
 
@@ -213,7 +219,10 @@
 			size,
 			speed,
 			rot,
-			rotSpeed: rand(-1, 1) * 0.006
+			rotSpeed: rand(-1, 1) * 0.006,
+		    imgIndex: 0,
+		    frame: 0,
+		    dir: 1
 		});
 	}
 	
@@ -629,9 +638,23 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
 
+		frameCounter++;
+		if (frameCounter % ANIMATION_FRAME_INTERVAL === 0) { // cada X frames canvia sprite
+		  for (const d of diamonds) {
+			d.frame += d.dir;
+			if (d.frame >= 3) { d.frame = 3; d.dir = -1; }
+			else if (d.frame <= 0) { d.frame = 0; d.dir = 1; }
+		  }
+		  for (const b of badObjects) {
+			b.frame += b.dir;
+			if (b.frame >= 3) { b.frame = 3; b.dir = -1; }
+			else if (b.frame <= 0) { b.frame = 0; b.dir = 1; }
+		  }
+		}
+		
         for (const d of diamonds) {
             if (d.y - d.size > H || d.y + d.size < 0) continue;
-				drawDiamond(d.x, d.y, d.size, d.rot, d.isBad);
+				drawDiamond(d.x, d.y, d.size, d.rot, d.isBad, d.frame);
         }
 
         if (player.x < 0) player.x = 0;
