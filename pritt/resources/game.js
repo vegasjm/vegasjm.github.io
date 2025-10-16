@@ -17,6 +17,7 @@ var PRITT_GAME = PRITT_GAME || {
         this.loadGamePhase2();
         this.loadLegal();
 		this.loadFooter();
+		this.finishWorld();
     },
 	loadLegal: function(){
 		$('#btn-imprimt').on('touch click', function(e) {
@@ -122,29 +123,31 @@ var PRITT_GAME = PRITT_GAME || {
                 $('#world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
                 if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
                     $('.game-character-img').css('float', 'right');
-                    $('#game-wizard').css('transform', 'rotate(-28deg)');
+                    $('#game-wizard-img').css('transform', 'rotate(-28deg)');
+                    $('#game-wizard-text').css('transform', 'rotate(-14deg)');
                     $('#game-wizard').css('margin-left', '-5rem');
                     if (PRITT_GAME.world == 2) {
                         $('.body-inner').css('background-color', '#F4E0B3');
                         $('.game-character-img').css('max-width', '26vh');
-                        $('#game-wizard-text').html('');
-                        showText('#game-wizard-text', 'Oh no! @The rainbow on my @beach is gone!', 0, 25);
+                        $('#game-wizard-text-p').html('');
+                        showText('#game-wizard-text-p', 'Oh no! @The rainbow on my @beach is gone!', 0, 25);
                     }
                     if (PRITT_GAME.world == 3) {
                         $('.body-inner').css('background-color', '#8652A9');
                         $('.game-character-img').css('max-width', '28vh');
-                        $('#game-wizard-text').html('');
-                        showText('#game-wizard-text', 'I need your help to @make my cave @shine again!', 0, 25);
+                        $('#game-wizard-text-p').html('');
+                        showText('#game-wizard-text-p', 'I need your help to @make my cave @shine again!', 0, 25);
                     }
                 } else {
                     if (PRITT_GAME.world == 1) {
                         $('.body-inner').css('background-color', '#fbeda4');
-                        $('#game-wizard').css('transform', 'rotate(0deg)');
+                        $('#game-wizard-img').css('transform', 'rotate(0deg)');
+						$('#game-wizard-text').css('transform', 'rotate(+14deg)');
                         $('#game-wizard').css('margin-left', '-1rem');
                         $('.game-character-img').css('float', 'left');
                         $('.game-character-img').css('max-width', '28vh');
-                        $('#game-wizard-text').html('');
-                        showText('#game-wizard-text', 'This forest is losing @its magic... @Will you help me?', 0, 25);
+                        $('#game-wizard-text-p').html('');
+                        showText('#game-wizard-text-p', 'This forest is losing @its magic... @Will you help me?', 0, 25);
                     }
                 }
                 $('.body-inner').css('background-image', 'url(./resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-bg1.png)');
@@ -211,6 +214,58 @@ var PRITT_GAME = PRITT_GAME || {
 			$('#page-menu-footer').css('display', 'none');
         });
 	},
+	loadGameCompleted: function() {
+		PRITT_GAME.clearScreenAndShow(['#game-completed'], '#23851A', './resources/img/world-' + PRITT_GAME.world + '-final.png');
+		    if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#23851A');
+            if (PRITT_GAME.world == 2) $('.body-inner').css('background-color', '#50A8E2');
+            if (PRITT_GAME.world == 3) $('.body-inner').css('background-color', '#C075A3');
+		setTimeout(() => {
+			$(window).scrollTop();
+			document.documentElement.scrollTop;
+			window.scrollTo(0,0);
+			window.scrollY;
+		}, 100);
+		$('#legal').css('display', 'none');
+		$('#page-menu-footer').css('display', 'none');
+		setTimeout(function() {
+			var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
+			$('.menu-home').css('display', 'none');
+			$('#game-completed').css('display', 'flex');
+			$('#game-completed').css('height', heightGame + 'px');
+			$('.game-character-img').attr("src", './resources/img/world-' + PRITT_GAME.world + '-player.png');
+			if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
+				$('.game-character-img').css('float', 'right');
+				$('#game-wizard-img-completed').css('transform', 'rotate(-28deg)');
+				$('#game-wizard-text-completed').css('transform', 'rotate(-14deg)');
+				$('#game-wizard-completed').css('margin-left', '-5rem');
+				if (PRITT_GAME.world == 2) {
+					$('.game-character-img').css('max-width', '26vh');
+					$('#game-wizard-text-completed-p').html('');
+					showText('#game-wizard-text-completed-p', 'Great job! @You saved the @rainbow!', 0, 25);
+				}
+				if (PRITT_GAME.world == 3) {
+					$('.game-character-img').css('max-width', '28vh');
+					$('#game-wizard-text-completed-p').html('');
+					showText('#game-wizard-text-completed-p', 'Great job! @You brought the light @back!', 0, 25);
+				}
+			} else {
+				if (PRITT_GAME.world == 1) {
+					$('#game-wizard-img-completed').css('transform', 'rotate(0deg)');
+					$('#game-wizard-text-completed').css('transform', 'rotate(14deg)');
+					$('#game-wizard-completed').css('margin-left', '-1rem');
+					$('.game-character-img').css('float', 'left');
+					$('.game-character-img').css('max-width', '28vh');
+					$('#game-wizard-text-completed-p').html('');
+					showText('#game-wizard-text-completed-p', 'You did it! @The great tree shines @with magic again!', 0, 25);
+				}
+			}
+		}, 500);
+    },
+	finishWorld: function(){
+		$('#btn-game-completed').on('touch click', function(e) {
+			PRITT_GAME.loadHome();
+		});
+	},
 	clearScreenAndShow: function(pageIds, bgColor, bgUrl){
 		var canvas = document.getElementById('game');
         $(canvas).empty();
@@ -259,6 +314,7 @@ var showText = function(target, message, index, interval) {
             showText(target, message, index, interval);
         }, interval);
     }
+	calculateDimensions();
 }
 
 window.updateClock = function(time) {
@@ -330,3 +386,76 @@ document.addEventListener('DOMContentLoaded', () => {
   player8.on('play', (data) => onPlay(8));
 
 });
+
+window.addEventListener('load', calculateDimensions);
+window.addEventListener('resize', calculateDimensions);
+
+function calculateDimensions() {
+
+  // =========================================================
+  // Bloque 1: Elementos iniciales
+  // =========================================================
+  const divs = document.querySelectorAll('#game-wizard-img, #game-wizard-text');
+  let maxHeight = 0;
+  let maxWidth = 0; // Inicializamos la anchura máxima
+
+  // 1. Reiniciar las dimensiones para el recálculo
+  divs.forEach(div => {
+    div.style.height = '';
+    div.style.width = ''; // Reiniciamos la anchura
+  });
+
+  // 2. Encontrar la Altura Y Anchura máxima
+  divs.forEach(div => {
+    if (div.offsetHeight > maxHeight) {
+      maxHeight = div.offsetHeight;
+    }
+    // Lógica para encontrar la anchura máxima
+    if (div.offsetWidth > maxWidth) {
+      maxWidth = div.offsetWidth;
+    }
+  });
+
+  // 3. Aplicar las dimensiones máximas a todos los divs (solo si son mayores que 0)
+  if (maxHeight > 0 && maxWidth > 0) {
+    divs.forEach(div => {
+      div.style.height = maxHeight + 'px';
+      div.style.width = maxWidth + 'px'; // Aplicamos la anchura máxima
+    });
+  }
+
+  // ---
+
+  // =========================================================
+  // Bloque 2: Elementos 'Completed'
+  // =========================================================
+  const divsCompleted = document.querySelectorAll('#game-wizard-img-completed, #game-wizard-text-completed');
+  let maxHeightCompleted = 0;
+  let maxWidthCompleted = 0; // Inicializamos la anchura máxima para este grupo
+
+  // 1. Reiniciar las dimensiones para el recálculo
+  divsCompleted.forEach(div => {
+    div.style.height = '';
+    div.style.width = ''; // Reiniciamos la anchura
+  });
+
+  // 2. Encontrar la Altura Y Anchura máxima
+  divsCompleted.forEach(div => {
+    // Nota: Aquí corregimos un posible error. Debes comparar con maxHeightCompleted, no con maxHeight del bloque anterior.
+    if (div.offsetHeight > maxHeightCompleted) {
+      maxHeightCompleted = div.offsetHeight;
+    }
+    // Lógica para encontrar la anchura máxima
+    if (div.offsetWidth > maxWidthCompleted) {
+      maxWidthCompleted = div.offsetWidth;
+    }
+  });
+
+  // 3. Aplicar las dimensiones máximas a todos los divs (solo si son mayores que 0)
+  if (maxHeightCompleted > 0 && maxWidthCompleted > 0) {
+    divsCompleted.forEach(div => {
+      div.style.height = maxHeightCompleted + 'px';
+      div.style.width = maxWidthCompleted + 'px'; // Aplicamos la anchura máxima
+    });
+  }
+}

@@ -319,8 +319,8 @@ video {
     font-family: Ruddy;
     font-weight: bold;
     font-style: normal;
-    padding: 20px;
     min-width: 40%;
+	border-radius: 10px;
 }
 .btn-home {
   background: #eb0b0b;
@@ -641,22 +641,33 @@ video {
     font-weight: bold;
     font-style: normal;
 }
-#game-intro {
+#game-intro, #game-completed {
 	display: none;
 	flex-direction: column;
 }
-#game-bottom {
+#game-bottom, #game-bottom-completed {
 	z-index: 99;
 }
-#game-character {
+#game-character, #game-character-completed {
 	margin-top: 10vh;
 }
-#game-wizard {
+#game-wizard, #game-wizard-completed {
 	position: relative;
     width: 100%;
 	margin-left: -1rem;
 	animation: bouge 3s infinite alternate-reverse;
 }	
+.game-wizard-text div{
+	padding-top: 11%;
+    padding-bottom: 20%;
+    padding-left: 8%;
+    padding-right: 8%;
+    font-size: clamp(14px, 3vw, 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 .game-character-img{
 	max-width: 28vh;
     bottom: 5vh;
@@ -664,6 +675,13 @@ video {
 	filter: drop-shadow(5px -5px 5px rgba(0, 0, 0, 0.5));
 	animation: bouge 3s infinite alternate-reverse;
 }
+.game-wizard-text{
+	max-width: 30vh;
+    margin-left: 7rem;
+    margin-top: auto;
+    margin-bottom: -5vh;
+	position: absolute;
+}	
 .game-wizard-img{
     max-width: 30vh;
     margin-left: 7rem;
@@ -705,36 +723,6 @@ video {
   }
   #game-bottom {
 	z-index: 99;
-  }
-  .game-wizard-text {
-	margin-left: 8.5rem;
-	max-width: 26vh;
-	margin-top: 2.5rem;
-	font-size: 18px;
-  }
-}
-@media (min-height: 600px) and (min-width: 576px) {
-  .game-wizard-text {
-	margin-left: 8.5rem;
-	max-width: 26vh;
-	margin-top: 2.5rem;
-	font-size: 22px;
-  }
-}
-@media (min-height: 700px) and (min-width: 576px) {
-  .game-wizard-text {
-	margin-left: 8.5rem;
-	max-width: 26vh;
-	margin-top: 3rem;
-	font-size: 24px;
-  }
-}
-@media (min-height: 800px) and (min-width: 576px) {
-  .game-wizard-text {
-	margin-left: 8.5rem;
-	max-width: 26vh;
-	margin-top: 3rem;
-	font-size: 25px;
   }
 }
 @keyframes bouge {

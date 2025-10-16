@@ -433,7 +433,7 @@
 			if (PRITT_GAME.world == 1) PRITT_GAME.world_1 = true;
 			if (PRITT_GAME.world == 2) PRITT_GAME.world_2 = true;
 			if (PRITT_GAME.world == 3) PRITT_GAME.world_3 = true;
-			PRITT_GAME.loadHome();
+			PRITT_GAME.loadGameCompleted();
 		  }, 800); // coincideix amb la durada del fade
 
 		}, cleanupDelay);

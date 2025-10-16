@@ -104,10 +104,14 @@
 						<!-- GAME INTRO -->
 						<div id="game-intro" class="fixed-main-container">
 							<div id="game-wizard">
-								<img src="./resources/img/wizard.png" alt="" class="game-wizard-img">
-								<div id="game-wizard-text" class="game-wizard-text">This forest is losing
-									<br/>its magic...
-									<br/>Will you help me?</div>
+								<img id="game-wizard-img" src="./resources/img/wizard.png" alt="" class="game-wizard-img">
+								<div id="game-wizard-text" class="game-wizard-text">
+									<div id="game-wizard-text-p">
+										This forest is losing
+										<br/>its magic...
+										<br/>Will you help me?
+									</div>
+								</div>
 							</div>
 							<div id="game-character">
 								<img alt="" class="game-character-img">
@@ -181,6 +185,29 @@
 							</div>
 							<div id="piece-bar"></div>
                         </div>
+						<!-- GAME COMPLETED -->
+						<div id="game-completed" class="fixed-main-container" style="display:none">
+							<div id="game-wizard-completed">
+								<img id="game-wizard-img-completed" src="./resources/img/wizard.png" alt="" class="game-wizard-img">
+								<div id="game-wizard-text-completed" class="game-wizard-text">
+									<div id="game-wizard-text-completed-p">
+										This forest is losing
+										<br/>its magic...
+										<br/>Will you help me?
+									</div>
+								</div>
+							</div>
+							<div id="game-character-completed">
+								<img alt="" class="game-character-img">
+							</div>
+							<div id="game-bottom-completed">
+								<a id="btn-game-completed" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
+									<span class="text-white text-center d-flex flex-column">
+										<span class="title btn-home-help">HOME</span>
+									</span>
+								</a>
+							</div>
+						</div>
 						<!-- IMPRIMT -->
 						<div id="imprimt" class="m-4 m-sm-6" style="display:none">
 						 <div class="p-4 p-sm-6 text-primary font-primary">
