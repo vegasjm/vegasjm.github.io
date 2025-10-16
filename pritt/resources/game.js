@@ -21,16 +21,16 @@ var PRITT_GAME = PRITT_GAME || {
     },
 	loadLegal: function(){
 		$('#btn-imprimt').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#1578a7', './resources/img/bg.png');
+			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#3FB1CE', './resources/img/bg.png', true);
         });
 		$('#btn-termsOfUse').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#1578a7', './resources/img/bg.png');
+			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#3FB1CE', './resources/img/bg.png', true);
         });
 		$('#btn-dataPrivacyStatement').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#1578a7', './resources/img/bg.png');
+			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#3FB1CE', './resources/img/bg.png', true);
         });
 		$('#btn-usResidents').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#1578a7', './resources/img/bg.png');
+			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#3FB1CE', './resources/img/bg.png', true);
         });
 	},
     loadLanguageSelector: function() {
@@ -48,7 +48,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png', false);
 			$('#page-menu-footer').css('display', 'none');		  
         });
 		$('#footer-item-home').on('touch click', function(e) {
@@ -58,7 +58,7 @@ var PRITT_GAME = PRITT_GAME || {
 			PRITT_GAME.loadHome();
         });
 		$('#footer-item-multimedia').on('touch click', function(e) {
-			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null);
+			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
 			  $('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
 			  $('#unicorn-video').height($('#unicorn-video').width()*(9/16));
 			  $('#ogre-video').height($('#ogre-video').width()*(9/16));
@@ -68,13 +68,20 @@ var PRITT_GAME = PRITT_GAME || {
 			  $('#rainbow-video').height($('#rainbow-video').width()*(9/16));
 			  $('#river-video').height($('#river-video').width()*(9/16));
         });
+		    $('.video-grid').find('a').each(function(idx, el) {
+				let degrees = (Math.floor(Math.random() * 21) - 10);
+				$(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+							'-moz-transform' : 'rotate('+ degrees +'deg)',
+							'-ms-transform' : 'rotate('+ degrees +'deg)',
+							'transform' : 'rotate('+ degrees +'deg)'});
+			});
     },
     loadHome: function() {
         if (PRITT_GAME.language == null) {
-			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png');
+			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png', false);
 			$('#page-menu-footer').css('display', 'none');
         } else {
-			PRITT_GAME.clearScreenAndShow(['.menu-home','#legal'], '#1578A7', null);
+			PRITT_GAME.clearScreenAndShow(['.menu-home','#legal'], '#3FB1CE', './resources/img/bg.png', true);
 			if(!PRITT_GAME.world_1){
 				$(".btn-home-world[data-world='1']").css('background-image', 'url(./resources/img/bg-world/bg-1-dark.png');
 			}else{
@@ -215,7 +222,7 @@ var PRITT_GAME = PRITT_GAME || {
         });
 	},
 	loadGameCompleted: function() {
-		PRITT_GAME.clearScreenAndShow(['#game-completed'], '#23851A', './resources/img/world-' + PRITT_GAME.world + '-final.png');
+		PRITT_GAME.clearScreenAndShow(['#game-completed'], '#23851A', './resources/img/world-' + PRITT_GAME.world + '-final.png', false);
 		    if (PRITT_GAME.world == 1) $('.body-inner').css('background-color', '#23851A');
             if (PRITT_GAME.world == 2) $('.body-inner').css('background-color', '#50A8E2');
             if (PRITT_GAME.world == 3) $('.body-inner').css('background-color', '#C075A3');
@@ -266,7 +273,7 @@ var PRITT_GAME = PRITT_GAME || {
 			PRITT_GAME.loadHome();
 		});
 	},
-	clearScreenAndShow: function(pageIds, bgColor, bgUrl){
+	clearScreenAndShow: function(pageIds, bgColor, bgUrl, repeat){
 		var canvas = document.getElementById('game');
         $(canvas).empty();
 		$('#imprimt').css('display', 'none');
