@@ -120,7 +120,7 @@ var PRITT_GAME = PRITT_GAME || {
 				$('#game-intro').css('height', heightGame + 'px');
                 $('.game-character-img').attr("src", './resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-character.png');
 				$("#game-world-player-congrats").attr("src", './resources/img/world-' + PRITT_GAME.world + '-player.png');
-                $('#world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
+                $('#world-item').attr("src", './resources/img/world-'+PRITT_GAME.world+'/diamond-' + PRITT_GAME.world + '_1.png');
                 if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
                     $('.game-character-img').css('float', 'right');
                     $('#game-wizard-img').css('transform', 'rotate(-28deg)');

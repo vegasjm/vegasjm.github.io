@@ -62,16 +62,66 @@
     sprite3Img.src = './resources/img/world-3-player.png';
 	
     // Cargar sprites de diamantes
-    const diamond1Img = new Image();
-    diamond1Img.src = './resources/img/diamond-1.png';
-    const diamond2Img = new Image();
-    diamond2Img.src = './resources/img/diamond-2.png';
-    const diamond3Img = new Image();
-    diamond3Img.src = './resources/img/diamond-3.png';
+    const diamond1Img_1 = new Image();
+    diamond1Img_1.src = './resources/img/world-1/diamond-1_1.png';
+	const diamond1Img_2 = new Image();
+    diamond1Img_2.src = './resources/img/world-1/diamond-1_2.png';
+	const diamond1Img_3 = new Image();
+    diamond1Img_3.src = './resources/img/world-1/diamond-1_3.png';
+	const diamond1Img_4 = new Image();
+    diamond1Img_4.src = './resources/img/world-1/diamond-1_4.png';
+	const diamond1Imgs = new Array(diamond1Img_1,diamond1Img_2,diamond1Img_3,diamond1Img_4);
+	
+    const diamond2Img_1 = new Image();
+    diamond2Img_1.src = './resources/img/world-2/diamond-2_1.png';
+	const diamond2Img_2 = new Image();
+    diamond2Img_2.src = './resources/img/world-2/diamond-2_2.png';
+	const diamond2Img_3 = new Image();
+    diamond2Img_3.src = './resources/img/world-2/diamond-2_3.png';
+	const diamond2Img_4 = new Image();
+    diamond2Img_4.src = './resources/img/world-2/diamond-2_4.png';
+	const diamond2Imgs = new Array(diamond2Img_1,diamond2Img_2,diamond2Img_3,diamond2Img_4);
+
+    const diamond3Img_1 = new Image();
+    diamond3Img_1.src = './resources/img/world-3/diamond-3_1.png';
+	const diamond3Img_2 = new Image();
+    diamond3Img_2.src = './resources/img/world-3/diamond-3_2.png';
+	const diamond3Img_3 = new Image();
+    diamond3Img_3.src = './resources/img/world-3/diamond-3_3.png';
+	const diamond3Img_4 = new Image();
+    diamond3Img_4.src = './resources/img/world-3/diamond-3_4.png';
+	const diamond3Imgs = new Array(diamond3Img_1,diamond3Img_2,diamond3Img_3,diamond3Img_4);
 	
 	// Sprite de objeto malo
-	const badItemImg = new Image();
-	badItemImg.src = './resources/img/bad-item.png'; // ⚠️ cambia la ruta según tu imagen real
+	const badItem1Img_1 = new Image();
+	badItem1Img_1.src = './resources/img/world-1/bad-item-world-1_1.png'; 
+	const badItem1Img_2 = new Image();
+	badItem1Img_2.src = './resources/img/world-1/bad-item-world-1_2.png'; 
+	const badItem1Img_3 = new Image();
+	badItem1Img_3.src = './resources/img/world-1/bad-item-world-1_3.png'; 
+	const badItem1Img_4 = new Image();
+	badItem1Img_4.src = './resources/img/world-1/bad-item-world-1_4.png'; 
+	const badItem1Imgs = new Array(badItem1Img_1,badItem1Img_2,badItem1Img_3,badItem1Img_4);
+	
+	const badItem2Img_1 = new Image();
+	badItem2Img_1.src = './resources/img/world-2/bad-item-world-2_1.png'; 
+	const badItem2Img_2 = new Image();
+	badItem2Img_2.src = './resources/img/world-2/bad-item-world-2_2.png'; 
+	const badItem2Img_3 = new Image();
+	badItem2Img_3.src = './resources/img/world-2/bad-item-world-2_3.png'; 
+	const badItem2Img_4 = new Image();
+	badItem2Img_4.src = './resources/img/world-2/bad-item-world-2_4.png'; 
+	const badItem2Imgs = new Array(badItem2Img_1,badItem2Img_2,badItem2Img_3,badItem2Img_4);
+	
+	const badItem3Img_1 = new Image();
+	badItem3Img_1.src = './resources/img/world-3/bad-item-world-3_1.png'; 
+	const badItem3Img_2 = new Image();
+	badItem3Img_2.src = './resources/img/world-3/bad-item-world-3_2.png'; 
+	const badItem3Img_3 = new Image();
+	badItem3Img_3.src = './resources/img/world-3/bad-item-world-3_3.png'; 
+	const badItem3Img_4 = new Image();
+	badItem3Img_4.src = './resources/img/world-3/bad-item-world-3_4.png'; 
+	const badItem3Imgs = new Array(badItem3Img_1,badItem3Img_2,badItem3Img_3,badItem3Img_4);
 
     window.resize = function() {
         const rect = canvas.getBoundingClientRect();
@@ -100,11 +150,13 @@
 		ctx.rotate(rotation);
 
 		if (isBad) {
-			ctx.drawImage(badItemImg, -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 1) ctx.drawImage(badItem1Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 2) ctx.drawImage(badItem2Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 3) ctx.drawImage(badItem3Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
 		} else {
-			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Img, -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Img, -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Img, -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
+			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Imgs[Math.floor(Math.random() * 4)], -size / 2, -size / 2, size, size);
 		}
 
 		ctx.restore();
@@ -318,8 +370,7 @@
     window.gameOver = function() {
         running = false;
         msgTitle.textContent = 'You did it!';
-        $('.game-world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
-        $('.game-world-item').attr("src", './resources/img/diamond-' + PRITT_GAME.world + '.png');
+        $('.game-world-item').attr("src", './resources/img/world-' + PRITT_GAME.world + '/diamond-' + PRITT_GAME.world + '_1.png');
         $('#game-phase1-stats').css('visibility', 'hidden');
         finalScore.textContent = score;
         msg.style.display = 'block';
