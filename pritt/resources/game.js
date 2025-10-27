@@ -5,6 +5,7 @@ var PRITT_GAME = PRITT_GAME || {
 	world_1:false,
 	world_2:false,
 	world_3:false,
+    randomPiecesByDefault: 3,
     gameDuration: 60,
 	gameDurationInterval:null,
 	imgPuzzleURL: './resources/img/world-1-puzzle.png',
@@ -59,22 +60,23 @@ var PRITT_GAME = PRITT_GAME || {
         });
 		$('#footer-item-multimedia').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
-			  $('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
-			  $('#unicorn-video').height($('#unicorn-video').width()*(9/16));
-			  $('#ogre-video').height($('#ogre-video').width()*(9/16));
-			  $('#dragon-video').height($('#dragon-video').width()*(9/16));
-			  $('#fairy-video').height($('#fairy-video').width()*(9/16));
-			  $('#house-video').height($('#house-video').width()*(9/16));
-			  $('#rainbow-video').height($('#rainbow-video').width()*(9/16));
-			  $('#river-video').height($('#river-video').width()*(9/16));
+			$('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
+			$('#unicorn-video').height($('#unicorn-video').width()*(9/16));
+			$('#ogre-video').height($('#ogre-video').width()*(9/16));
+			$('#dragon-video').height($('#dragon-video').width()*(9/16));
+			$('#fairy-video').height($('#fairy-video').width()*(9/16));
+			$('#house-video').height($('#house-video').width()*(9/16));
+			$('#rainbow-video').height($('#rainbow-video').width()*(9/16));
+			$('#river-video').height($('#river-video').width()*(9/16));
         });
-		    $('.video-grid').find('a').each(function(idx, el) {
-				let degrees = (Math.floor(Math.random() * 21) - 10);
-				$(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
-							'-moz-transform' : 'rotate('+ degrees +'deg)',
-							'-ms-transform' : 'rotate('+ degrees +'deg)',
-							'transform' : 'rotate('+ degrees +'deg)'});
-			});
+
+		$('.video-grid').find('a').each(function(idx, el) {
+		let degrees = (Math.floor(Math.random() * 21) - 10);
+		$(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+					'-moz-transform' : 'rotate('+ degrees +'deg)',
+					'-ms-transform' : 'rotate('+ degrees +'deg)',
+					'transform' : 'rotate('+ degrees +'deg)'});
+		});
     },
     loadHome: function() {
         if (PRITT_GAME.language == null) {
@@ -268,6 +270,17 @@ var PRITT_GAME = PRITT_GAME || {
 		$('#btn-game-completed').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
 		});
+		$('#btn-templates-completed').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
+			$('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
+			$('#unicorn-video').height($('#unicorn-video').width()*(9/16));
+			$('#ogre-video').height($('#ogre-video').width()*(9/16));
+			$('#dragon-video').height($('#dragon-video').width()*(9/16));
+			$('#fairy-video').height($('#fairy-video').width()*(9/16));
+			$('#house-video').height($('#house-video').width()*(9/16));
+			$('#rainbow-video').height($('#rainbow-video').width()*(9/16));
+			$('#river-video').height($('#river-video').width()*(9/16));
+        });		
 	},
 	clearScreenAndShow: function(pageIds, bgColor, bgUrl, repeat){
 		var canvas = document.getElementById('game');

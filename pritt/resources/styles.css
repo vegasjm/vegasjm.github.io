@@ -368,6 +368,9 @@ video {
     font-style: normal;
 	width: 180px;
 }
+#btn-templates-complete{
+	margin-top: 1rem;
+}
 .btn-home-world .btn-home .btn-home-icon svg {
   fill: #fff;
   max-width: 2rem;
