@@ -596,20 +596,19 @@ video {
 	gap: 10rem !important;
 }
 .game-wizard-text {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    margin-left: 11rem;
-    margin-top: 3.5rem;
 	font-family: Ruddy;
 	font-weight: bold;
     font-style: normal;
-	transform: rotate(14deg);
 	color: #eb0b0b;
-	max-width: 20vh;
-	min-width: 20vh;
-	font-size: 22px;
 	text-align: center;
+    background-image: url('./img/wizard.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+	box-sizing: content-box;
+	display: table-cell;
+	vertical-align: middle;
+	padding: 3rem 4rem 4rem 4rem;
 }
 .fixed-main-container{
 	position: relative;
@@ -647,47 +646,22 @@ video {
 }
 #game-bottom, #game-bottom-completed {
 	z-index: 99;
-}
-#game-character, #game-character-completed {
 	margin-top: 10vh;
 }
-#game-wizard, #game-wizard-completed {
-	position: relative;
-    width: 100%;
-	margin-left: -1rem;
-	animation: bouge 3s infinite alternate-reverse;
-}	
-.game-wizard-text div{
-	padding-top: 11%;
-    padding-bottom: 20%;
-    padding-left: 8%;
-    padding-right: 8%;
-    font-size: clamp(14px, 3vw, 64px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+#game-character, #game-character-completed {
+	
 }
+#game-wizard, #game-wizard-completed {
+	animation: bouge 3s infinite alternate-reverse;
+	margin-left: auto;
+    margin-right: auto;
+}	
 .game-character-img{
 	max-width: 28vh;
     bottom: 5vh;
     top: auto;
 	filter: drop-shadow(5px -5px 5px rgba(0, 0, 0, 0.5));
 	animation: bouge 3s infinite alternate-reverse;
-}
-.game-wizard-text{
-	max-width: 30vh;
-    margin-left: 7rem;
-    margin-top: auto;
-    margin-bottom: -5vh;
-	position: absolute;
-}	
-.game-wizard-img{
-    max-width: 30vh;
-    margin-left: 7rem;
-    margin-top: auto;
-    margin-bottom: -5vh;
-	position: absolute;
 }
 .btn-help {
 	padding: 1rem;

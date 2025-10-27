@@ -130,9 +130,8 @@ var PRITT_GAME = PRITT_GAME || {
                 $('#world-item').attr("src", './resources/img/world-'+PRITT_GAME.world+'/diamond-' + PRITT_GAME.world + '_1.png');
                 if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
                     $('.game-character-img').css('float', 'right');
-                    $('#game-wizard-img').css('transform', 'rotate(-28deg)');
-                    $('#game-wizard-text').css('transform', 'rotate(-14deg)');
-                    $('#game-wizard').css('margin-left', '-5rem');
+                    $('#game-wizard-text').css('transform', 'rotate(-42deg)');
+					$('#game-wizard-text-p').css('transform', 'rotate(14deg)');
                     if (PRITT_GAME.world == 2) {
                         $('.body-inner').css('background-color', '#F4E0B3');
                         $('.game-character-img').css('max-width', '26vh');
@@ -148,9 +147,8 @@ var PRITT_GAME = PRITT_GAME || {
                 } else {
                     if (PRITT_GAME.world == 1) {
                         $('.body-inner').css('background-color', '#fbeda4');
-                        $('#game-wizard-img').css('transform', 'rotate(0deg)');
 						$('#game-wizard-text').css('transform', 'rotate(+14deg)');
-                        $('#game-wizard').css('margin-left', '-1rem');
+						$('#game-wizard-text-p').css('transform', 'rotate(+14deg)');
                         $('.game-character-img').css('float', 'left');
                         $('.game-character-img').css('max-width', '28vh');
                         $('#game-wizard-text-p').html('');
@@ -242,9 +240,8 @@ var PRITT_GAME = PRITT_GAME || {
 			$('.game-character-img').attr("src", './resources/img/world-' + PRITT_GAME.world + '-player.png');
 			if (PRITT_GAME.world == 2 || PRITT_GAME.world == 3) {
 				$('.game-character-img').css('float', 'right');
-				$('#game-wizard-img-completed').css('transform', 'rotate(-28deg)');
-				$('#game-wizard-text-completed').css('transform', 'rotate(-14deg)');
-				$('#game-wizard-completed').css('margin-left', '-5rem');
+				$('#game-wizard-text-completed').css('transform', 'rotate(-42deg)');
+				$('#game-wizard-text-completed-p').css('transform', 'rotate(14deg)');
 				if (PRITT_GAME.world == 2) {
 					$('.game-character-img').css('max-width', '26vh');
 					$('#game-wizard-text-completed-p').html('');
@@ -257,9 +254,8 @@ var PRITT_GAME = PRITT_GAME || {
 				}
 			} else {
 				if (PRITT_GAME.world == 1) {
-					$('#game-wizard-img-completed').css('transform', 'rotate(0deg)');
-					$('#game-wizard-text-completed').css('transform', 'rotate(14deg)');
-					$('#game-wizard-completed').css('margin-left', '-1rem');
+					$('#game-wizard-text-completed').css('transform', 'rotate(+14deg)');
+					$('#game-wizard-text-completed-p').css('transform', 'rotate(+14deg)');
 					$('.game-character-img').css('float', 'left');
 					$('.game-character-img').css('max-width', '28vh');
 					$('#game-wizard-text-completed-p').html('');
