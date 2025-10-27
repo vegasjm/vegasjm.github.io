@@ -495,20 +495,86 @@
     }
 	
 	function playThud() {
-		if (!audioCtx) return;
-		const now = audioCtx.currentTime;
+	  if (!soundOn) return;
+	  const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-		// Baix curt i apagat
-		const osc = audioCtx.createOscillator();
-		const gain = audioCtx.createGain();
-		osc.type = 'sine';
-		osc.frequency.setValueAtTime(150, now);
-		osc.frequency.exponentialRampToValueAtTime(80, now + 0.15);
-		gain.gain.setValueAtTime(0.25, now);
-		gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-		osc.connect(gain).connect(audioCtx.destination);
-		osc.start(now);
-		osc.stop(now + 0.15);
+	  // ⚡ Osc principal (descàrrega elèctrica)
+	  const osc = ctx.createOscillator();
+	  const gain = ctx.createGain();
+	  const distortion = ctx.createWaveShaper();
+	  const delay = ctx.createDelay();
+	  const feedback = ctx.createGain();
+	  const reverbGain = ctx.createGain();
+	  const reverbDelay1 = ctx.createDelay();
+	  const reverbDelay2 = ctx.createDelay();
+
+	  // Descàrrega elèctrica
+	  osc.type = 'sawtooth';
+	  osc.frequency.setValueAtTime(220, ctx.currentTime);
+	  osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
+	  gain.gain.setValueAtTime(0.6, ctx.currentTime);
+	  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+	  distortion.curve = makeDistortionCurve(100);
+	  distortion.oversample = '4x';
+	  delay.delayTime.value = 0.07;
+	  feedback.gain.value = 0.35;
+	  reverbGain.gain.value = 0.25;
+	  reverbDelay1.delayTime.value = 0.12;
+	  reverbDelay2.delayTime.value = 0.24;
+
+	  // Connexions
+	  osc.connect(distortion);
+	  distortion.connect(gain);
+	  gain.connect(delay);
+	  gain.connect(reverbGain);
+	  delay.connect(feedback);
+	  feedback.connect(delay);
+	  delay.connect(ctx.destination);
+	  reverbGain.connect(reverbDelay1);
+	  reverbDelay1.connect(reverbDelay2);
+	  reverbDelay2.connect(ctx.destination);
+
+	  // 💣 Subgreu cinematogràfic (el tro)
+	  const sub = ctx.createOscillator();
+	  const subGain = ctx.createGain();
+	  sub.type = 'sine';
+	  sub.frequency.setValueAtTime(60, ctx.currentTime + 0.05);
+	  sub.frequency.exponentialRampToValueAtTime(25, ctx.currentTime + 0.65);
+
+	  // ✨ Envolvent suau i potent
+	  subGain.gain.setValueAtTime(0.0, ctx.currentTime + 0.05);
+	  subGain.gain.linearRampToValueAtTime(0.6, ctx.currentTime + 0.08); // fade-in
+	  subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.65); // decay
+
+	  // Lligam subgreu
+	  sub.connect(subGain).connect(ctx.destination);
+
+	  // Arrencar tot
+	  osc.start(ctx.currentTime);
+	  sub.start(ctx.currentTime + 0.05);
+	  osc.stop(ctx.currentTime + 0.15);
+	  sub.stop(ctx.currentTime + 0.7);
+
+	  // Distorsió
+	  function makeDistortionCurve(amount = 50) {
+		const n = 44100, curve = new Float32Array(n);
+		const deg = Math.PI / 180;
+		for (let i = 0; i < n; i++) {
+		  const x = (i * 2) / n - 1;
+		  curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+		}
+		return curve;
+	  }
+	}
+	
+	function screenLightningFlash() {
+	  const flash = document.getElementById('lightning-flash');
+	  flash.style.opacity = '1';
+	  
+	  // Efecte de "parpelleig" del llamp
+	  setTimeout(() => flash.style.opacity = '0.3', 80);
+	  setTimeout(() => flash.style.opacity = '1', 150);
+	  setTimeout(() => flash.style.opacity = '0', 350);
 	}
 
     function loop(ts) {
@@ -578,6 +644,7 @@
 						return;
 					}
 					createEvilEffect(d.x, d.y);
+					screenLightningFlash(); // ⚡ afegim el flash global aquí
 					if (soundOn) playThud();
 				} else {
 					createSparkle(d.x, d.y);
