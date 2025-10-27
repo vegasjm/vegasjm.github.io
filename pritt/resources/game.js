@@ -49,6 +49,17 @@ var PRITT_GAME = PRITT_GAME || {
 		$('#btn-back-home').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
         });
+		$('#btn-go-to-templates').on('touch click', function(e) {
+			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
+			$('#forest-keeper-video').height($('#forest-keeper-video').width()*(9/16));
+			$('#unicorn-video').height($('#unicorn-video').width()*(9/16));
+			$('#ogre-video').height($('#ogre-video').width()*(9/16));
+			$('#dragon-video').height($('#dragon-video').width()*(9/16));
+			$('#fairy-video').height($('#fairy-video').width()*(9/16));
+			$('#house-video').height($('#house-video').width()*(9/16));
+			$('#rainbow-video').height($('#rainbow-video').width()*(9/16));
+			$('#river-video').height($('#river-video').width()*(9/16));
+        });		
     },
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
@@ -111,6 +122,7 @@ var PRITT_GAME = PRITT_GAME || {
 			$(".btn-home-world[data-world='1']").css('height', 'calc(0.4927 * '+$(".btn-home-world[data-world='1']").width()+'px)');
 			$(".btn-home-world[data-world='2']").css('height', 'calc(0.4927 * '+$(".btn-home-world[data-world='2']").width()+'px)');
 			$(".btn-home-world[data-world='3']").css('height', 'calc(0.4927 * '+$(".btn-home-world[data-world='3']").width()+'px)');
+			$('.go-to-templates').css('display', 'block');
         }
     },
     loadWorlds: function() {
@@ -125,6 +137,7 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.world = $(this).attr('data-world');
             $('#legal').css('display', 'none');
 			$('#page-menu-footer').css('display', 'none');
+			$('.go-to-templates').css('display', 'none');
 			$('.back-home').css('display', 'block');
             setTimeout(function() {
 				var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
@@ -168,6 +181,7 @@ var PRITT_GAME = PRITT_GAME || {
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
 			$('.logo-pritt').css('width', '100px');
+			$('.go-to-templates').css('display', 'none');
 			$('.back-home').css('display', 'block');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
@@ -201,6 +215,7 @@ var PRITT_GAME = PRITT_GAME || {
 	loadGamePhase2: function() {
 		$('#btn-start-game-phase2').on('touch click', function(e) {
 			$('.logo-pritt').css('width', '100px');
+			$('.go-to-templates').css('display', 'none');
 			$('.back-home').css('display', 'block');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
@@ -308,6 +323,7 @@ var PRITT_GAME = PRITT_GAME || {
 		$('.body-inner').css('background-color', bgColor);
 		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
 		
+		$('.go-to-templates').css('display', 'none');
 		$('.back-home').css('display', 'none');
 		$('.logo-pritt').css('width', '175px');
 		$('#page-header .justify-content-center').css('margin', 'auto');

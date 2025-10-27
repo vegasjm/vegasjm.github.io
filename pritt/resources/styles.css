@@ -211,11 +211,23 @@ body {
 .logo-wild {
   width: 175px;
 }
-.back-home{
+.back-home {
     width: 75px;
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+.btn-templates-header-title {
+    font-family: Ruddy;
+    font-weight: bold;
+    font-style: normal;
+	font-size: clamp(15px, 4vw, 20px) !important;
+}
+.go-to-templates {
+	width: 180px;
+    position: absolute;
+    top: 0.5rem;
+    right: 0rem;
 }
 .menu-footer {
   z-index: 1;
