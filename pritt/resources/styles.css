@@ -211,6 +211,12 @@ body {
 .logo-wild {
   width: 175px;
 }
+.back-home{
+    width: 75px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
 .menu-footer {
   z-index: 1;
   width: 100%;

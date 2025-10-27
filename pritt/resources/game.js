@@ -46,6 +46,9 @@ var PRITT_GAME = PRITT_GAME || {
 		$('#btn-logo-pritt').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
         });
+		$('#btn-back-home').on('touch click', function(e) {
+			PRITT_GAME.loadHome();
+        });
     },
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
@@ -122,6 +125,7 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.world = $(this).attr('data-world');
             $('#legal').css('display', 'none');
 			$('#page-menu-footer').css('display', 'none');
+			$('.back-home').css('display', 'block');
             setTimeout(function() {
 				var heightGame = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height());
                 $('.menu-home').css('display', 'none');
@@ -164,6 +168,7 @@ var PRITT_GAME = PRITT_GAME || {
     loadGamePhase1: function() {
         $('#btn-start-game-phase1').on('touch click', function(e) {
 			$('.logo-pritt').css('width', '100px');
+			$('.back-home').css('display', 'block');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
                 $(window).scrollTop();
@@ -196,6 +201,7 @@ var PRITT_GAME = PRITT_GAME || {
 	loadGamePhase2: function() {
 		$('#btn-start-game-phase2').on('touch click', function(e) {
 			$('.logo-pritt').css('width', '100px');
+			$('.back-home').css('display', 'block');
 			$('#page-header .justify-content-center').css('margin', 'initial');
             setTimeout(() => {
                 $(window).scrollTop();
@@ -302,6 +308,7 @@ var PRITT_GAME = PRITT_GAME || {
 		$('.body-inner').css('background-color', bgColor);
 		$('.body-inner').css('background-image', (bgUrl==null?'':(bgUrl=='none'?'none':'url('+bgUrl+')')));
 		
+		$('.back-home').css('display', 'none');
 		$('.logo-pritt').css('width', '175px');
 		$('#page-header .justify-content-center').css('margin', 'auto');
 		clearInterval(PRITT_GAME.gameDurationInterval);
