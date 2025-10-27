@@ -655,6 +655,7 @@ video {
 	animation: bouge 3s infinite alternate-reverse;
 	margin-left: auto;
     margin-right: auto;
+	margin-top: -4rem;
 }	
 .game-character-img{
 	max-width: 28vh;
