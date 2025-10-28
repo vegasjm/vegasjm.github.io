@@ -565,16 +565,45 @@
 		}
 		return curve;
 	  }
+	  screenShake();
 	}
 	
 	function screenLightningFlash() {
 	  const flash = document.getElementById('lightning-flash');
+	  if (!flash) return;
+
+	  // flash inicial intens
 	  flash.style.opacity = '1';
 	  
-	  // Efecte de "parpelleig" del llamp
-	  setTimeout(() => flash.style.opacity = '0.3', 80);
-	  setTimeout(() => flash.style.opacity = '1', 150);
-	  setTimeout(() => flash.style.opacity = '0', 350);
+	  // parpelleig i apagat ràpid
+	  setTimeout(() => flash.style.opacity = '0.5', 70);
+	  setTimeout(() => flash.style.opacity = '1', 140);
+	  setTimeout(() => flash.style.opacity = '0', 400);
+	}
+	
+	function screenShake(intensity = 10, duration = 400) {
+	  const container = document.getElementById('game-container');
+	  if (!container) return;
+	  
+	  let start = null;
+	  const originalTransform = container.style.transform;
+
+	  function animateShake(timestamp) {
+		if (!start) start = timestamp;
+		const elapsed = timestamp - start;
+		const progress = elapsed / duration;
+		const decay = 1 - progress;
+		const offsetX = (Math.random() - 0.5) * 2 * intensity * decay;
+		const offsetY = (Math.random() - 0.5) * 2 * intensity * decay;
+		container.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+		if (elapsed < duration) {
+		  requestAnimationFrame(animateShake);
+		} else {
+		  container.style.transform = originalTransform;
+		}
+	  }
+
+	  requestAnimationFrame(animateShake);
 	}
 
     function loop(ts) {
@@ -644,6 +673,7 @@
 						return;
 					}
 					createEvilEffect(d.x, d.y);
+					screenShake();
 					screenLightningFlash(); // ⚡ afegim el flash global aquí
 					if (soundOn) playThud();
 				} else {
