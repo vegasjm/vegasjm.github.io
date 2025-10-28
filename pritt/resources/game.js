@@ -23,15 +23,19 @@ var PRITT_GAME = PRITT_GAME || {
 	loadLegal: function(){
 		$('#btn-imprimt').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#imprimt','#legal'], '#3FB1CE', './resources/img/bg.png', true);
+			e.stopPropagation();
         });
 		$('#btn-termsOfUse').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#termsOfUse','#legal'], '#3FB1CE', './resources/img/bg.png', true);
+			e.stopPropagation();
         });
 		$('#btn-dataPrivacyStatement').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#dataPrivacyStatement','#legal'], '#3FB1CE', './resources/img/bg.png', true);
+			e.stopPropagation();
         });
 		$('#btn-usResidents').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#usResidents','#legal'], '#3FB1CE', './resources/img/bg.png', true);
+			e.stopPropagation();
         });
 	},
     loadLanguageSelector: function() {
@@ -40,14 +44,17 @@ var PRITT_GAME = PRITT_GAME || {
             PRITT_GAME.language = language;
             //TODO: Load all texts function	
             PRITT_GAME.loadHome();
+			e.stopPropagation();
         });
     },
 	loadHeader: function() {
 		$('#btn-logo-pritt').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+			e.stopPropagation();
         });
 		$('#btn-back-home').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+			e.stopPropagation();
         });
 		$('#btn-go-to-templates').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
@@ -67,13 +74,16 @@ var PRITT_GAME = PRITT_GAME || {
     loadFooter: function() {
         $('#footer-item-settings').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#settings'], '#0c3554', './resources/img/bg-lang.png', false);
-			$('#page-menu-footer').css('display', 'none');		  
+			$('#page-menu-footer').css('display', 'none');
+			e.stopPropagation();			
         });
 		$('#footer-item-home').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+			e.stopPropagation();
         });
 		$('#footer-item-info').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+			e.stopPropagation();
         });
 		$('#footer-item-multimedia').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);
@@ -135,6 +145,7 @@ var PRITT_GAME = PRITT_GAME || {
     },
     loadWorlds: function() {
         $('.btn-home-world').on('touch click', function(e) {
+			e.stopPropagation();
 			setTimeout(() => {
                 $(window).scrollTop();
 				document.documentElement.scrollTop;
@@ -184,6 +195,7 @@ var PRITT_GAME = PRITT_GAME || {
                 }
                 $('.body-inner').css('background-image', 'url(./resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-bg1.png)');
             }, 500);
+			e.stopPropagation();
         });
     },
     loadGamePhase1: function() {
@@ -217,6 +229,7 @@ var PRITT_GAME = PRITT_GAME || {
             updateClock(PRITT_GAME.gameDuration);
             resize();
 			$('#page-menu-footer').css('display', 'none');
+			e.stopPropagation();
         });
     },
 	loadGamePhase2: function() {
@@ -246,6 +259,7 @@ var PRITT_GAME = PRITT_GAME || {
 			updateClock(PRITT_GAME.gameDuration);
 			initPuzzle(PRITT_GAME.imgPuzzleURL);
 			$('#page-menu-footer').css('display', 'none');
+			e.stopPropagation();
         });
 	},
 	loadGameCompleted: function() {
@@ -296,6 +310,7 @@ var PRITT_GAME = PRITT_GAME || {
 	finishWorld: function(){
 		$('#btn-game-completed').on('touch click', function(e) {
 			PRITT_GAME.loadHome();
+			e.stopPropagation();
 		});
 		$('#btn-templates-completed').on('touch click', function(e) {
 			PRITT_GAME.clearScreenAndShow(['#multimedia','#legal'], '#1578A7', null, false);

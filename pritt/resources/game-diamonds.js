@@ -571,7 +571,7 @@
 	
 	function screenLightningFlash(damageValue = -DAMAGE_VALUE) {
 	  const flash = document.getElementById('lightning-flash');
-	  const gameContainer = document.getElementById('gameContainer');
+	  const gameContainer = document.getElementById('gameContainer') || document.body;
 
 	  // Animació vermella invertida (fora → dins)
 	  flash.animate(
