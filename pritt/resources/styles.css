@@ -213,7 +213,7 @@ body {
   width: 175px;
 }
 .back-home {
-    width: 75px;
+    width: 50px;
     position: absolute;
     left: 1rem;
     right: 1rem;
@@ -225,12 +225,11 @@ body {
 	font-size: clamp(15px, 4vw, 20px) !important;
 }
 .go-to-templates {
-    top: 0.5rem;
+    top: 0.2rem;
     right: 0rem;
 	margin-left: 1rem;
-	width: 75px;
+	width: 65px;
     position: absolute;
-    top: 1rem;
     right: 1rem;
 }
 .menu-footer {
