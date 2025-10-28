@@ -2,7 +2,8 @@
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
 	const ANIMATION_FRAME_INTERVAL = 10; // canvia aquest valor per fer-ho més ràpid o lent
-
+	const DAMAGE_VALUE = 5;
+	
     let W = Math.min(576, document.body.clientWidth);
     let H = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
 
@@ -568,17 +569,50 @@
 	  screenShake();
 	}
 	
-	function screenLightningFlash() {
+	function screenLightningFlash(damageValue = -DAMAGE_VALUE) {
 	  const flash = document.getElementById('lightning-flash');
-	  if (!flash) return;
+	  const gameContainer = document.getElementById('gameContainer');
 
-	  // flash inicial intens
-	  flash.style.opacity = '1';
-	  
-	  // parpelleig i apagat ràpid
-	  setTimeout(() => flash.style.opacity = '0.5', 70);
-	  setTimeout(() => flash.style.opacity = '1', 140);
-	  setTimeout(() => flash.style.opacity = '0', 400);
+	  // Animació vermella invertida (fora → dins)
+	  flash.animate(
+		[
+		  { opacity: 0, transform: 'scale(1.6)', filter: 'blur(15px)', background: 'radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(120,0,0,0.2) 60%, transparent 100%)' },
+		  { opacity: 1, transform: 'scale(1)', filter: 'blur(3px)', background: 'radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(255,60,60,0.3) 60%, transparent 100%)' },
+		  { opacity: 0.3, transform: 'scale(0.8)', filter: 'blur(0px)', background: 'radial-gradient(circle, rgba(255,0,0,0.5) 0%, rgba(100,0,0,0.2) 60%, transparent 100%)' },
+		  { opacity: 0 }
+		],
+		{ duration: 500, easing: 'ease-out' }
+	  );
+
+	  // Mostra el text del dany (ex: "-5")
+	  const dmgText = document.createElement('div');
+	  dmgText.className = 'damage-text';
+	  dmgText.textContent = damageValue;
+
+	  Object.assign(dmgText.style, {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		color: 'red',
+		fontSize: '48px',
+		fontWeight: 'bold',
+		textShadow: '0 0 8px rgba(255,0,0,0.8)',
+		pointerEvents: 'none',
+		zIndex: 10000,
+	  });
+
+	  gameContainer.appendChild(dmgText);
+
+	  dmgText.animate(
+		[
+		  { opacity: 1, transform: 'translate(-50%, -50%) scale(1.2)' },
+		  { opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)' }
+		],
+		{ duration: 1000, easing: 'ease-out' }
+	  );
+
+	  setTimeout(() => dmgText.remove(), 1000);
 	}
 	
 	function screenShake(intensity = 10, duration = 400) {
@@ -666,7 +700,7 @@
 				diamondY1 < hitboxY + hitboxH
 			) {
 				if (d.isBad) {
-					score -= 5;
+					score -= DAMAGE_VALUE;
 					if (lives <= 0) {
 						updateHUD();
 						gameOver();
@@ -674,7 +708,7 @@
 					}
 					createEvilEffect(d.x, d.y);
 					screenShake();
-					screenLightningFlash(); // ⚡ afegim el flash global aquí
+					screenLightningFlash(-DAMAGE_VALUE); // ⚡ afegim el flash global aquí
 					if (soundOn) playThud();
 				} else {
 					createSparkle(d.x, d.y);
