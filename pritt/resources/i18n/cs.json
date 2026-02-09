@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Podmínky používání",
   "legal_opt_data_privacy_statement": "Prohlášení o ochraně osobních údajů",
   "legal_opt_us_residents": "Poznámka pro obyvatele USA.",
-  "game1_init_conversation": "Ale ne! Duha z mé pláže je pryč!",
-  "game2_init_conversation": "Potřebuji, abyste mi pomohli znovu rozzářit mou jeskyni.",
-  "game3_init_conversation": "Tento les ztrácí své kouzlo… pomůžete mi?",
-  "game1_final_conversation": "Skvělá práce! Zachránili jste mou duhu!",
-  "game2_final_conversation": "Skvělá práce! Přinesli jste zpět světlo!",
-  "game3_final_conversation": "Dokázali jste to! Stromy znovu kouzelně září!",
+  "game1_init_conversation": "Ale ne! @Duha z mé pláže @je pryč!",
+  "game2_init_conversation": "Potřebuji, @abyste mi pomohli znovu @rozzářit mou jeskyni.",
+  "game3_init_conversation": "Tento les @ztrácí své kouzlo… @pomůžete mi?",
+  "game1_final_conversation": "Skvělá práce! @Zachránili jste @mou duhu!",
+  "game2_final_conversation": "Skvělá práce! @Přinesli jste @zpět světlo!",
+  "game3_final_conversation": "Dokázali jste to! @Stromy znovu @kouzelně září!",
   "world_done": "HOTOVO!",
   "success.you_did_it": "Povedlo se!"
 }

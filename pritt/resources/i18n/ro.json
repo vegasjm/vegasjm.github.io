@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Termeni și condiții de utilizare",
   "legal_opt_data_privacy_statement": "Declarație de confidențialitate",
   "legal_opt_us_residents": "Notă pentru rezidenții SUA",
-  "game1_init_conversation": "O, nu! Curcubeul de pe plaja mea a dispărut!",
-  "game2_init_conversation": "Am nevoie de ajutorul tău ca să-mi fac peștera să strălucească din nou!",
-  "game3_init_conversation": "Această pădure își pierde magia... Mă ajuți?",
-  "game1_final_conversation": "Bravo! Ai salvat curcubeul!",
-  "game2_final_conversation": "Bravo! Ai readus lumina!",
-  "game3_final_conversation": "Ai reușit! Marele copac strălucește din nou cu magie!",
+  "game1_init_conversation": "O, nu! @Curcubeul de pe plaja @mea a dispărut!",
+  "game2_init_conversation": "Am nevoie de ajutorul @tău ca să-mi fac peștera @să strălucească din nou!",
+  "game3_init_conversation": "Această pădure @își pierde magia... @Mă ajuți?",
+  "game1_final_conversation": "Bravo! @Ai salvat @curcubeul!",
+  "game2_final_conversation": "Bravo! @Ai readus @lumina!",
+  "game3_final_conversation": "Ai reușit! @Marele copac strălucește @din nou cu magie!",
   "world_done": "REALIZAT!",
   "success.you_did_it": "Ai reușit!"
 }

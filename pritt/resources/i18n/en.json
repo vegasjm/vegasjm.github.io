@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Terms of Use",
   "legal_opt_data_privacy_statement": "Data Privacy Statement",
   "legal_opt_us_residents": "Note for US residents",
-  "game1_init_conversation": "Oh no! The rainbow on my beach is gone!",
-  "game2_init_conversation": "I need your help to make my cave shine again!",
-  "game3_init_conversation": "This forest is losing its magic... Will you help me?",
-  "game1_final_conversation": "Great job! You saved the rainbow!",
-  "game2_final_conversation": "Great job! You brought the light back!",
-  "game3_final_conversation": "You did it! The great tree shines with magic again!",
+  "game1_init_conversation": "Oh no! @The rainbow on my @beach is gone!",
+  "game2_init_conversation": "I need your @help to make my cave @shine again!",
+  "game3_init_conversation": "This forest @is losing its magic... @Will you help me?",
+  "game1_final_conversation": "Great job! @You saved the @rainbow!",
+  "game2_final_conversation": "Great job! @You brought the @light back!",
+  "game3_final_conversation": "You did it! @The great tree shines @with magic again!",
   "world_done": "DONE!",
   "success.you_did_it": "You did it!"
 }

@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Termos de Uso",
   "legal_opt_data_privacy_statement": "Política de Privacidade",
   "legal_opt_us_residents": "Nota para residentes dos Estados Unidos",
-  "game1_init_conversation": "Ah não! O arco-íris na minha praia desapareceu!",
-  "game2_init_conversation": "Preciso da sua ajuda para fazer minha caverna brilhar novamente!",
-  "game3_init_conversation": "Esta floresta está perdendo sua magia… Você consegue me ajudar?",
-  "game1_final_conversation": "Ótimo trabalho! Você salvou o arco-íris!",
-  "game2_final_conversation": "Ótimo trabalho! Você trouxe a luz de volta!",
-  "game3_final_conversation": "Você conseguiu! A grande árvore brilha com magia novamente!",
+  "game1_init_conversation": "Ah não! @O arco-íris na minha @praia desapareceu!",
+  "game2_init_conversation": "Preciso da sua ajuda @para fazer minha caverna @brilhar novamente!",
+  "game3_init_conversation": "Esta floresta @está perdendo sua magia… @Você consegue me ajudar?",
+  "game1_final_conversation": "Ótimo trabalho! @Você salvou o @arco-íris!",
+  "game2_final_conversation": "Ótimo trabalho! @Você trouxe a @luz de volta!",
+  "game3_final_conversation": "Você conseguiu! @A grande árvore brilha @com magia novamente!",
   "world_done": "Pronto!",
   "success.you_did_it": "Você conseguiu!"
 }

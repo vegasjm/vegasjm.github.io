@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Gebruiksvoorwaarden",
   "legal_opt_data_privacy_statement": "Privacyverklaring",
   "legal_opt_us_residents": "Opmerking voor inwoners van de US",
-  "game1_init_conversation": "Oh nee ! De regenboog op mijn strand is verdwenen!",
-  "game2_init_conversation": "Ik heb je hulp nodig om mijn grot weer te laten schitteren!",
-  "game3_init_conversation": "Dit bos verliest zijn magie... Help je me?",
-  "game1_final_conversation": "Goed gedaan! Je hebt de regenboog gered!",
-  "game2_final_conversation": "Goed gedaan! Je hebt het licht teruggebracht!",
-  "game3_final_conversation": "Je hebt het gedaan! De grote boom straalt weer magie uit!",
+  "game1_init_conversation": "Oh nee ! @De regenboog op mijn @strand is verdwenen!",
+  "game2_init_conversation": "Ik heb je hulp @nodig om mijn grot weer @te laten schitteren!",
+  "game3_init_conversation": "Dit bos verliest @zijn magie... @Help je me?",
+  "game1_final_conversation": "Goed gedaan! @Je hebt de regenboog @gered!",
+  "game2_final_conversation": "Goed gedaan! @Je hebt het licht @teruggebracht!",
+  "game3_final_conversation": "Je hebt het gedaan! @De grote boom straalt @weer magie uit!",
   "world_done": "KLAAR!",
   "success.you_did_it": "Je hebt het gedaan!"
 }

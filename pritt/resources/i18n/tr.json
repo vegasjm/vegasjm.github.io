@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Kullanım Koşulları",
   "legal_opt_data_privacy_statement": "Veri Gizliliği Beyanı",
   "legal_opt_us_residents": "Note for US residents",
-  "game1_init_conversation": "Eyvah! Sahildeki gökkuşağı kaybolmuş!",
-  "game2_init_conversation": "Mağaramın yeniden ışıldaması için yardımına ihtiyacım var!",
-  "game3_init_conversation": "Bu orman sihrini kaybediyor... Bana yardım eder misin?",
-  "game1_final_conversation": "Harika! Gökkuşağını kurtardın!",
-  "game2_final_conversation": "Harika iş çıkardın! Işığı geri getirdin!",
-  "game3_final_conversation": "Başardın! Büyük ağaç yeniden sihirle ışıldıyor!",
+  "game1_init_conversation": "Eyvah! @Sahildeki gökkuşağı @kaybolmuş!",
+  "game2_init_conversation": "Mağaramın yeniden @ışıldaması için yardımına @ihtiyacım var!",
+  "game3_init_conversation": "Bu orman sihrini @kaybediyor... @Bana yardım eder misin?",
+  "game1_final_conversation": "Harika! @Gökkuşağını @kurtardın!",
+  "game2_final_conversation": "Harika iş çıkardın! @Işığı geri @getirdin!",
+  "game3_final_conversation": "Başardın! @Büyük ağaç yeniden @sihirle ışıldıyor!",
   "world_done": "BİTTİ!",
   "success.you_did_it": "Başardın!"
 }

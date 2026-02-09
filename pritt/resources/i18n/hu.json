@@ -25,12 +25,12 @@
   "legal_opt_terms_of_use": "Felhasználási feltételek",
   "legal_opt_data_privacy_statement": "Adatvédelmi nyilatkozat",
   "legal_opt_us_residents": "Megjegyzés az USA lakosainak",
-  "game1_init_conversation": "Ó, ne! Eltűnt a szivárvány a partomról!",
-  "game2_init_conversation": "Segítségedre van szükségem, hogy újra ragyogjon a barlangom!",
-  "game3_init_conversation": "Ez az erdő elveszíti varázserejét... Segítesz nekem?",
-  "game1_final_conversation": "Remek munka! Megmentetted a szivárványt!",
-  "game2_final_conversation": "Remek munka! Visszahoztad a fényt!",
-  "game3_final_conversation": "Megcsináltad! A nagy fa újra varázslatosan ragyog!",
+  "game1_init_conversation": "Ó, ne! @Eltűnt a szivárvány @a partomról!",
+  "game2_init_conversation": "Segítségedre van szükségem, @hogy újra ragyogjon @a barlangom!",
+  "game3_init_conversation": "Ez az erdő @elveszíti varázserejét... @Segítesz nekem?",
+  "game1_final_conversation": "Remek munka! @Megmentetted a @szivárványt!",
+  "game2_final_conversation": "Remek munka! @Visszahoztad a @fényt!",
+  "game3_final_conversation": "Megcsináltad! @A nagy fa újra @varázslatosan ragyog!",
   "world_done": "Kész!",
   "success.you_did_it": "Sikerült!"
 }
