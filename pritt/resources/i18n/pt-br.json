@@ -31,5 +31,6 @@
   "game1_final_conversation": "Ótimo trabalho! Você salvou o arco-íris!",
   "game2_final_conversation": "Ótimo trabalho! Você trouxe a luz de volta!",
   "game3_final_conversation": "Você conseguiu! A grande árvore brilha com magia novamente!",
-  "world_done": "Pronto!"
+  "world_done": "Pronto!",
+  "success.you_did_it": "Você conseguiu!"
 }

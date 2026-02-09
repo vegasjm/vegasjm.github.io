@@ -174,13 +174,13 @@ var PRITT_GAME = PRITT_GAME || {
                         $('.body-inner').css('background-color', '#F4E0B3');
                         $('.game-character-img').css('max-width', '26vh');
                         $('#game-wizard-text-p').html('');
-                        showText('#game-wizard-text-p', 'Oh no! @The rainbow on my @beach is gone!', 0, 25);
+                        showText('#game-wizard-text-p', t('game2_init_conversation'), 0, 25);
                     }
                     if (PRITT_GAME.world == 3) {
                         $('.body-inner').css('background-color', '#8652A9');
                         $('.game-character-img').css('max-width', '28vh');
                         $('#game-wizard-text-p').html('');
-                        showText('#game-wizard-text-p', 'I need your help to @make my cave @shine again!', 0, 25);
+                        showText('#game-wizard-text-p', t('game3_init_conversation'), 0, 25);
                     }
                 } else {
                     if (PRITT_GAME.world == 1) {
@@ -190,7 +190,7 @@ var PRITT_GAME = PRITT_GAME || {
                         $('.game-character-img').css('float', 'left');
                         $('.game-character-img').css('max-width', '28vh');
                         $('#game-wizard-text-p').html('');
-                        showText('#game-wizard-text-p', 'This forest is losing @its magic... @Will you help me?', 0, 25);
+                        showText('#game-wizard-text-p', t('game1_init_conversation'), 0, 25);
                     }
                 }
                 $('.body-inner').css('background-image', 'url(./resources/img/world-' + PRITT_GAME.world + '/world-' + PRITT_GAME.world + '-bg1.png)');
@@ -288,12 +288,12 @@ var PRITT_GAME = PRITT_GAME || {
 				if (PRITT_GAME.world == 2) {
 					$('.game-character-img').css('max-width', '26vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', 'Great job! @You saved the @rainbow!', 0, 25);
+					showText('#game-wizard-text-completed-p', t('game2_init_conversation'), 0, 25);
 				}
 				if (PRITT_GAME.world == 3) {
 					$('.game-character-img').css('max-width', '28vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', 'Great job! @You brought the light @back!', 0, 25);
+					showText('#game-wizard-text-completed-p', t('game3_init_conversation'), 0, 25);
 				}
 			} else {
 				if (PRITT_GAME.world == 1) {
@@ -302,7 +302,7 @@ var PRITT_GAME = PRITT_GAME || {
 					$('.game-character-img').css('float', 'left');
 					$('.game-character-img').css('max-width', '28vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', 'You did it! @The great tree shines @with magic again!', 0, 25);
+					showText('#game-wizard-text-completed-p', t('game1_init_conversation'), 0, 25);
 				}
 			}
 		}, 500);

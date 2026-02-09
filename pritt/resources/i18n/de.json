@@ -31,5 +31,6 @@
   "game1_final_conversation": "Großartig! Du hast den Regenbogen gerettet!",
   "game2_final_conversation": "Großartig! Du hast das Licht zurückgebracht!",
   "game3_final_conversation": "Du hast es geschafft! Der große Baum strahlt wieder mit Magie!",
-  "world_done": "FERTIG!"
+  "world_done": "FERTIG!",
+  "success.you_did_it": "Du hast es geschafft!"
 }

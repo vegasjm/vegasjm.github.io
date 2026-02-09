@@ -15,6 +15,16 @@ async function loadLanguage(lang) {
     localStorage.setItem("lang", lang);
 }
 
+function t(key, vars = {}) {
+    let text = translations[key] || key;
+
+    Object.keys(vars).forEach(k => {
+        text = text.replace(`{{${k}}}`, vars[k]);
+    });
+
+    return text;
+}
+
 // detectar idioma guardat o navegador
 const savedLang = localStorage.getItem("lang");
 const browserLang = navigator.language.toLowerCase();

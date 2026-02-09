@@ -379,7 +379,7 @@
 
     window.gameOver = function() {
         running = false;
-        msgTitle.textContent = 'You did it!';
+        msgTitle.textContent = t("success.you_did_it");
         $('.game-world-item').attr("src", './resources/img/world-' + PRITT_GAME.world + '/diamond-' + PRITT_GAME.world + '_1.png');
         $('#game-phase1-stats').css('visibility', 'hidden');
         finalScore.textContent = score;

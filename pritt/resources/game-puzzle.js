@@ -159,7 +159,7 @@
 	function showDoneMessage() {
 	  pieceBar.innerHTML = "";
 	  const btn = document.createElement("button");
-	  btn.textContent = "DONE!";
+	  btn.textContent = t("world_done");
 	  btn.id = "done-button";
 	  btn.style.fontSize = "2em";
 	  pieceBar.appendChild(btn);

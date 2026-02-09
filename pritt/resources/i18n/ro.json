@@ -31,5 +31,6 @@
   "game1_final_conversation": "Bravo! Ai salvat curcubeul!",
   "game2_final_conversation": "Bravo! Ai readus lumina!",
   "game3_final_conversation": "Ai reușit! Marele copac strălucește din nou cu magie!",
-  "world_done": "REALIZAT!"
+  "world_done": "REALIZAT!",
+  "success.you_did_it": "Ai reușit!"
 }

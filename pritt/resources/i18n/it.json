@@ -31,5 +31,6 @@
   "game1_final_conversation": "Ottimo lavoro! Hai salvato l'arcobaleno!",
   "game2_final_conversation": "Ottimo lavoro! Hai riportato la luce!",
   "game3_final_conversation": "Ce l'hai fatta! Il grande albero risplende di nuovo di magia!",
-  "world_done": "FATTO!"
+  "world_done": "FATTO!",
+  "success.you_did_it": "Ce l'hai fatta!"
 }

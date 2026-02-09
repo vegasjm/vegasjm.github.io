@@ -31,5 +31,6 @@
   "game1_final_conversation": "Harika! Gökkuşağını kurtardın!",
   "game2_final_conversation": "Harika iş çıkardın! Işığı geri getirdin!",
   "game3_final_conversation": "Başardın! Büyük ağaç yeniden sihirle ışıldıyor!",
-  "world_done": "BİTTİ!"
+  "world_done": "BİTTİ!",
+  "success.you_did_it": "Başardın!"
 }

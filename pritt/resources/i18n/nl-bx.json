@@ -31,5 +31,6 @@
   "game1_final_conversation": "Goed gedaan! Je hebt de regenboog gered!",
   "game2_final_conversation": "Goed gedaan! Je hebt het licht teruggebracht!",
   "game3_final_conversation": "Je hebt het gedaan! De grote boom straalt weer magie uit!",
-  "world_done": "KLAAR!"
+  "world_done": "KLAAR!",
+  "success.you_did_it": "Je hebt het gedaan!"
 }

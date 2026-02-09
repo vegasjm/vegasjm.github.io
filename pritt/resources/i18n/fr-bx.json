@@ -31,5 +31,6 @@
   "game1_final_conversation": "Bravo ! Tu as sauvé l'arc-en-ciel !",
   "game2_final_conversation": "Bravo ! Tu as ramené la lumière !",
   "game3_final_conversation": "Tu l'as fait ! Le grand arbre magique brille à nouveau !",
-  "world_done": "TERMINÉ !"
+  "world_done": "TERMINÉ !",
+  "success.you_did_it": "Tu l’as fait !"
 }

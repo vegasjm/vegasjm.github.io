@@ -31,5 +31,6 @@
   "game1_final_conversation": "Remek munka! Megmentetted a szivárványt!",
   "game2_final_conversation": "Remek munka! Visszahoztad a fényt!",
   "game3_final_conversation": "Megcsináltad! A nagy fa újra varázslatosan ragyog!",
-  "world_done": "Kész!"
+  "world_done": "Kész!",
+  "success.you_did_it": "Sikerült!"
 }

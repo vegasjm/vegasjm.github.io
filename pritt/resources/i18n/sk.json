@@ -31,5 +31,6 @@
   "game1_final_conversation": "Skvelá práca! Zachránili ste moju dúhu!",
   "game2_final_conversation": "Skvelá práca! Priniesli ste opäť svetlo!",
   "game3_final_conversation": "Dokázali ste to! Stromy opäť kúzelne žiaria!",
-  "world_done": "HOTOVO!"
+  "world_done": "HOTOVO!",
+  "success.you_did_it": "Podarilo sa!"
 }
