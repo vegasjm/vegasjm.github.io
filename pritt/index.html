@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./resources/css2">
 	<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css"/>
     <link rel="stylesheet" href="./resources/styles.css">
-    <title>Pritt Magical World Explorer</title>
+    <title data-i18n="webpage_title">Pritt Magical World Explorer</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
                     <main class="position-relative z-1">
 						<!-- SETTINGS: LANGUAGE SELECTOR-->
 						<div id="settings" class="p-4 p-sm-8 text-center" style='display:none'>
-							<div class="fs-2 text-uppercase my-3 text-primary fontDkSnippity">Select your region
+							<div class="fs-2 text-uppercase my-3 text-primary fontDkSnippity" data-i18n="settings.title">Select your region
 								<br>and language</div>
 							<div>
 								<form method="post" action="https://prittwildnature.com/settings">
@@ -59,6 +59,7 @@
 											<option value="de">German (Germany)</option>
 											<option value="fr-bx">French (Benelux)</option>
 											<option value="nl-bx">Dutch (Benelux)</option>
+											<option value="ca-es">Catalan (Spain)</option>
 											<option value="es">Spanish (Spain)</option>
 											<option value="es-mx">Spanish (Mexico)</option>
 											<option value="it">Italian (Italy)</option>
@@ -67,10 +68,11 @@
 											<option value="cs">Czech (Czechia)</option>
 											<option value="sk">Slovak (Slovakia)</option>
 											<option value="hu">Hungarian (Hungary)</option>
+											<option value="ro">Romanian (Romania)</option>
 										</select>
 									</div>
 									<div class="mt-5">
-										<button id="btn-languageSelector" type="button" class="d-flex rounded-4 p-2 px-8 text-decoration-none btn-home fontDkSnippity"><span class="text-white text-center text-uppercase d-flex flex-column"><span class="fs-2">Enter</span></span>
+										<button id="btn-languageSelector" type="button" class="d-flex rounded-4 p-2 px-8 text-decoration-none btn-home fontDkSnippity"><span class="text-white text-center text-uppercase d-flex flex-column"><span class="fs-2" data-i18n="language_selector_confirm_btn">Enter</span></span>
 										</button>
 									</div>
 									<div class="sqrBall text-uppercase my-3 text-primary fontDkSnippity">
@@ -89,7 +91,7 @@
 											<img src="./resources/img/forest-keeper-btn.png" alt="" class="forest-keeper-btn">
 										</span>
 										<span class="text-white text-center d-flex flex-column">
-											<span class="title btn-home-title">Forest<br>&nbsp;&nbsp;&nbsp;Keeper</span>
+											<span class="title btn-home-title" data-i18n="main_page_forest_keeper">Forest<br>&nbsp;&nbsp;&nbsp;Keeper</span>
 										</span>
 									</a>
 								</div>
@@ -99,7 +101,7 @@
 											<img src="./resources/img/unicorn-btn.png" alt="" class="forest-keeper-btn">
 										</span>
 										<span class="text-white text-center d-flex flex-column">
-											<span class="title btn-home-title">&nbsp;Unicorn</span>
+											<span class="title btn-home-title" data-i18n="main_page_forest_unicorn">&nbsp;Unicorn</span>
 										</span>
 									</a>
 								</div>
@@ -109,7 +111,7 @@
 											<img src="./resources/img/ogre-btn.png" alt="" class="forest-keeper-btn">
 										</span>
 										<span class="text-white text-center d-flex flex-column">
-											<span class="title btn-home-title">&nbsp;Ogre</span>
+											<span class="title btn-home-title" data-i18n="main_page_forest_ogre">&nbsp;Ogre</span>
 										</span>
 									</a>
 								</div>
@@ -119,7 +121,7 @@
 						<div id="game-intro" class="fixed-main-container">
 							<div id="game-wizard">
 								<div id="game-wizard-text" class="game-wizard-text">
-									<div id="game-wizard-text-p">
+									<div id="game-wizard-text-p" data-i18n="game1_init_conversation">
 										This forest is losing
 										<br/>its magic...
 										<br/>Will you help me?
@@ -132,7 +134,7 @@
 							<div id="game-bottom">
 								<a id="btn-start-game-phase1" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
 									<span class="text-white text-center d-flex flex-column">
-										<span class="title btn-home-help">Help Me!</span>
+										<span class="title btn-home-help" data-i18n="game1_help_btn">Help Me!</span>
 									</span>
 								</a>
 							</div>
@@ -158,7 +160,7 @@
 												<img id="game-world-player-congrats" src="" alt="">
 											</div>
 											<div id="message-1" class="btn-home box-stats rounded-4 text-decoration-none gap-1">
-												<h2 id="msg-title" style="font-size: calc(2.3rem + .9vw);">Game over</h2>
+												<h2 id="msg-title" style="font-size: calc(2.3rem + .9vw);" data-i18n="game1_help_gameover">Game over</h2>
 												<div id="msg-body">
 													<img id="game-world-item-pre" class="game-world-item" style="height: 55px;" src="" alt=""> &nbsp;
 													<span id="final-score">0</span>&nbsp;
@@ -166,10 +168,10 @@
 												</div>
 											</div>
 											<div id="message-2" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
-												<h2 id="msg-title"><a id="restart"role="button">Play again</a></h2>
+												<h2 id="msg-title"><a id="restart"role="button" data-i18n="game1_help_play_again">Play again</a></h2>
 											</div>
 											<div id="message-3" class="btn-home box-stats rounded-4 text-decoration-none gap-1" style="margin-top:12px">
-												<h2 id="msg-title"><a id="btn-start-game-phase2" role="button">Next Adventure</a></h2>
+												<h2 id="msg-title"><a id="btn-start-game-phase2" role="button" data-i18n="game1_help_next_adventure">Next Adventure</a></h2>
 											</div>
 											<button id="toggle-sound" class="secondary" style="display:none">Sonido: ON</button>
 										</div>
@@ -187,7 +189,7 @@
 									<span class="title game-phase1-bottom-stats">
 									<img id="world-item" style="height: 35px;" src="" alt=""> <span id="score">4</span> &nbsp;&nbsp;
 							<img style="height: 35px;" src="./resources/img/clock.png" alt=""> <span id="pendingSeconds">90</span>
-							<span style="font-size:20px">sec</span>
+							<span style="font-size:20px" data-i18n="game1_help_seconds_abbreviature">sec</span>
 							</span>
 							</span>
 						</div>
@@ -203,7 +205,7 @@
 						<div id="game-completed" class="fixed-main-container" style="display:none">
 							<div id="game-wizard-completed">
 								<div id="game-wizard-text-completed" class="game-wizard-text">
-									<div id="game-wizard-text-completed-p">
+									<div id="game-wizard-text-completed-p" data-i18n="game1_final_conversation">
 										This forest is losing
 										<br/>its magic...
 										<br/>Will you help me?
@@ -216,12 +218,12 @@
 							<div id="game-bottom-completed">
 								<a id="btn-game-completed" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
 									<span class="text-white text-center d-flex flex-column">
-										<span class="title btn-home-help">HOME</span>
+										<span class="title btn-home-help" data-i18n="end_of_game_opt_home">HOME</span>
 									</span>
 								</a>
 								<a id="btn-templates-completed" role="button" class="d-flex gap-1 flex-nowrap align-items-center rounded-4 text-decoration-none btn-home btn-help">
 									<span class="text-white text-center d-flex flex-column">
-										<span class="title btn-home-help">TEMPLATES</span>
+										<span class="title btn-home-help" data-i18n="end_of_game_opt_templates">TEMPLATES</span>
 									</span>
 								</a>
 							</div>
@@ -229,7 +231,7 @@
 						<!-- IMPRIMT -->
 						<div id="imprimt" class="m-4 m-sm-6" style="display:none">
 						 <div class="p-4 p-sm-6 text-primary font-primary">
-							<h1>Imprint</h1> 
+							<h1 data-i18n="legal_opt_imprimt">Imprint</h1> 
 							<div class="my-5"><h2>Service Provider:</h2>
 							<h3>Henkel Ltd</h3>
 							<p>represented by Directors:<br>Sutinder Bhandal, Simon Duggan-Hill, Julian Crane, Tim Petzinna, Tarakeshwar Raghavan and Gaby Deussen</p>
@@ -245,7 +247,7 @@
 							<p><a href="mailto:ukandireland.comms@henkel.com">ukandireland.comms@henkel.com</a></p>
 						</div></div></div>
 						<!-- TERMS OF USE -->
-						<div id="termsOfUse" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Terms of Use</h1> <div class="my-5"><p>Due to ongoing technical innovations and changes in the law the following Terms of Use may need to be changed and/or amended by Henkel Limited (“Henkel UK”, “we” or “us”) from time to time. We therefore ask the user to review these terms of use before each visit to this website and to take into account any changes and/or amendments. Any changes will take effect upon posting to this Website.</p>
+						<div id="termsOfUse" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1 data-i18n="legal_opt_terms_of_use">Terms of Use</h1> <div class="my-5"><p>Due to ongoing technical innovations and changes in the law the following Terms of Use may need to be changed and/or amended by Henkel Limited (“Henkel UK”, “we” or “us”) from time to time. We therefore ask the user to review these terms of use before each visit to this website and to take into account any changes and/or amendments. Any changes will take effect upon posting to this Website.</p>
 						<h2>Introduction</h2>
 						<p>The use of this website&nbsp;<a href="http://www.henkel.co.uk/">http://www.henkel.co.uk</a>&nbsp;(this “Website”) is subject to the following general terms of use (the “General Terms”). By accessing and using this w Website, you accept without restriction or reservation to be bound by the General Terms, as may be amended from time to time and without notice.</p>
 						<p>This Website is operated on behalf of the Henkel Corporation by Henkel Limited, a company registered in England and Wales under No 00215496 and whose registered office is at Wood Lane End, Hemel Hempstead, Herts HP2 4RQ, United Kingdom. Henkel UK can be contacted on 0044 (0) 1442 27 8000 (Switchboard), by fax on 0044 (0) 1442 278071 or by email. Our VAT number is GB 4109 724 68.</p>
@@ -291,7 +293,7 @@
 						<h2>Contact Us</h2>
 						<p>For general enquiries relating to this Website, please contact us using the&nbsp;Contact Form&nbsp;on this Website.</p></div></div></div>
 						<!-- DATA PRIVACY -->
-						<div id="dataPrivacyStatement" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Data Privacy Statement</h1> <div class="my-5"><h2>General</h2>
+						<div id="dataPrivacyStatement" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1 data-i18n="legal_opt_data_privacy_statement">Data Privacy Statement</h1> <div class="my-5"><h2>General</h2>
 						<p>Henkel Limited, hereinafter referred to as Henkel, respects the privacy of each person who visits our website. Now we would like to inform you of the type of data collected by Henkel and how they are used. You will also learn how you can exercise your data subjects’ rights.</p>
 						<p>Any changes to this Data Protection Statement will be published on this page. This enables you to inform yourself at any time about which data we are collecting and how we use such data.</p>
 						<p>This Data Protection Statement does not apply to websites accessible via hyperlinks on Henkel websites.</p>
@@ -340,12 +342,12 @@
 						<p>In case of processing activities involving your personal data that are carried out on basis of a legitimate interest of Henkel, you have the right to object against such processing of your personal data at any time for reasons resulting from your specific situation. Henkel will stop that processing unless Henkel can prove important reasons for the processing which deserve protection which outweigh your interests, rights and freedoms or if the processing serves to assert, exercise or defend against legal claims.</p>
 						<p>In these cases, or if you have any other questions or wishes in connection with regard to your personal data, please send an e-mail or a letter to our data protection officer, Eamon O’Gorman, Wood Lane End, Hemel Hempstead, Herts HP2 4RQ UK (e-mail:&nbsp;<a href="mailto:eamon.ogorman@henkel.com">eamon.ogorman@henkel.com</a>).</p></div></div></div>
 						<!-- US RESIDENTS -->
-						<div id="usResidents" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1>Note for US residents</h1> <div class="my-5"><p>This website is not intended for residents of the United States.</p>
+						<div id="usResidents" class="m-4 m-sm-6" style="display:none"><div class="p-4 p-sm-6 text-primary font-primary"><h1 data-i18n="legal_opt_us_residents">Note for US residents</h1> <div class="my-5"><p>This website is not intended for residents of the United States.</p>
 						<p>For U.S.Residents, please visit&nbsp;<a href="https://henkel.us/">https://henkel.us</a>.</p></div></div></div>
 						<!-- MULTIMEDIA -->
 						<div id="multimedia" class="px-4 px-sm-8" style="display:none">
 
-						  <div class="ruddy fs-1 text-uppercase mb-5 mt-3 text-center text-primary">DOWNLOAD MAGICAL TEMPLATES</div>
+						  <div class="ruddy fs-1 text-uppercase mb-5 mt-3 text-center text-primary" data-i18n="templates_page_title">DOWNLOAD MAGICAL TEMPLATES</div>
 						  <div class="row row-cols-1 text-center g-5 g-sm-6 video-grid mb-5">
 						    <div class="mb-5">
 						      <div class="video-frame overflow-hidden">
@@ -353,9 +355,9 @@
 								  <source src="https://player.vimeo.com/progressive_redirect/playback/1127205504/rendition/720p/file.mp4?loc=external&log_user=0&signature=5afc52ff6381be1d764a64e12a04fc243076323fdc295d39bbbe582da46925eb" type="video/mp4">
 								</video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">FOREST KEEPER</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_forest_keeper">FOREST KEEPER</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-ForestKeeper.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-ForestKeeper.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 						    <div class="mb-5">
@@ -364,9 +366,9 @@
 								  <source src="https://player.vimeo.com/progressive_redirect/playback/1127205562/rendition/720p/file.mp4?loc=external&log_user=0&signature=d4a5cf7ad0be064d01d6b95cf86ec98671ddc26a2dd3918cc83c623275a92e55" type="video/mp4">
 								</video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">UNICORN</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_unicorn">UNICORN</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-Unicorn.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-Unicorn.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 						    <div class="mb-5">
@@ -375,9 +377,9 @@
 						           <source src="https://player.vimeo.com/progressive_redirect/playback/1127205532/rendition/720p/file.mp4?loc=external&log_user=0&signature=1f6c627944ea366713b518f05656652c28bc737d3be010529707525c067dd983" type="video/mp4">
 						        </video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">OGRE</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_ogre">OGRE</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-Ogre.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-Ogre.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 						    <div class="mb-5">
@@ -386,9 +388,9 @@
 						           <source src="https://player.vimeo.com/progressive_redirect/playback/1127205426/rendition/720p/file.mp4?loc=external&log_user=0&signature=4aa1f39d1f9364c29397ccfada85cf48a4723493d2b2d5ae8dd3161cbfed7ea4" type="video/mp4">
 						        </video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">DRAGON</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_dragon">DRAGON</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-Dragon.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-Dragon.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 							<div class="mb-5">
@@ -397,9 +399,9 @@
 								  <source src="https://player.vimeo.com/progressive_redirect/playback/1127205469/rendition/720p/file.mp4?loc=external&log_user=0&signature=bc786f2934861d4b3fea9b23f45350d5e931a9aed21e356848dcc14799f09c1a" type="video/mp4">
 								</video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">FAIRY</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_fairy">FAIRY</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-Fairy.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-Fairy.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 							<div class="mb-5">
@@ -408,9 +410,9 @@
 						              <source src="https://player.vimeo.com/progressive_redirect/playback/1127205338/rendition/720p/file.mp4?loc=external&log_user=0&signature=82f607a56c2776dbb1e9b4e5393f8e52f18045c23bb15558347bdaf0b3ed0d4f" type="video/mp4">
 						        </video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">HOUSE</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_house">HOUSE</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-House.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-House.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 							<div class="mb-5">
@@ -419,9 +421,9 @@
 						              <source src="https://player.vimeo.com/progressive_redirect/playback/1127205293/rendition/720p/file.mp4?loc=external&log_user=0&signature=41b06e2df6ac8fdd392e7bb17d78efdad5f3f584739b59e96149a20070849323" type="video/mp4">
 						        </video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">RAINBOW</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_rainbow">RAINBOW</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-Rainbow.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-Rainbow.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 							<div class="mb-5">
@@ -430,9 +432,9 @@
 						              <source src="https://player.vimeo.com/progressive_redirect/playback/1127205372/rendition/720p/file.mp4?loc=external&log_user=0&signature=a9912d21d32da900c86e24b7c269354879187fe941b5d30b1e21e805c56dfb8a" type="video/mp4">
 						        </video>
 						      </div>
-						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary">RIVER</div>
+						      <div class="ruddy mt-3 fs-3 text-uppercase text-primary" data-i18n="templates_page_river">RIVER</div>
 						      <div class="mt-3">
-						        <a href="./resources/pdf/Templates-River.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg">Download</a>
+						        <a href="./resources/pdf/Templates-River.pdf" class="d-flex text-uppercase rounded-3 fs-3 text-white p-2 px-8 text-decoration-none btn-pritt rotate-3deg" data-i18n="multimedia.download">Download</a>
 						      </div>
 						    </div>
 						  </div>
@@ -484,10 +486,10 @@
                     </div>
                     <div id="legal" class="p-6 pt-10" style="display:none">
                         <div class="d-flex flex-column gap-1 align-items-center justify-content-center text-video font-primary p-6">
-                            <a id="btn-imprimt" role="button" class="d-flex font-primary text-decoration-none">Imprint </a>
-                            <a id="btn-termsOfUse" role="button" class="d-flex font-primary text-decoration-none">Terms of Use </a>
-                            <a id="btn-dataPrivacyStatement" role="button" class="d-flex font-primary text-decoration-none">Data Privacy Statement </a>
-                            <a id="btn-usResidents" role="button" class="d-flex font-primary text-decoration-none">Note for US residents </a>
+                            <a id="btn-imprimt" role="button" class="d-flex font-primary text-decoration-none" data-i18n="legal.imprint.title">Imprint </a>
+                            <a id="btn-termsOfUse" role="button" class="d-flex font-primary text-decoration-none" data-i18n="legal.terms.title">Terms of Use </a>
+                            <a id="btn-dataPrivacyStatement" role="button" class="d-flex font-primary text-decoration-none" data-i18n="legal.privacy.title">Data Privacy Statement </a>
+                            <a id="btn-usResidents" role="button" class="d-flex font-primary text-decoration-none" data-i18n="legal.us.title">Note for US residents </a>
                         </div>
                     </div>
                 </footer>
@@ -498,6 +500,15 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+	
+	<!-- i18n -->
+	<script src="https://unpkg.com/i18next@23.7.20/i18next.min.js"></script>
+	<script src="https://unpkg.com/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+	<!-- Init i18n -->
+	<script src="./resources/i18n.js"></script>
+
+	<!-- App scripts -->
     <script src="./resources/game.js"></script>
     <script src="./resources/game-diamonds.js"></script>
     <script src="./resources/game-puzzle.js"></script>

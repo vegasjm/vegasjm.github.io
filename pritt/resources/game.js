@@ -42,7 +42,7 @@ var PRITT_GAME = PRITT_GAME || {
         $('#btn-languageSelector').on('touch click', function(e) {
             var language = $('#languageSelector').find(":selected").val();
             PRITT_GAME.language = language;
-            //TODO: Load all texts function	
+            loadLanguage(PRITT_GAME.language);
             PRITT_GAME.loadHome();
 			e.stopPropagation();
         });
