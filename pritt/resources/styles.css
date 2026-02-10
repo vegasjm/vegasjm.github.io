@@ -23,7 +23,6 @@
   --bs-body-font-family: "Road Rage", sans-serif;
 }
 :root:lang(nl-bx) .title {
-  font-size: clamp(37px, 9vw, 45px);
   color: #ffffff;
 }
 @font-face {
@@ -399,6 +398,11 @@ video {
 .btn-home-world .btn-home .btn-home-icon svg {
   fill: #fff;
   max-width: 3rem;
+}
+#btn-imprimt, #btn-termsOfUse,
+#btn-dataPrivacyStatement, #btn-usResidents {
+    width: 180%;
+    justify-content: center;
 }
 .subtitle {
   font-size: clamp(25px, 6vw, 40px);
