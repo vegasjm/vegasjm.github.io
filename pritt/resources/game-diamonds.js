@@ -1,9 +1,9 @@
 (() => {
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
-	const ANIMATION_FRAME_INTERVAL = 10; // canvia aquest valor per fer-ho més ràpid o lent
-	const DAMAGE_VALUE = 5;
-	
+    const ANIMATION_FRAME_INTERVAL = 10; // canvia aquest valor per fer-ho més ràpid o lent
+    const DAMAGE_VALUE = 5;
+
     let W = Math.min(576, document.body.clientWidth);
     let H = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
 
@@ -19,7 +19,7 @@
     const restartBtn = document.getElementById('restart');
     const toggleSoundBtn = document.getElementById('toggle-sound');
 
-	let difficultyLevel = 0; // 0 = fácil, irá aumentando poco a poco
+    let difficultyLevel = 0; // 0 = fácil, irá aumentando poco a poco
     let running = false;
     let paused = false;
     let lastTime = 0;
@@ -31,11 +31,11 @@
     let best = parseInt(localStorage.getItem('diamantes_best') || '0', 10);
     bestEl.textContent = best;
     let soundOn = true;
-	let damageFlash = 0;
-	let frameCounter = 0; // per comptar frames globals
+    let damageFlash = 0;
+    let frameCounter = 0; // per comptar frames globals
 
     const diamonds = [];
-	const badObjects = [];
+    const badObjects = [];
 
     const player = PRITT_GAME.world === 1 ? {
         x: 400,
@@ -64,70 +64,70 @@
     sprite2Img.src = './resources/img/world-2-player.png';
     const sprite3Img = new Image();
     sprite3Img.src = './resources/img/world-3-player.png';
-	
+
     // Cargar sprites de diamantes
     const diamond1Img_1 = new Image();
     diamond1Img_1.src = './resources/img/world-1/diamond-1_1.png';
-	const diamond1Img_2 = new Image();
+    const diamond1Img_2 = new Image();
     diamond1Img_2.src = './resources/img/world-1/diamond-1_2.png';
-	const diamond1Img_3 = new Image();
+    const diamond1Img_3 = new Image();
     diamond1Img_3.src = './resources/img/world-1/diamond-1_3.png';
-	const diamond1Img_4 = new Image();
+    const diamond1Img_4 = new Image();
     diamond1Img_4.src = './resources/img/world-1/diamond-1_4.png';
-	const diamond1Imgs = new Array(diamond1Img_1,diamond1Img_2,diamond1Img_3,diamond1Img_4);
-	
+    const diamond1Imgs = new Array(diamond1Img_1, diamond1Img_2, diamond1Img_3, diamond1Img_4);
+
     const diamond2Img_1 = new Image();
     diamond2Img_1.src = './resources/img/world-2/diamond-2_1.png';
-	const diamond2Img_2 = new Image();
+    const diamond2Img_2 = new Image();
     diamond2Img_2.src = './resources/img/world-2/diamond-2_2.png';
-	const diamond2Img_3 = new Image();
+    const diamond2Img_3 = new Image();
     diamond2Img_3.src = './resources/img/world-2/diamond-2_3.png';
-	const diamond2Img_4 = new Image();
+    const diamond2Img_4 = new Image();
     diamond2Img_4.src = './resources/img/world-2/diamond-2_4.png';
-	const diamond2Imgs = new Array(diamond2Img_1,diamond2Img_2,diamond2Img_3,diamond2Img_4);
+    const diamond2Imgs = new Array(diamond2Img_1, diamond2Img_2, diamond2Img_3, diamond2Img_4);
 
     const diamond3Img_1 = new Image();
     diamond3Img_1.src = './resources/img/world-3/diamond-3_1.png';
-	const diamond3Img_2 = new Image();
+    const diamond3Img_2 = new Image();
     diamond3Img_2.src = './resources/img/world-3/diamond-3_2.png';
-	const diamond3Img_3 = new Image();
+    const diamond3Img_3 = new Image();
     diamond3Img_3.src = './resources/img/world-3/diamond-3_3.png';
-	const diamond3Img_4 = new Image();
+    const diamond3Img_4 = new Image();
     diamond3Img_4.src = './resources/img/world-3/diamond-3_4.png';
-	const diamond3Imgs = new Array(diamond3Img_1,diamond3Img_2,diamond3Img_3,diamond3Img_4);
-	
-	// Sprite de objeto malo
-	const badItem1Img_1 = new Image();
-	badItem1Img_1.src = './resources/img/world-1/bad-item-world-1_1.png'; 
-	const badItem1Img_2 = new Image();
-	badItem1Img_2.src = './resources/img/world-1/bad-item-world-1_2.png'; 
-	const badItem1Img_3 = new Image();
-	badItem1Img_3.src = './resources/img/world-1/bad-item-world-1_3.png'; 
-	const badItem1Img_4 = new Image();
-	badItem1Img_4.src = './resources/img/world-1/bad-item-world-1_4.png'; 
-	const badItem1Imgs = new Array(badItem1Img_1,badItem1Img_2,badItem1Img_3,badItem1Img_4);
-	
-	const badItem2Img_1 = new Image();
-	badItem2Img_1.src = './resources/img/world-2/bad-item-world-2_1.png'; 
-	const badItem2Img_2 = new Image();
-	badItem2Img_2.src = './resources/img/world-2/bad-item-world-2_2.png'; 
-	const badItem2Img_3 = new Image();
-	badItem2Img_3.src = './resources/img/world-2/bad-item-world-2_3.png'; 
-	const badItem2Img_4 = new Image();
-	badItem2Img_4.src = './resources/img/world-2/bad-item-world-2_4.png'; 
-	const badItem2Imgs = new Array(badItem2Img_1,badItem2Img_2,badItem2Img_3,badItem2Img_4);
-	
-	const badItem3Img_1 = new Image();
-	badItem3Img_1.src = './resources/img/world-3/bad-item-world-3_1.png'; 
-	const badItem3Img_2 = new Image();
-	badItem3Img_2.src = './resources/img/world-3/bad-item-world-3_2.png'; 
-	const badItem3Img_3 = new Image();
-	badItem3Img_3.src = './resources/img/world-3/bad-item-world-3_3.png'; 
-	const badItem3Img_4 = new Image();
-	badItem3Img_4.src = './resources/img/world-3/bad-item-world-3_4.png'; 
-	const badItem3Imgs = new Array(badItem3Img_1,badItem3Img_2,badItem3Img_3,badItem3Img_4);
+    const diamond3Imgs = new Array(diamond3Img_1, diamond3Img_2, diamond3Img_3, diamond3Img_4);
 
-    window.resize = function() {
+    // Sprite de objeto malo
+    const badItem1Img_1 = new Image();
+    badItem1Img_1.src = './resources/img/world-1/bad-item-world-1_1.png';
+    const badItem1Img_2 = new Image();
+    badItem1Img_2.src = './resources/img/world-1/bad-item-world-1_2.png';
+    const badItem1Img_3 = new Image();
+    badItem1Img_3.src = './resources/img/world-1/bad-item-world-1_3.png';
+    const badItem1Img_4 = new Image();
+    badItem1Img_4.src = './resources/img/world-1/bad-item-world-1_4.png';
+    const badItem1Imgs = new Array(badItem1Img_1, badItem1Img_2, badItem1Img_3, badItem1Img_4);
+
+    const badItem2Img_1 = new Image();
+    badItem2Img_1.src = './resources/img/world-2/bad-item-world-2_1.png';
+    const badItem2Img_2 = new Image();
+    badItem2Img_2.src = './resources/img/world-2/bad-item-world-2_2.png';
+    const badItem2Img_3 = new Image();
+    badItem2Img_3.src = './resources/img/world-2/bad-item-world-2_3.png';
+    const badItem2Img_4 = new Image();
+    badItem2Img_4.src = './resources/img/world-2/bad-item-world-2_4.png';
+    const badItem2Imgs = new Array(badItem2Img_1, badItem2Img_2, badItem2Img_3, badItem2Img_4);
+
+    const badItem3Img_1 = new Image();
+    badItem3Img_1.src = './resources/img/world-3/bad-item-world-3_1.png';
+    const badItem3Img_2 = new Image();
+    badItem3Img_2.src = './resources/img/world-3/bad-item-world-3_2.png';
+    const badItem3Img_3 = new Image();
+    badItem3Img_3.src = './resources/img/world-3/bad-item-world-3_3.png';
+    const badItem3Img_4 = new Image();
+    badItem3Img_4.src = './resources/img/world-3/bad-item-world-3_4.png';
+    const badItem3Imgs = new Array(badItem3Img_1, badItem3Img_2, badItem3Img_3, badItem3Img_4);
+
+    window.resize = function () {
         const rect = canvas.getBoundingClientRect();
         W = Math.min(576, document.body.clientWidth);
         H = window.innerHeight - $("#page-header").height() - ($("#menu-footer").height() * 2);
@@ -148,23 +148,23 @@
 
     const rand = (a, b) => Math.random() * (b - a) + a;
 
-	function drawDiamond(x, y, size, rotation, isBad = false, frame) {
-		ctx.save();
-		ctx.translate(x, y);
-		ctx.rotate(rotation);
+    function drawDiamond(x, y, size, rotation, isBad = false, frame) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
 
-		if (isBad) {
-			if (PRITT_GAME.world == 1) ctx.drawImage(badItem1Imgs[frame], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 2) ctx.drawImage(badItem2Imgs[frame], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 3) ctx.drawImage(badItem3Imgs[frame], -size / 2, -size / 2, size, size);
-		} else {
-			if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Imgs[frame], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Imgs[frame], -size / 2, -size / 2, size, size);
-			if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Imgs[frame], -size / 2, -size / 2, size, size);
-		}
+        if (isBad) {
+            if (PRITT_GAME.world == 1) ctx.drawImage(badItem1Imgs[frame], -size / 2, -size / 2, size, size);
+            if (PRITT_GAME.world == 2) ctx.drawImage(badItem2Imgs[frame], -size / 2, -size / 2, size, size);
+            if (PRITT_GAME.world == 3) ctx.drawImage(badItem3Imgs[frame], -size / 2, -size / 2, size, size);
+        } else {
+            if (PRITT_GAME.world == 1) ctx.drawImage(diamond1Imgs[frame], -size / 2, -size / 2, size, size);
+            if (PRITT_GAME.world == 2) ctx.drawImage(diamond2Imgs[frame], -size / 2, -size / 2, size, size);
+            if (PRITT_GAME.world == 3) ctx.drawImage(diamond3Imgs[frame], -size / 2, -size / 2, size, size);
+        }
 
-		ctx.restore();
-	}
+        ctx.restore();
+    }
 
     function drawPlayer() {
         if (!sprite1Img.complete || !sprite2Img.complete || !sprite3Img.complete) return;
@@ -181,192 +181,192 @@
         }
     }
 
-	function spawnDiamond() {
-		const size = Math.round(rand(50, 50));
-		const x = rand(size, W - size);
-		const y = -size - rand(10, 80);
-		const baseSpeed = 100 + difficultyLevel * 10;
-		const speed = rand(baseSpeed, baseSpeed + 120);
-		const rot = rand(0, Math.PI * 2);
+    function spawnDiamond() {
+        const size = Math.round(rand(50, 50));
+        const x = rand(size, W - size);
+        const y = -size - rand(10, 80);
+        const baseSpeed = 100 + difficultyLevel * 10;
+        const speed = rand(baseSpeed, baseSpeed + 120);
+        const rot = rand(0, Math.PI * 2);
 
-		const isBad = Math.random() < 0.2; // 20% de probabilidad
+        const isBad = Math.random() < 0.2; // 20% de probabilidad
 
-		diamonds.push({
-			x,
-			y,
-			size,
-			speed,
-			rot,
-			rotSpeed: rand(-1, 1) * 0.004,
-			isBad,
-		    imgIndex: 0,
-		    frame: 0,
-		    dir: 1
-		});
-	}
-
-	
-	function spawnBadObject() {
-		const size = Math.round(rand(40, 60));
-		const x = rand(size, W - size);
-		const y = -size - rand(10, 80);
-		const baseSpeed = 120 + difficultyLevel * 15;
-		const speed = rand(baseSpeed, baseSpeed + 140);
-		const rot = rand(0, Math.PI * 2);
-
-		badObjects.push({
-			x,
-			y,
-			size,
-			speed,
-			rot,
-			rotSpeed: rand(-1, 1) * 0.006,
-		    imgIndex: 0,
-		    frame: 0,
-		    dir: 1
-		});
-	}
-	
-	function drawBadObject(x, y, size, rotation) {
-		ctx.save();
-		ctx.translate(x, y);
-		ctx.rotate(rotation);
-		ctx.fillStyle = 'rgba(80, 0, 0, 0.9)';
-		ctx.strokeStyle = 'rgba(255, 60, 60, 0.8)';
-		ctx.lineWidth = 2;
-		ctx.beginPath();
-		ctx.moveTo(0, -size / 2);
-		for (let i = 1; i < 6; i++) {
-			const angle = (i * Math.PI * 2) / 5;
-			const radius = size * (i % 2 === 0 ? 0.5 : 1);
-			ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-		}
-		ctx.closePath();
-		ctx.fill();
-		ctx.stroke();
-		ctx.restore();
-	}
-
-	const sparkles = [];
-	const flashes = [];
-
-	function createSparkle(x, y) {
-		const colors = [
-			'255,255,230', // blanco cálido
-			'200,220,255', // azul hielo
-			'255,245,180'  // amarillo luz suave
-		];
-
-		// Chispas
-		for (let i = 0; i < 26; i++) {
-			const angle = Math.random() * Math.PI * 2;
-			const speed = Math.random() * 2.5 + 0.5; // más lento
-			const length = Math.random() * 25 + 10;
-			sparkles.push({
-				x, y,
-				vx: Math.cos(angle) * speed,
-				vy: Math.sin(angle) * speed,
-				length,
-				life: 1,
-				decay: 0.015 + Math.random() * 0.015, // dura más
-				color: colors[Math.floor(Math.random() * colors.length)],
-				width: Math.random() * 2 + 0.6
-			});
-		}
-
-		// Flash central
-		flashes.push({
-			x, y,
-			radius: 0,
-			maxRadius: 40 + Math.random() * 20,
-			alpha: 0.6,
-			decay: 0.02
-		});
-	}
-	
-	function createEvilEffect(x, y) {
-		// Flash oscuro principal
-		flashes.push({
-			x, y,
-			radius: 0,
-			maxRadius: 60 + Math.random() * 20,
-			alpha: 0.5,
-			decay: 0.03,
-			type: 'evil'
-		});
-
-		// Chispas rojas oscuras que se expanden poco
-		for (let i = 0; i < 18; i++) {
-			const angle = Math.random() * Math.PI * 2;
-			const speed = Math.random() * 2 + 0.5;
-			const length = Math.random() * 20 + 8;
-			sparkles.push({
-				x, y,
-				vx: Math.cos(angle) * speed,
-				vy: Math.sin(angle) * speed,
-				length,
-				life: 1,
-				decay: 0.02 + Math.random() * 0.01,
-				color: Math.random() < 0.5 ? '180,0,200' : '255,30,30',
-				width: Math.random() * 2 + 0.8
-			});
-		}
-	}
+        diamonds.push({
+            x,
+            y,
+            size,
+            speed,
+            rot,
+            rotSpeed: rand(-1, 1) * 0.004,
+            isBad,
+            imgIndex: 0,
+            frame: 0,
+            dir: 1
+        });
+    }
 
 
-	function drawSparkles() {
-		ctx.save();
-		ctx.globalCompositeOperation = 'lighter';
+    function spawnBadObject() {
+        const size = Math.round(rand(40, 60));
+        const x = rand(size, W - size);
+        const y = -size - rand(10, 80);
+        const baseSpeed = 120 + difficultyLevel * 15;
+        const speed = rand(baseSpeed, baseSpeed + 140);
+        const rot = rand(0, Math.PI * 2);
 
-		// Flash radial
-		for (let i = flashes.length - 1; i >= 0; i--) {
-			const f = flashes[i];
-			const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius);
-			if (f.type === 'evil') {
-				gradient.addColorStop(0, `rgba(120,0,200,${f.alpha})`);
-				gradient.addColorStop(0.5, `rgba(255,30,30,${f.alpha * 0.5})`);
-				gradient.addColorStop(1, `rgba(0,0,0,0)`);
-			} else {
-				gradient.addColorStop(0, `rgba(255,255,230,${f.alpha})`);
-				gradient.addColorStop(0.4, `rgba(255,245,180,${f.alpha * 0.6})`);
-				gradient.addColorStop(1, `rgba(200,220,255,0)`);
-			}
+        badObjects.push({
+            x,
+            y,
+            size,
+            speed,
+            rot,
+            rotSpeed: rand(-1, 1) * 0.006,
+            imgIndex: 0,
+            frame: 0,
+            dir: 1
+        });
+    }
 
-			ctx.fillStyle = gradient;
-			ctx.beginPath();
-			ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-			ctx.fill();
+    function drawBadObject(x, y, size, rotation) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        ctx.fillStyle = 'rgba(80, 0, 0, 0.9)';
+        ctx.strokeStyle = 'rgba(255, 60, 60, 0.8)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, -size / 2);
+        for (let i = 1; i < 6; i++) {
+            const angle = (i * Math.PI * 2) / 5;
+            const radius = size * (i % 2 === 0 ? 0.5 : 1);
+            ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
 
-			f.radius += 3;
-			f.alpha -= f.decay;
-			if (f.alpha <= 0) flashes.splice(i, 1);
-		}
+    const sparkles = [];
+    const flashes = [];
 
-		// Rayos de chispa
-		for (let i = sparkles.length - 1; i >= 0; i--) {
-			const s = sparkles[i];
-			ctx.beginPath();
-			ctx.strokeStyle = `rgba(${s.color},${s.life})`;
-			ctx.lineWidth = s.width;
-			ctx.moveTo(s.x, s.y);
-			ctx.lineTo(
-				s.x - s.vx * s.length * 0.3,
-				s.y - s.vy * s.length * 0.3
-			);
-			ctx.stroke();
+    function createSparkle(x, y) {
+        const colors = [
+            '255,255,230', // blanco cálido
+            '200,220,255', // azul hielo
+            '255,245,180'  // amarillo luz suave
+        ];
 
-			s.x += s.vx;
-			s.y += s.vy;
-			s.life -= s.decay;
+        // Chispas
+        for (let i = 0; i < 26; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 2.5 + 0.5; // más lento
+            const length = Math.random() * 25 + 10;
+            sparkles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length,
+                life: 1,
+                decay: 0.015 + Math.random() * 0.015, // dura más
+                color: colors[Math.floor(Math.random() * colors.length)],
+                width: Math.random() * 2 + 0.6
+            });
+        }
 
-			if (s.life <= 0) sparkles.splice(i, 1);
-		}
+        // Flash central
+        flashes.push({
+            x, y,
+            radius: 0,
+            maxRadius: 40 + Math.random() * 20,
+            alpha: 0.6,
+            decay: 0.02
+        });
+    }
 
-		ctx.restore();
-	}
+    function createEvilEffect(x, y) {
+        // Flash oscuro principal
+        flashes.push({
+            x, y,
+            radius: 0,
+            maxRadius: 60 + Math.random() * 20,
+            alpha: 0.5,
+            decay: 0.03,
+            type: 'evil'
+        });
 
-    window.resetGame= function() {
-		difficultyLevel = 0;
+        // Chispas rojas oscuras que se expanden poco
+        for (let i = 0; i < 18; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 2 + 0.5;
+            const length = Math.random() * 20 + 8;
+            sparkles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length,
+                life: 1,
+                decay: 0.02 + Math.random() * 0.01,
+                color: Math.random() < 0.5 ? '180,0,200' : '255,30,30',
+                width: Math.random() * 2 + 0.8
+            });
+        }
+    }
+
+
+    function drawSparkles() {
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+
+        // Flash radial
+        for (let i = flashes.length - 1; i >= 0; i--) {
+            const f = flashes[i];
+            const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius);
+            if (f.type === 'evil') {
+                gradient.addColorStop(0, `rgba(120,0,200,${f.alpha})`);
+                gradient.addColorStop(0.5, `rgba(255,30,30,${f.alpha * 0.5})`);
+                gradient.addColorStop(1, `rgba(0, 0, 0, 0)`);
+            } else {
+                gradient.addColorStop(0, `rgba(255,255,230,${f.alpha})`);
+                gradient.addColorStop(0.4, `rgba(255,245,180,${f.alpha * 0.6})`);
+                gradient.addColorStop(1, `rgba(200, 220, 255, 0)`);
+            }
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            f.radius += 3;
+            f.alpha -= f.decay;
+            if (f.alpha <= 0) flashes.splice(i, 1);
+        }
+
+        // Rayos de chispa
+        for (let i = sparkles.length - 1; i >= 0; i--) {
+            const s = sparkles[i];
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${s.color},${s.life})`;
+            ctx.lineWidth = s.width;
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(
+                s.x - s.vx * s.length * 0.3,
+                s.y - s.vy * s.length * 0.3
+            );
+            ctx.stroke();
+
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life -= s.decay;
+
+            if (s.life <= 0) sparkles.splice(i, 1);
+        }
+
+        ctx.restore();
+    }
+
+    window.resetGame = function () {
+        difficultyLevel = 0;
         diamonds.length = 0;
         score = 0;
         lives = 500;
@@ -377,7 +377,7 @@
         player.x = Math.max(0, Math.min(W - player.w, player.x));
     }
 
-    window.gameOver = function() {
+    window.gameOver = function () {
         running = false;
         msgTitle.textContent = t("success.you_did_it");
         $('.game-world-item').attr("src", './resources/img/world-' + PRITT_GAME.world + '/diamond-' + PRITT_GAME.world + '_1.png');
@@ -410,39 +410,23 @@
     }
 
     let isPointerDown = false;
-    canvas.addEventListener('mousedown', e => {
+    canvas.addEventListener("pointerdown", e => {
         isPointerDown = true;
         setPlayerX(e.clientX);
     });
-    window.addEventListener('mouseup', () => {
-        isPointerDown = false;
-    });
-    canvas.addEventListener('mousemove', e => {
-        if (running && !paused && isPointerDown) setPlayerX(e.clientX);
+
+    canvas.addEventListener("pointermove", e => {
+        if (running && !paused && isPointerDown) {
+            setPlayerX(e.clientX);
+        }
     });
 
-    canvas.addEventListener('touchstart', e => {
-        if (e.touches && e.touches[0]) {
-            isPointerDown = true;
-            setPlayerX(e.touches[0].clientX);
-        }
-    }, {
-        passive: false
-    });
-    canvas.addEventListener('touchmove', e => {
-        if (running && !paused && e.touches && e.touches[0]) {
-            e.preventDefault();
-            setPlayerX(e.touches[0].clientX);
-        }
-    }, {
-        passive: false
-    });
-    window.addEventListener('touchend', () => {
+    window.addEventListener("pointerup", () => {
         isPointerDown = false;
     });
 
     const audioCtx = (window.AudioContext || window.webkitAudioContext) ?
-        new(window.AudioContext || window.webkitAudioContext)() :
+        new (window.AudioContext || window.webkitAudioContext)() :
         null;
 
     function playPing() {
@@ -494,151 +478,167 @@
         noise2.start(now);
         noise2.stop(now + 0.03);
     }
-	
-	function playThud() {
-	  if (!soundOn) return;
-	  const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-	  // ⚡ Osc principal (descàrrega elèctrica)
-	  const osc = ctx.createOscillator();
-	  const gain = ctx.createGain();
-	  const distortion = ctx.createWaveShaper();
-	  const delay = ctx.createDelay();
-	  const feedback = ctx.createGain();
-	  const reverbGain = ctx.createGain();
-	  const reverbDelay1 = ctx.createDelay();
-	  const reverbDelay2 = ctx.createDelay();
+    function playThud() {
+        if (!soundOn) return;
+        const ctx = audioCtx;
 
-	  // Descàrrega elèctrica
-	  osc.type = 'sawtooth';
-	  osc.frequency.setValueAtTime(220, ctx.currentTime);
-	  osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
-	  gain.gain.setValueAtTime(0.6, ctx.currentTime);
-	  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-	  distortion.curve = makeDistortionCurve(100);
-	  distortion.oversample = '4x';
-	  delay.delayTime.value = 0.07;
-	  feedback.gain.value = 0.35;
-	  reverbGain.gain.value = 0.25;
-	  reverbDelay1.delayTime.value = 0.12;
-	  reverbDelay2.delayTime.value = 0.24;
+        // ⚡ Osc principal (descàrrega elèctrica)
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const distortion = ctx.createWaveShaper();
+        const delay = ctx.createDelay();
+        const feedback = ctx.createGain();
+        const reverbGain = ctx.createGain();
+        const reverbDelay1 = ctx.createDelay();
+        const reverbDelay2 = ctx.createDelay();
 
-	  // Connexions
-	  osc.connect(distortion);
-	  distortion.connect(gain);
-	  gain.connect(delay);
-	  gain.connect(reverbGain);
-	  delay.connect(feedback);
-	  feedback.connect(delay);
-	  delay.connect(ctx.destination);
-	  reverbGain.connect(reverbDelay1);
-	  reverbDelay1.connect(reverbDelay2);
-	  reverbDelay2.connect(ctx.destination);
+        // Descàrrega elèctrica
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.6, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        distortion.curve = makeDistortionCurve(100);
+        distortion.oversample = '4x';
+        delay.delayTime.value = 0.07;
+        feedback.gain.value = 0.35;
+        reverbGain.gain.value = 0.25;
+        reverbDelay1.delayTime.value = 0.12;
+        reverbDelay2.delayTime.value = 0.24;
 
-	  // 💣 Subgreu cinematogràfic (el tro)
-	  const sub = ctx.createOscillator();
-	  const subGain = ctx.createGain();
-	  sub.type = 'sine';
-	  sub.frequency.setValueAtTime(60, ctx.currentTime + 0.05);
-	  sub.frequency.exponentialRampToValueAtTime(25, ctx.currentTime + 0.65);
+        // Connexions
+        osc.connect(distortion);
+        distortion.connect(gain);
+        gain.connect(delay);
+        gain.connect(reverbGain);
+        delay.connect(feedback);
+        feedback.connect(delay);
+        delay.connect(ctx.destination);
+        reverbGain.connect(reverbDelay1);
+        reverbDelay1.connect(reverbDelay2);
+        reverbDelay2.connect(ctx.destination);
 
-	  // ✨ Envolvent suau i potent
-	  subGain.gain.setValueAtTime(0.0, ctx.currentTime + 0.05);
-	  subGain.gain.linearRampToValueAtTime(0.6, ctx.currentTime + 0.08); // fade-in
-	  subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.65); // decay
+        // 💣 Subgreu cinematogràfic (el tro)
+        const sub = ctx.createOscillator();
+        const subGain = ctx.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(60, ctx.currentTime + 0.05);
+        sub.frequency.exponentialRampToValueAtTime(25, ctx.currentTime + 0.65);
 
-	  // Lligam subgreu
-	  sub.connect(subGain).connect(ctx.destination);
+        // ✨ Envolvent suau i potent
+        subGain.gain.setValueAtTime(0.0, ctx.currentTime + 0.05);
+        subGain.gain.linearRampToValueAtTime(0.6, ctx.currentTime + 0.08); // fade-in
+        subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.65); // decay
 
-	  // Arrencar tot
-	  osc.start(ctx.currentTime);
-	  sub.start(ctx.currentTime + 0.05);
-	  osc.stop(ctx.currentTime + 0.15);
-	  sub.stop(ctx.currentTime + 0.7);
+        // Lligam subgreu
+        sub.connect(subGain).connect(ctx.destination);
 
-	  // Distorsió
-	  function makeDistortionCurve(amount = 50) {
-		const n = 44100, curve = new Float32Array(n);
-		const deg = Math.PI / 180;
-		for (let i = 0; i < n; i++) {
-		  const x = (i * 2) / n - 1;
-		  curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
-		}
-		return curve;
-	  }
-	  screenShake();
-	}
-	
-	function screenLightningFlash(damageValue = -DAMAGE_VALUE) {
-	  const flash = document.getElementById('lightning-flash');
-	  const gameContainer = document.getElementById('gameContainer') || document.body;
+        // Arrencar tot
+        osc.start(ctx.currentTime);
+        sub.start(ctx.currentTime + 0.05);
+        osc.stop(ctx.currentTime + 0.15);
+        sub.stop(ctx.currentTime + 0.7);
 
-	  // Animació vermella invertida (fora → dins)
-	  flash.animate(
-		[
-		  { opacity: 0, transform: 'scale(1.6)', filter: 'blur(15px)', background: 'radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(120,0,0,0.2) 60%, transparent 100%)' },
-		  { opacity: 1, transform: 'scale(1)', filter: 'blur(3px)', background: 'radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(255,60,60,0.3) 60%, transparent 100%)' },
-		  { opacity: 0.3, transform: 'scale(0.8)', filter: 'blur(0px)', background: 'radial-gradient(circle, rgba(255,0,0,0.5) 0%, rgba(100,0,0,0.2) 60%, transparent 100%)' },
-		  { opacity: 0 }
-		],
-		{ duration: 500, easing: 'ease-out' }
-	  );
+        // Distorsió
+        function makeDistortionCurve(amount = 50) {
+            const n = 44100, curve = new Float32Array(n);
+            const deg = Math.PI / 180;
+            for (let i = 0; i < n; i++) {
+                const x = (i * 2) / n - 1;
+                curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+            }
+            return curve;
+        }
 
-	  // Mostra el text del dany (ex: "-5")
-	  const dmgText = document.createElement('div');
-	  dmgText.className = 'damage-text';
-	  dmgText.textContent = damageValue;
+        screenShake();
+    }
 
-	  Object.assign(dmgText.style, {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		color: 'red',
-		fontSize: '48px',
-		fontWeight: 'bold',
-		textShadow: '0 0 8px rgba(255,0,0,0.8)',
-		pointerEvents: 'none',
-		zIndex: 10000,
-	  });
+    function screenLightningFlash(damageValue = -DAMAGE_VALUE) {
+        const flash = document.getElementById('lightning-flash');
+        const gameContainer = document.getElementById('gameContainer') || document.body;
 
-	  gameContainer.appendChild(dmgText);
+        // Animació vermella invertida (fora → dins)
+        flash.animate(
+            [
+                {
+                    opacity: 0,
+                    transform: 'scale(1.6)',
+                    filter: 'blur(15px)',
+                    background: 'radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(120,0,0,0.2) 60%, transparent 100%)'
+                },
+                {
+                    opacity: 1,
+                    transform: 'scale(1)',
+                    filter: 'blur(3px)',
+                    background: 'radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(255,60,60,0.3) 60%, transparent 100%)'
+                },
+                {
+                    opacity: 0.3,
+                    transform: 'scale(0.8)',
+                    filter: 'blur(0px)',
+                    background: 'radial-gradient(circle, rgba(255,0,0,0.5) 0%, rgba(100,0,0,0.2) 60%, transparent 100%)'
+                },
+                {opacity: 0}
+            ],
+            {duration: 500, easing: 'ease-out'}
+        );
 
-	  dmgText.animate(
-		[
-		  { opacity: 1, transform: 'translate(-50%, -50%) scale(1.2)' },
-		  { opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)' }
-		],
-		{ duration: 1000, easing: 'ease-out' }
-	  );
+        // Mostra el text del dany (ex: "-5")
+        const dmgText = document.createElement('div');
+        dmgText.className = 'damage-text';
+        dmgText.textContent = damageValue;
 
-	  setTimeout(() => dmgText.remove(), 1000);
-	}
-	
-	function screenShake(intensity = 10, duration = 400) {
-	  const container = document.getElementById('game-container');
-	  if (!container) return;
-	  
-	  let start = null;
-	  const originalTransform = container.style.transform;
+        Object.assign(dmgText.style, {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: 'red',
+            fontSize: '48px',
+            fontWeight: 'bold',
+            textShadow: '0 0 8px rgba(255,0,0,0.8)',
+            pointerEvents: 'none',
+            zIndex: 10000,
+        });
 
-	  function animateShake(timestamp) {
-		if (!start) start = timestamp;
-		const elapsed = timestamp - start;
-		const progress = elapsed / duration;
-		const decay = 1 - progress;
-		const offsetX = (Math.random() - 0.5) * 2 * intensity * decay;
-		const offsetY = (Math.random() - 0.5) * 2 * intensity * decay;
-		container.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-		if (elapsed < duration) {
-		  requestAnimationFrame(animateShake);
-		} else {
-		  container.style.transform = originalTransform;
-		}
-	  }
+        gameContainer.appendChild(dmgText);
 
-	  requestAnimationFrame(animateShake);
-	}
+        dmgText.animate(
+            [
+                {opacity: 1, transform: 'translate(-50%, -50%) scale(1.2)'},
+                {opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)'}
+            ],
+            {duration: 1000, easing: 'ease-out'}
+        );
+
+        setTimeout(() => dmgText.remove(), 1000);
+    }
+
+    function screenShake(intensity = 10, duration = 400) {
+        const container = document.getElementById('game-container');
+        if (!container) return;
+
+        let start = null;
+        const originalTransform = container.style.transform;
+
+        function animateShake(timestamp) {
+            if (!start) start = timestamp;
+            const elapsed = timestamp - start;
+            const progress = elapsed / duration;
+            const decay = 1 - progress;
+            const offsetX = (Math.random() - 0.5) * 2 * intensity * decay;
+            const offsetY = (Math.random() - 0.5) * 2 * intensity * decay;
+            container.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            if (elapsed < duration) {
+                requestAnimationFrame(animateShake);
+            } else {
+                container.style.transform = originalTransform;
+            }
+        }
+
+        requestAnimationFrame(animateShake);
+    }
 
     function loop(ts) {
         if (!running || paused) {
@@ -655,15 +655,15 @@
             spawnTimer = 0;
             spawnDiamond();
         }
-		
-		if (difficultyTimer >= 2000) { // cada 5 segundos aumenta un poco
-			difficultyTimer = 0;
-			// Incrementa el nivel de dificultad
-			difficultyLevel++;
-			// Los diamantes aparecen más seguido
-			spawnInterval = Math.max(300, spawnInterval - 50);
-			// También aumentan ligeramente la velocidad base (ya lo usamos arriba)
-		}
+
+        if (difficultyTimer >= 2000) { // cada 5 segundos aumenta un poco
+            difficultyTimer = 0;
+            // Incrementa el nivel de dificultad
+            difficultyLevel++;
+            // Los diamantes aparecen más seguido
+            spawnInterval = Math.max(300, spawnInterval - 50);
+            // También aumentan ligeramente la velocidad base (ya lo usamos arriba)
+        }
 
         for (let i = diamonds.length - 1; i >= 0; i--) {
             const d = diamonds[i];
@@ -693,113 +693,123 @@
             const diamondY1 = d.y - d.size * (1 - overlapFactor);
             const diamondY2 = d.y + d.size * (1 - overlapFactor);
 
-			if (
-				diamondX2 > hitboxX &&
-				diamondX1 < hitboxX + hitboxW &&
-				diamondY2 > hitboxY &&
-				diamondY1 < hitboxY + hitboxH
-			) {
-				if (d.isBad) {
-					score -= DAMAGE_VALUE;
-					if (lives <= 0) {
-						updateHUD();
-						gameOver();
-						return;
-					}
-					createEvilEffect(d.x, d.y);
-					screenShake();
-					screenLightningFlash(-DAMAGE_VALUE); // ⚡ afegim el flash global aquí
-					if (soundOn) playThud();
-				} else {
-					createSparkle(d.x, d.y);
-					score += 1;
-					if (soundOn) playPing();
-				}
+            if (
+                diamondX2 > hitboxX &&
+                diamondX1 < hitboxX + hitboxW &&
+                diamondY2 > hitboxY &&
+                diamondY1 < hitboxY + hitboxH
+            ) {
+                if (d.isBad) {
+                    score -= DAMAGE_VALUE;
+                    if (lives <= 0) {
+                        updateHUD();
+                        gameOver();
+                        return;
+                    }
+                    createEvilEffect(d.x, d.y);
+                    screenShake();
+                    screenLightningFlash(-DAMAGE_VALUE); // ⚡ afegim el flash global aquí
+                    if (soundOn) playThud();
+                } else {
+                    createSparkle(d.x, d.y);
+                    score += 1;
+                    if (soundOn) playPing();
+                }
 
-				diamonds.splice(i, 1);
-				updateHUD();
-				continue;
-			}
+                diamonds.splice(i, 1);
+                updateHUD();
+                continue;
+            }
 
         }
-		
-		for (let i = badObjects.length - 1; i >= 0; i--) {
-			const b = badObjects[i];
-			b.y += b.speed * (dt / 1000);
-			b.rot += b.rotSpeed * dt;
 
-			if (b.y - b.size > H) {
-				badObjects.splice(i, 1);
-				continue;
-			}
+        for (let i = badObjects.length - 1; i >= 0; i--) {
+            const b = badObjects[i];
+            b.y += b.speed * (dt / 1000);
+            b.rot += b.rotSpeed * dt;
 
-			const overlapFactor = 0.20;
-			const hitboxX = player.x + player.w * overlapFactor;
-			const hitboxW = player.w * (1 - 2 * overlapFactor);
-			const hitboxY = player.y + player.h * overlapFactor;
-			const hitboxH = player.h * (1 - 2 * overlapFactor);
+            if (b.y - b.size > H) {
+                badObjects.splice(i, 1);
+                continue;
+            }
 
-			const bx1 = b.x - b.size * (1 - overlapFactor);
-			const bx2 = b.x + b.size * (1 - overlapFactor);
-			const by1 = b.y - b.size * (1 - overlapFactor);
-			const by2 = b.y + b.size * (1 - overlapFactor);
+            const overlapFactor = 0.20;
+            const hitboxX = player.x + player.w * overlapFactor;
+            const hitboxW = player.w * (1 - 2 * overlapFactor);
+            const hitboxY = player.y + player.h * overlapFactor;
+            const hitboxH = player.h * (1 - 2 * overlapFactor);
 
-			if (
-				bx2 > hitboxX &&
-				bx1 < hitboxX + hitboxW &&
-				by2 > hitboxY &&
-				by1 < hitboxY + hitboxH
-			) {
-				// 💥 impacto con objeto malo
-				createSparkle(b.x, b.y);
-				badObjects.splice(i, 1);
+            const bx1 = b.x - b.size * (1 - overlapFactor);
+            const bx2 = b.x + b.size * (1 - overlapFactor);
+            const by1 = b.y - b.size * (1 - overlapFactor);
+            const by2 = b.y + b.size * (1 - overlapFactor);
+
+            if (
+                bx2 > hitboxX &&
+                bx1 < hitboxX + hitboxW &&
+                by2 > hitboxY &&
+                by1 < hitboxY + hitboxH
+            ) {
+                // 💥 impacto con objeto malo
+                createSparkle(b.x, b.y);
+                badObjects.splice(i, 1);
                 score += -5;
-				if (lives <= 0) {
-					updateHUD();
-					gameOver();
-					return;
-				}
-				updateHUD();
-				continue;
-			}
-		}
+                if (lives <= 0) {
+                    updateHUD();
+                    gameOver();
+                    return;
+                }
+                updateHUD();
+                continue;
+            }
+        }
 
         ctx.save();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
 
-		frameCounter++;
-		if (frameCounter % ANIMATION_FRAME_INTERVAL === 0) { // cada X frames canvia sprite
-		  for (const d of diamonds) {
-			d.frame += d.dir;
-			if (d.frame >= 3) { d.frame = 3; d.dir = -1; }
-			else if (d.frame <= 0) { d.frame = 0; d.dir = 1; }
-		  }
-		  for (const b of badObjects) {
-			b.frame += b.dir;
-			if (b.frame >= 3) { b.frame = 3; b.dir = -1; }
-			else if (b.frame <= 0) { b.frame = 0; b.dir = 1; }
-		  }
-		}
-		
+        frameCounter++;
+        if (frameCounter % ANIMATION_FRAME_INTERVAL === 0) { // cada X frames canvia sprite
+            for (const d of diamonds) {
+                d.frame += d.dir;
+                if (d.frame >= 3) {
+                    d.frame = 3;
+                    d.dir = -1;
+                } else if (d.frame <= 0) {
+                    d.frame = 0;
+                    d.dir = 1;
+                }
+            }
+            for (const b of badObjects) {
+                b.frame += b.dir;
+                if (b.frame >= 3) {
+                    b.frame = 3;
+                    b.dir = -1;
+                } else if (b.frame <= 0) {
+                    b.frame = 0;
+                    b.dir = 1;
+                }
+            }
+        }
+
         for (const d of diamonds) {
             if (d.y - d.size > H || d.y + d.size < 0) continue;
-				drawDiamond(d.x, d.y, d.size, d.rot, d.isBad, d.frame);
+            drawDiamond(d.x, d.y, d.size, d.rot, d.isBad, d.frame);
         }
 
         if (player.x < 0) player.x = 0;
         if (player.x + player.w > W) player.x = W - player.w;
         drawPlayer();
-		
-		if (damageFlash > 0) {
-			ctx.save();
-			ctx.globalAlpha = damageFlash;
-			ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-			ctx.fillRect(0, 0, W, H);
-			ctx.restore();
-			damageFlash -= 0.05;
-		}
+
+        if (damageFlash > 0) {
+            ctx.save();
+            ctx.globalAlpha = damageFlash;
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+            ctx.fillRect(0, 0, W, H);
+            ctx.restore();
+            damageFlash -= 0.05;
+        }
 
         drawSparkles();
 
@@ -825,8 +835,8 @@
     });
     restartBtn.addEventListener('click', () => {
         $('#game-phase1-stats').css('visibility', 'visible');
-		clearInterval(PRITT_GAME.gameDurationInterval);
-		updateClock(PRITT_GAME.gameDuration);
+        clearInterval(PRITT_GAME.gameDurationInterval);
+        updateClock(PRITT_GAME.gameDuration);
         resetGame();
         running = true;
         paused = false;
