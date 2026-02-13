@@ -314,12 +314,12 @@ var PRITT_GAME = PRITT_GAME || {
 				if (PRITT_GAME.world == 2) {
 					$('.game-character-img').css('max-width', '26vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', t('game2_init_conversation'), 0, 25);
+					showText('#game-wizard-text-completed-p', t('game2_final_conversation'), 0, 25);
 				}
 				if (PRITT_GAME.world == 3) {
 					$('.game-character-img').css('max-width', '28vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', t('game3_init_conversation'), 0, 25);
+					showText('#game-wizard-text-completed-p', t('game3_final_conversation'), 0, 25);
 				}
 			} else {
 				if (PRITT_GAME.world == 1) {
@@ -328,7 +328,7 @@ var PRITT_GAME = PRITT_GAME || {
 					$('.game-character-img').css('float', 'left');
 					$('.game-character-img').css('max-width', '28vh');
 					$('#game-wizard-text-completed-p').html('');
-					showText('#game-wizard-text-completed-p', t('game1_init_conversation'), 0, 25);
+					showText('#game-wizard-text-completed-p', t('game1_final_conversation'), 0, 25);
 				}
 			}
 		}, 500);
