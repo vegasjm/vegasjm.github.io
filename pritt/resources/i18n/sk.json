@@ -9,7 +9,7 @@
   "game1_help_play_again": "Hrať znova",
   "game1_help_next_adventure": "Ďalšie dobrodružstvo",
   "game1_help_seconds_abbreviature": "sek.",
-  "end_of_game_opt_home": "DOMOV",
+  "end_of_game_opt_home": "DOM",
   "end_of_game_opt_templates": "ŠABLÓNY",
   "templates_page_title": "STIAHNUŤ KÚZELNÉ ŠABLÓNY",
   "templates_page_forest_keeper": "OCHRANCA LESOV",
@@ -17,7 +17,7 @@
   "templates_page_ogre": "ZLOBOR",
   "templates_page_dragon": "DRAK",
   "templates_page_fairy": "VÍLA",
-  "templates_page_house": "DOMOV",
+  "templates_page_house": "DOM",
   "templates_page_rainbow": "DÚHA",
   "templates_page_river": "RIEKA",
   "multimedia.download": "Stiahnuť",
@@ -36,5 +36,6 @@
   "game2_final_conversation": "Skvelá práca! @Priniesli ste @opäť svetlo!",
   "game3_final_conversation": "Dokázali ste to! @Stromy opäť @kúzelne žiaria!",
   "world_done": "HOTOVO!",
-  "success.you_did_it": "Podarilo sa!"
+  "success.you_did_it": "Podarilo sa!",
+  "success.better_luck": "Better luck next time!"
 }

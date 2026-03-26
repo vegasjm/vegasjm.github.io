@@ -36,5 +36,6 @@
   "game2_final_conversation": "Great job! @You brought the @light back!",
   "game3_final_conversation": "You did it! @The great tree shines @with magic again!",
   "world_done": "DONE!",
-  "success.you_did_it": "You did it!"
+  "success.you_did_it": "You did it!",
+  "success.better_luck": "Better luck next time!"
 }

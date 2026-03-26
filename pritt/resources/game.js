@@ -68,6 +68,16 @@ var PRITT_GAME = PRITT_GAME || {
         $('#btn-languageSelector').on('touch click', function(e) {
             var language = $('#languageSelector').find(":selected").val();
             PRITT_GAME.language = language;
+            if(PRITT_GAME.language!=null && (PRITT_GAME.language=='cs' || PRITT_GAME.language=='de' || PRITT_GAME.language=='sk' || PRITT_GAME.language=='tr')){
+                $('#scissors').attr("src", "./resources/img/scissors_"+PRITT_GAME.language+".png");
+            }else{
+                $('#scissors').attr("src", "./resources/img/scissors.png");
+            }
+            if(PRITT_GAME.language!=null && (PRITT_GAME.language=='de' || PRITT_GAME.language=='tr')) {
+                $('#pritt-logo').attr("src", "./resources/img/pritt_"+PRITT_GAME.language+".png");
+            }else{
+                $('#pritt-logo').attr("src", "./resources/img/pritt.png");
+            }
             loadLanguage(PRITT_GAME.language);
             PRITT_GAME.loadHome();
 			e.stopPropagation();

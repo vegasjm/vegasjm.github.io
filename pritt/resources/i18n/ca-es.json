@@ -36,5 +36,6 @@
   "game2_final_conversation": "Molt bé! @Has tornat la llum!",
   "game3_final_conversation": "Ho has aconseguit! @L’arbre gran torna a @brillar amb màgia!",
   "world_done": "FET!",
-  "success.you_did_it": "Ho has aconseguit!"
+  "success.you_did_it": "Ho has aconseguit!",
+  "success.better_luck": "Better luck next time!"
 }

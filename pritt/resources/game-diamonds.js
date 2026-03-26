@@ -379,7 +379,11 @@
 
     window.gameOver = function () {
         running = false;
-        msgTitle.textContent = t("success.you_did_it");
+        if(score>0) {
+            msgTitle.textContent = t("success.you_did_it");
+        }else{
+            msgTitle.textContent = t("success.better_luck");
+        }
         $('.game-world-item').attr("src", './resources/img/world-' + PRITT_GAME.world + '/diamond-' + PRITT_GAME.world + '_1.png');
         $('#game-phase1-stats').css('visibility', 'hidden');
         finalScore.textContent = score;
