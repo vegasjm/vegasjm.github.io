@@ -3,14 +3,15 @@ let translations = {};
 async function loadLanguage(lang) {
     const res = await fetch(`./resources/i18n/${lang}.json`);
 
-    $('#ForestKeeper-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-ForestKeeper.pdf');
-    $('#Unicorn-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-Unicorn.pdf');
-    $('#Ogre-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-Ogre.pdf');
-    $('#Dragon-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-Dragon.pdf');
-    $('#Fairy-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-Fairy.pdf');
-    $('#House-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-House.pdf');
-    $('#Rainbow-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-Rainbow.pdf');
-    $('#River-pdf').attr('href', 'resources/pdf/'+lang+'/Templates-River.pdf');
+    let folder = lang.replace("es-mx", "es").replace("en-za", "en");
+    $('#ForestKeeper-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-ForestKeeper.pdf');
+    $('#Unicorn-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-Unicorn.pdf');
+    $('#Ogre-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-Ogre.pdf');
+    $('#Dragon-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-Dragon.pdf');
+    $('#Fairy-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-Fairy.pdf');
+    $('#House-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-House.pdf');
+    $('#Rainbow-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-Rainbow.pdf');
+    $('#River-pdf').attr('href', 'resources/pdf/'+folder+'/Templates-River.pdf');
 
     translations = await res.json();
 
